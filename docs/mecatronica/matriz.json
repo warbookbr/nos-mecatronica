@@ -107,6 +107,36 @@
     "origem": "eletrifica:modulos/pcb/gen_schematic.py"
   },
   {
+    "id": "lig-esquematico-simbolos",
+    "camada": "ligacoes",
+    "capacidade": "O esquemático usa uma biblioteca de símbolos própria, com o símbolo retangular gerado para módulo, e o posicionamento dos símbolos é gerado, sem símbolo copiado de terceiro.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "O esquemático do braço gera com todos os componentes da netlist representados, nenhum símbolo vem de fora do repositório, e duas gerações saem iguais.",
+    "naoCobre": "A estética e a leitura humana do desenho, que a pessoa aprova.",
+    "origem": "eletrifica:modulos/pcb/gen_schematic.py"
+  },
+  {
+    "id": "lig-placa-do-gerber",
+    "camada": "ligacoes",
+    "capacidade": "O pacote de fabricação de uma placa existente é lido com código próprio: contorno, pads, furos e a netlist por pino, com a posição e o giro de cada peça pelo centro dos pads.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "Um Gerber de teste gerado por script volta com a mesma netlist e as mesmas posições que o geraram.",
+    "naoCobre": "A altura e o corpo das peças, que o Gerber não traz, e as variantes do formato que nenhum pacote de teste exercita.",
+    "origem": "eletrifica:modulos/pcb/render_3d.py"
+  },
+  {
+    "id": "lig-cobre-confere",
+    "camada": "ligacoes",
+    "capacidade": "A conectividade tirada só da geometria do cobre, ligando as faces pelos furos metalizados, confere com a netlist da placa.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "Uma trilha cortada ou uma ponte de cobre plantada no Gerber de teste reprova citando a rede e os pads.",
+    "naoCobre": "Defeito de fabricação da placa, como furo sem metalização e trilha rompida.",
+    "origem": "eletrifica:modulos/pcb/check_copper.py"
+  },
+  {
     "id": "lig-chicote",
     "camada": "ligacoes",
     "capacidade": "Cada fio do chicote tem conector, bitola e comprimento declarados entre duas portas da ficha.",

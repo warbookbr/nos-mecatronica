@@ -6,13 +6,13 @@ Gerado de `docs/mecatronica/matriz.json` por `npm run matriz:gerar`; não edite 
 
 | Camada | falta | parcial | feito | total |
 | --- | ---: | ---: | ---: | ---: |
-| Ligações | 5 | 7 | 0 | 12 |
+| Ligações | 6 | 9 | 0 | 15 |
 | Elétrico | 6 | 6 | 0 | 12 |
 | Lógico | 10 | 1 | 0 | 11 |
 | Físico | 11 | 0 | 0 | 11 |
 | Laço fechado | 9 | 0 | 0 | 9 |
 | Ponte com o Modelar | 9 | 1 | 0 | 10 |
-| Todas | 50 | 15 | 0 | 65 |
+| Todas | 51 | 17 | 0 | 68 |
 
 ## Ligações
 
@@ -29,6 +29,9 @@ Gerado de `docs/mecatronica/matriz.json` por `npm run matriz:gerar`; não edite 
 | `lig-barramento` | Barramento I2C com pull-up e sem endereço repetido, e UART com transmissão ligada à recepção do outro lado. | mecatronica | falta | Dois sensores com o mesmo endereço, ou TX ligado a TX, reprovam com o barramento e os componentes. | Capacitância real do chicote limitando a velocidade do barramento. |  |
 | `lig-pino-de-partida` | Pino de configuração de partida do microcontrolador (strapping) sem carga que mude o modo de boot. | mecatronica | falta | Um pino de partida ligado a uma carga que o puxa para o nível errado reprova com o pino e o modo resultante. | Diferença entre revisões do chip. | `eletrifica:projetos/cnc-laser/docs/analise.md` |
 | `lig-esquematico` | O esquemático do objeto é gerado da netlist, para a pessoa revisar o circuito. | mecatronica | parcial | O esquemático gerado e a netlist têm as mesmas redes, conferido pela reexportação da netlist do esquemático. | A leitura humana do desenho. | `eletrifica:modulos/pcb/gen_schematic.py` |
+| `lig-esquematico-simbolos` | O esquemático usa uma biblioteca de símbolos própria, com o símbolo retangular gerado para módulo, e o posicionamento dos símbolos é gerado, sem símbolo copiado de terceiro. | mecatronica | falta | O esquemático do braço gera com todos os componentes da netlist representados, nenhum símbolo vem de fora do repositório, e duas gerações saem iguais. | A estética e a leitura humana do desenho, que a pessoa aprova. | `eletrifica:modulos/pcb/gen_schematic.py` |
+| `lig-placa-do-gerber` | O pacote de fabricação de uma placa existente é lido com código próprio: contorno, pads, furos e a netlist por pino, com a posição e o giro de cada peça pelo centro dos pads. | mecatronica | parcial | Um Gerber de teste gerado por script volta com a mesma netlist e as mesmas posições que o geraram. | A altura e o corpo das peças, que o Gerber não traz, e as variantes do formato que nenhum pacote de teste exercita. | `eletrifica:modulos/pcb/render_3d.py` |
+| `lig-cobre-confere` | A conectividade tirada só da geometria do cobre, ligando as faces pelos furos metalizados, confere com a netlist da placa. | mecatronica | parcial | Uma trilha cortada ou uma ponte de cobre plantada no Gerber de teste reprova citando a rede e os pads. | Defeito de fabricação da placa, como furo sem metalização e trilha rompida. | `eletrifica:modulos/pcb/check_copper.py` |
 | `lig-chicote` | Cada fio do chicote tem conector, bitola e comprimento declarados entre duas portas da ficha. | mecatronica | falta | Um fio sem conector, com bitola abaixo da corrente da rede ou mais curto que a distância entre as portas reprova. | Crimpagem, conector que solta e fadiga do fio. |  |
 
 ## Elétrico
