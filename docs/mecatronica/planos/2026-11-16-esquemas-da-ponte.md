@@ -44,8 +44,8 @@ Nenhum motor de simulação. O conferidor é nosso, em JavaScript, sem dependên
 2. Cada arquivo errado de `ponte/exemplos/` é recusado com o campo, o valor recebido e a versão, e os certos passam, por teste.
 3. A mesma entrada dá a mesma saída do conferidor, byte a byte.
 4. A pessoa aprovou o formato da ficha e do pedido, lidos nos exemplos (aprovado em 2026-11-16, com dois ajustes: a variante `rp2040` no microcontrolador do braço de prova e a conversão abaixo).
-6. A ficha do braço de prova converte por comando para MJCF (`npm run ponte:mjcf -- <ficha>`), com as peças, as juntas com eixo e curso, a massa, o centro de massa e a inércia, e o MuJoCo carrega o resultado sem erro, chamado como programa e declarado em `decisoes/` com versão e licença; a conversão mostra que a parte física da ficha fala o formato que os simuladores já leem.
 5. As linhas `ponte-esquema-da-ficha` e `ponte-esquema-do-pedido` em `feito`, com a prova e o que não cobrem, e o `ponte/README.md` apontando para os esquemas no lugar de "o que ainda falta".
+6. A ficha do braço de prova converte por comando para MJCF (`npm run ponte:mjcf -- <ficha>`), com as peças, as juntas com eixo e curso, a massa, o centro de massa e a inércia, e o MuJoCo carrega o resultado sem erro, chamado como programa e declarado em `decisoes/` com versão e licença; a conversão mostra que a parte física da ficha fala o formato que os simuladores já leem.
 
 ## Fatias
 
