@@ -1,0 +1,18 @@
+{
+  "name": "nos-mecatronica",
+  "private": true,
+  "type": "module",
+  "description": "Simulação de ponta a ponta dos objetos do Modelar: ligações, circuito, lógica, física e o laço fechado entre eles.",
+  "scripts": {
+    "gates": "node tools/gates.mjs",
+    "test": "vitest run",
+    "planos:check": "node tools/mapa/planos.mjs --check",
+    "matriz:check": "node tools/matriz/matriz.mjs --check",
+    "matriz:gerar": "node tools/matriz/matriz.mjs --gerar",
+    "docs:links:check": "node tools/docs/links.mjs"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.10"
+  },
+  "engines": { "node": ">=22" }
+}

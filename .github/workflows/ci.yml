@@ -1,0 +1,61 @@
+name: CI
+
+# Todo envio roda a bateria inteira (`npm run gates`). O envio vai a um ramo `claude/**`, e o job `juntar` avança a main
+# até o commit que passou quando todos os gates ficaram verdes e a main não andou desde a base do ramo; se andou, ele
+# falha dizendo isso, e quem enviou junta a main ao ramo e envia de novo. O avanço feito pelo próprio CI não roda a
+# bateria outra vez, porque o commit é o mesmo que acabou de passar.
+on:
+  push:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+permissions:
+  contents: read
+
+jobs:
+  gates:
+    name: Gates
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Dependências
+        run: npm ci
+
+      - name: Gates
+        run: npm run gates
+
+  juntar:
+    name: Juntar à main
+    needs: [ gates ]
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/claude/')
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Avança a main até o commit que passou
+        run: |
+          git fetch origin main
+          if git merge-base --is-ancestor origin/main HEAD; then
+            git push origin HEAD:main
+          else
+            echo "A main andou desde a base deste ramo; junte a main ao ramo (git merge origin/main) e envie de novo."
+            exit 1
+          fi
