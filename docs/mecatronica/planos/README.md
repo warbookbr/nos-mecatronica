@@ -16,4 +16,4 @@ A linha "**Planos ativos:**" acima lista o link de cada plano ativo, ou diz "nen
 
 ## Planos em rascunho ou prontos
 
-Nenhum.
+- [Esquemas da ponte](2026-11-16-esquemas-da-ponte.md): a ficha e o pedido como JSON versionado, com conferidor e exemplos de prova.
