@@ -1,8 +1,10 @@
 # Esquemas da ponte: a ficha e o pedido como JSON versionado, com conferidor e exemplos de prova
 
-**Estado:** rascunho
+**Estado:** ativo
 
-**Território:** a declarar ao ativar; deve ficar em `ponte/`, `tools/ponte/` e `docs/mecatronica/decisoes/`.
+**Território:** `ponte/`, `tools/ponte/`, `docs/mecatronica/decisoes/`
+
+Ativado pela pessoa em 2026-11-16.
 
 **Responsável:** a IA da sessão implementa; Tiago aprova o formato antes da fatia 2.
 
