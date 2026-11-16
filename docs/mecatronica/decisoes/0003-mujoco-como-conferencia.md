@@ -1,7 +1,7 @@
 # 0003 — O MuJoCo 4.0.1 como conferência manual do MJCF que a ficha gera
 
 Estado: em vigor.
-Decidido em: 2026-11-16, na fatia 2 do [plano dos esquemas da ponte](../planos/2026-11-16-esquemas-da-ponte.md).
+Decidido em: 2026-11-16, na fatia 2 do [plano dos esquemas da ponte](../planos/concluidos/2026-11-16-esquemas-da-ponte.md).
 Origem: o item 6 do gate de saída do plano, que pede a ficha do braço de prova convertida para MJCF e carregada no MuJoCo.
 Substitui: nada.
 

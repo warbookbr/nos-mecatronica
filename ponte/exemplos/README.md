@@ -1,6 +1,6 @@
 # Exemplos da ponte
 
-Estes dois arquivos foram escritos à mão para a pessoa ler o formato da ponte antes de existir esquema ou conferidor, como pede a fatia 1 do [plano dos esquemas da ponte](../../docs/mecatronica/planos/2026-11-16-esquemas-da-ponte.md). Os números são plausíveis e coerentes entre si, mas são de exemplo: nenhuma simulação nem exportação do Modelar os produziu.
+Estes dois arquivos foram escritos à mão para a pessoa ler o formato da ponte antes de existir esquema ou conferidor, como pede a fatia 1 do [plano dos esquemas da ponte](../../docs/mecatronica/planos/concluidos/2026-11-16-esquemas-da-ponte.md). Os números são plausíveis e coerentes entre si, mas são de exemplo: nenhuma simulação nem exportação do Modelar os produziu.
 
 [`braco-de-prova.ficha.json`](braco-de-prova.ficha.json) é a ficha que o Modelar exportaria de um braço de duas juntas. A base com torre fica parada e guarda a placa de controle, o módulo do microcontrolador, os dois drivers, a fonte de 12 V e o borne de entrada; o motor do ombro fica na torre e gira o elo-1, que leva o motor do cotovelo, que gira o elo-2. A ficha traz a malha (caminho, caixa e contagem de faces), três conjuntos (o fixo e os dois elos móveis), as onze peças, as portas elétricas de cada componente, as duas juntas e dois volumes livres dentro da base.
 

@@ -1,6 +1,6 @@
 # Esquemas da ponte: a ficha e o pedido como JSON versionado, com conferidor e exemplos de prova
 
-**Estado:** ativo
+**Estado:** concluído
 
 **Território:** `ponte/`, `tools/ponte/`, `docs/mecatronica/decisoes/`
 
@@ -12,7 +12,7 @@ Ativado pela pessoa em 2026-11-16.
 
 ## Problema observado
 
-O contrato da ponte existe só em prosa ([`ponte/README.md`](../../../ponte/README.md)), e o próprio texto diz que os esquemas ficam para o primeiro plano da ponte. Sem eles, o Modelar não tem o que exportar e este repositório não tem o que ler: as linhas `ponte-esquema-da-ficha` e `ponte-esquema-do-pedido` da [matriz](../MATRIZ.md) estão em falta, e todas as linhas das camadas que leem a ficha (ligações, elétrico, físico) e a que escreve o pedido (`ponte-espaco-placa-e-chicote`) dependem delas. É também o único trabalho deste repositório que não espera nada do Modelar: o plano da ponte de lá espera estes esquemas.
+O contrato da ponte existe só em prosa ([`ponte/README.md`](../../../../ponte/README.md)), e o próprio texto diz que os esquemas ficam para o primeiro plano da ponte. Sem eles, o Modelar não tem o que exportar e este repositório não tem o que ler: as linhas `ponte-esquema-da-ficha` e `ponte-esquema-do-pedido` da [matriz](../../MATRIZ.md) estão em falta, e todas as linhas das camadas que leem a ficha (ligações, elétrico, físico) e a que escreve o pedido (`ponte-espaco-placa-e-chicote`) dependem delas. É também o único trabalho deste repositório que não espera nada do Modelar: o plano da ponte de lá espera estes esquemas.
 
 ## Resultado
 
@@ -50,8 +50,8 @@ Nenhum motor de simulação. O conferidor é nosso, em JavaScript, sem dependên
 ## Fatias
 
 1. Feita em 2026-11-16, aprovada pela pessoa com dois ajustes: os exemplos à mão primeiro (a ficha e o pedido do braço de prova), para a pessoa ler o formato antes de qualquer código.
-2. Feita em 2026-11-16: os esquemas e o conferidor (275 linhas, sem dependência), com os arquivos errados e o teste, e a conversão da ficha para MJCF com a carga no MuJoCo 4.0.1 registrada na [decisão 0003](../decisoes/0003-mujoco-como-conferencia.md); as linhas da matriz e o README da ponte, que eram da fatia 3, vieram junto. A carga achou o centro de massa do conjunto fixo do exemplo errado, corrigido, e o conferidor passou a conferir o centro de massa e a inércia do conjunto contra as peças.
-3. A decisão da cópia de referência, a matriz, o README da ponte e o fechamento.
+2. Feita em 2026-11-16: os esquemas e o conferidor (275 linhas, sem dependência), com os arquivos errados e o teste, e a conversão da ficha para MJCF com a carga no MuJoCo 4.0.1 registrada na [decisão 0003](../../decisoes/0003-mujoco-como-conferencia.md); as linhas da matriz e o README da ponte, que eram da fatia 3, vieram junto. A carga achou o centro de massa do conjunto fixo do exemplo errado, corrigido, e o conferidor passou a conferir o centro de massa e a inércia do conjunto contra as peças.
+3. Feita em 2026-11-16: a [decisão 0004](../../decisoes/0004-copia-de-referencia-dos-esquemas.md) da cópia de referência, com o SHA-256 de cada versão em `ponte/esquemas/versoes.json` e o teste que o confere, as linhas da matriz e o README da ponte apontando para ela, e o fechamento.
 
 ## Riscos e parada
 
@@ -59,4 +59,10 @@ Se o plano da ponte do Modelar, ao ser ativado, precisar de campo que muda o for
 
 ## Fechamento
 
-A preencher.
+Concluído em 2026-11-16, no ramo `claude/esquemas-da-ponte`, sobre a main da ativação; as fatias estão nos commits `6a957fc` (exemplos à mão), `7b1b81c` e `97cd0e4` (a decisão 0002 e a aprovação do formato), `174b467` (esquemas, conferidor, arquivos errados e MJCF) e no commit deste fechamento. A main anda quando o CI do envio passar.
+
+Os seis itens do gate de saída valem no ramo. `npm run gates` passou com os seis gates verdes: planos, matriz, links, o conferidor sobre a ficha e sobre o pedido do braço de prova, e os testes, entre eles os que recusam cada arquivo errado com o campo, o valor e a versão, os que conferem a saída byte a byte, o do MJCF esperado e o da cópia de referência. A pessoa aprovou o formato com os dois ajustes, o MuJoCo 4.0.1 carregou o MJCF da ficha ([decisão 0003](../../decisoes/0003-mujoco-como-conferencia.md)), e as linhas `ponte-esquema-da-ficha` e `ponte-esquema-do-pedido` estão em `feito`.
+
+O resultado observado é que o contrato da ponte deixou de ser só prosa: o Modelar tem dois esquemas na versão 1.0 para exportar e ler, com o SHA-256 para conferir a cópia dele ([decisão 0004](../../decisoes/0004-copia-de-referencia-dos-esquemas.md)), e este repositório tem a ficha do braço de prova para as camadas começarem. A carga no MuJoCo achou um centro de massa errado no exemplo já aprovado, que o conferidor não pegaria, e ele passou a conferir centro de massa e inércia do conjunto contra as peças.
+
+Fica para o plano da ponte do Modelar exportar a ficha, cumprir o pedido e conferir a cópia dos esquemas. Volta ao backlog a física do braço de prova sobre a ficha, com os motores como atuadores, a redução e o atrito que a conversão para MJCF não leva.
