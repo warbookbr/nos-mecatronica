@@ -1,0 +1,2 @@
+ponte/exemplos/errados/peca-inexistente.pedido.json: recusado (pedido, versão 1.0), 1 problema(s)
+  $.itens[1].alvo: cita uma peça que não existe na ficha; recebido "fonte-de-24v"

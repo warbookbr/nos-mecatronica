@@ -1,0 +1,5 @@
+# Arquivos errados da ponte
+
+Cada arquivo aqui é o exemplo certo do braço de prova com uma só mudança que quebra uma regra, e ao lado dele está a recusa que `npm run ponte:conferir -- <arquivo>` tem de imprimir, byte a byte, conferida pelo teste em [`tools/ponte/conferir.test.mjs`](../../../tools/ponte/conferir.test.mjs). A recusa diz o tipo e a versão do arquivo, o caminho JSON do campo, a regra e o valor recebido.
+
+[`campo-ausente.ficha.json`](campo-ausente.ficha.json) tira o `nome` da placa de controle. [`versao-desconhecida.ficha.json`](versao-desconhecida.ficha.json) declara a versão `2.0`, que o esquema não conhece. [`tipo-de-porta.ficha.json`](tipo-de-porta.ficha.json) dá o tipo `pwm` à porta `step` do driver do ombro, fora da lista de tipos. [`valor-sem-origem.ficha.json`](valor-sem-origem.ficha.json) tira a origem da massa do motor do ombro. [`peca-inexistente.pedido.json`](peca-inexistente.pedido.json) pede a nova posição de uma peça `fonte-de-24v`, que a ficha não tem; ele cita a ficha certa em `../braco-de-prova.ficha.json`.

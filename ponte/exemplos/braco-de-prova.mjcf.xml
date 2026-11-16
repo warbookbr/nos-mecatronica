@@ -1,0 +1,49 @@
+<mujoco model="braco-de-prova">
+  <!-- gerado de uma ficha da ponte (versão 1.0, revisão 3) por npm run ponte:mjcf; não edite à mão -->
+  <compiler angle="degree" inertiafromgeom="false"/>
+  <option timestep="0.001" gravity="0 -9.81 0"/>
+  <worldbody>
+    <body name="conjunto:fixo" pos="0 0 0">
+      <body name="base" pos="0 0 0">
+        <inertial pos="0 0.038 0" mass="0.42" fullinertia="0.0013055 0.002268 0.0013055 0 0 0"/>
+      </body>
+      <body name="motor-ombro" pos="0.03 0.15 0" axisangle="0 1 0 90">
+        <inertial pos="0 0 -0.02" mass="0.28" fullinertia="0.0000785 0.0000785 0.0000823 0 0 0"/>
+      </body>
+      <body name="placa-de-controle" pos="0 0.01 -0.04">
+        <inertial pos="0 0.0008 0" mass="0.022" fullinertia="0.000009 0.0000273 0.0000183 0 0 0"/>
+      </body>
+      <body name="modulo-microcontrolador" pos="-0.022 0.02 -0.04">
+        <inertial pos="0 0.0025 0" mass="0.01" fullinertia="6.74e-7 0.000002821 0.000002188 0 0 0"/>
+      </body>
+      <body name="driver-ombro" pos="0.022 0.02 -0.04">
+        <inertial pos="0 0.0065 0" mass="0.004" fullinertia="1.94e-7 2.14e-7 1.33e-7 0 0 0"/>
+      </body>
+      <body name="driver-cotovelo" pos="0.042 0.02 -0.04">
+        <inertial pos="0 0.0065 0" mass="0.004" fullinertia="1.94e-7 2.14e-7 1.33e-7 0 0 0"/>
+      </body>
+      <body name="fonte" pos="0 0.003 0.045">
+        <inertial pos="0 0.0165 0" mass="0.16" fullinertia="0.000059373 0.000141187 0.000110853 0 0 0"/>
+      </body>
+      <body name="borne-de-entrada" pos="-0.04 0.0116 -0.07">
+        <!-- inércia ausente na ficha: massa pontual no centro de massa -->
+        <inertial pos="0 0.005 0" mass="0.003" diaginertia="0 0 0"/>
+      </body>
+      <body name="conjunto:elo-1" pos="0.032 0.15 0">
+        <joint name="ombro" type="hinge" pos="0 0 0" axis="1 0 0" limited="true" range="-90 90"/>
+        <body name="elo-1" pos="0 0 0">
+          <inertial pos="0.005 0.075 0" mass="0.095" fullinertia="0.000205 0.0000095 0.000199 0 0 0"/>
+        </body>
+        <body name="motor-cotovelo" pos="0 0.16 0" axisangle="0 1 0 90">
+          <inertial pos="0 0 -0.02" mass="0.28" fullinertia="0.0000785 0.0000785 0.0000823 0 0 0"/>
+        </body>
+        <body name="conjunto:elo-2" pos="0.012 0.16 0">
+          <joint name="cotovelo" type="hinge" pos="0 0 0" axis="1 0 0" limited="true" range="-135 135"/>
+          <body name="elo-2" pos="0 0 0">
+            <inertial pos="0.005 0.06 0" mass="0.07" fullinertia="0.000099 0.000004 0.000097 0 0 0"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

@@ -8,3 +8,4 @@ Decisões em vigor:
 
 - [0001: a forma é do Modelar, a simulação é daqui, e a ponte é um contrato de arquivos](0001-separacao-e-ponte.md)
 - [0002: vários microcontroladores por uma interface, o RP2040 primeiro, e os simuladores de cada camada](0002-microcontrolador-e-simuladores.md)
+- [0003: o MuJoCo 4.0.1 como conferência manual do MJCF que a ficha gera](0003-mujoco-como-conferencia.md)

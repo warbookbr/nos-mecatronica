@@ -9,7 +9,9 @@
     "planos:check": "node tools/mapa/planos.mjs --check",
     "matriz:check": "node tools/matriz/matriz.mjs --check",
     "matriz:gerar": "node tools/matriz/matriz.mjs --gerar",
-    "docs:links:check": "node tools/docs/links.mjs"
+    "docs:links:check": "node tools/docs/links.mjs",
+    "ponte:conferir": "node tools/ponte/conferir.mjs",
+    "ponte:mjcf": "node tools/ponte/mjcf.mjs"
   },
   "devDependencies": {
     "vitest": "^4.1.10"

@@ -1,0 +1,2 @@
+ponte/exemplos/errados/valor-sem-origem.ficha.json: recusado (ficha, versão 1.0), 1 problema(s)
+  $.pecas[1].massa.origem: campo obrigatório ausente; recebido nada

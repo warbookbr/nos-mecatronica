@@ -14,6 +14,8 @@ O pedido lista o que a simulação precisa que a forma mude, peça por peça, ci
 
 O Modelar cumpre o pedido na receita da peça e confere o resultado com as réguas dele, e a ficha exportada de novo mostra se o pedido foi atendido. Pedido não cumprido volta com o motivo, e a simulação decide o que muda do lado dela.
 
-## O que ainda falta
+## Os esquemas
 
-Os esquemas JSON da ficha e do pedido, com a versão do contrato e a conferência de cada campo, ficam para o primeiro plano da ponte.
+A ficha e o pedido seguem os esquemas em [`ponte/esquemas/`](esquemas/), [`ficha.schema.json`](esquemas/ficha.schema.json) e [`pedido.schema.json`](esquemas/pedido.schema.json), escritos em JSON Schema 2020-12 como documentação legível, na versão `1.0`. Campo novo opcional sobe a versão menor e entra na lista de versões do esquema, que continua aceitando a anterior; campo novo obrigatório ou campo mudado sobe a maior. O formato foi lido e aprovado pela pessoa nos [exemplos do braço de prova](exemplos/README.md), que explicam cada escolha.
+
+`npm run ponte:conferir -- <arquivo> [--ficha=<arquivo>]` confere um arquivo contra o esquema da versão que ele declara e contra as regras que o JSON Schema não exprime: na ficha, que cada porta, junta e volume livre cite peça que existe, que cada peça cite conjunto que existe, que a junta ligue conjuntos diferentes com o filho num conjunto móvel, e que a massa, o centro de massa e a inércia de cada conjunto batam com as peças dele; no pedido, que cada peça, porta e junta citada exista na ficha a que ele responde (a de `--ficha` ou, sem ela, a de `ficha.caminho`, relativa ao pedido) e que a revisão seja a dela. A recusa diz o caminho JSON do campo, a regra, o valor recebido e a versão, e a mesma entrada dá a mesma saída. `npm run ponte:mjcf -- <ficha> [--saida=<arquivo>]` converte a parte física da ficha para o MuJoCo, como diz a [decisão 0003](../docs/mecatronica/decisoes/0003-mujoco-como-conferencia.md).

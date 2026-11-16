@@ -50,7 +50,7 @@ Nenhum motor de simulação. O conferidor é nosso, em JavaScript, sem dependên
 ## Fatias
 
 1. Feita em 2026-11-16, aprovada pela pessoa com dois ajustes: os exemplos à mão primeiro (a ficha e o pedido do braço de prova), para a pessoa ler o formato antes de qualquer código.
-2. Os esquemas e o conferidor, com os arquivos errados e o teste, e a conversão da ficha para MJCF com a carga no MuJoCo.
+2. Feita em 2026-11-16: os esquemas e o conferidor (275 linhas, sem dependência), com os arquivos errados e o teste, e a conversão da ficha para MJCF com a carga no MuJoCo 4.0.1 registrada na [decisão 0003](../decisoes/0003-mujoco-como-conferencia.md); as linhas da matriz e o README da ponte, que eram da fatia 3, vieram junto. A carga achou o centro de massa do conjunto fixo do exemplo errado, corrigido, e o conferidor passou a conferir o centro de massa e a inércia do conjunto contra as peças.
 3. A decisão da cópia de referência, a matriz, o README da ponte e o fechamento.
 
 ## Riscos e parada

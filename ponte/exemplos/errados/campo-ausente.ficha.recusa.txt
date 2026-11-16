@@ -1,0 +1,2 @@
+ponte/exemplos/errados/campo-ausente.ficha.json: recusado (ficha, versão 1.0), 1 problema(s)
+  $.pecas[5].nome: campo obrigatório ausente; recebido nada

@@ -28,7 +28,7 @@
       "id": "fixo",
       "movel": false,
       "massa": { "valor": 903, "origem": "estimativa", "nota": "soma das peças; inclui massas estimadas" },
-      "centroDeMassa": { "valor": [3.1, 72.6, 6.5], "origem": "estimativa" },
+      "centroDeMassa": { "valor": [3.0, 68.4, 6.0], "origem": "estimativa", "nota": "média das peças pesada pela massa" },
       "inercia": { "ausente": true, "motivo": "o conjunto fixo não entra na dinâmica" }
     },
     {
