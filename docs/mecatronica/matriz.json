@@ -1,1 +1,608 @@
-[]
+[
+  {
+    "id": "lig-pino-no-lugar",
+    "camada": "ligacoes",
+    "capacidade": "Cada fio liga o pino certo do componente certo: a netlist do objeto confere com o mapa de pinos de cada componente.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "Uma netlist de teste com dois fios trocados num conector reprova, citando o componente, o pino e o fio.",
+    "naoCobre": "Fio crimpado no terminal errado e conector encaixado deslocado na montagem real.",
+    "origem": "eletrifica:modulos/pcb/verify_netlist.py"
+  },
+  {
+    "id": "lig-alimentacao-com-fonte",
+    "camada": "ligacoes",
+    "capacidade": "Toda porta de alimentação tem caminho até uma fonte com a tensão que ela pede.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "Um componente com a porta de alimentação sem caminho até a fonte, ou ligado a uma fonte de outra tensão, reprova com a porta e a rede.",
+    "naoCobre": "Mau contato, fio solto e fonte com defeito.",
+    "origem": "eletrifica:modulos/conexoes/verificador.py"
+  },
+  {
+    "id": "lig-polaridade",
+    "camada": "ligacoes",
+    "capacidade": "Fonte, bateria, capacitor eletrolítico, diodo e motor com sentido ligados com a polaridade certa.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Cada componente polarizado ligado ao contrário num circuito de teste reprova antes da conta elétrica.",
+    "naoCobre": "Componente montado invertido na placa e marcação errada do fabricante."
+  },
+  {
+    "id": "lig-sentido-de-sinal",
+    "camada": "ligacoes",
+    "capacidade": "Cada rede de sinal tem uma só saída que a aciona e pelo menos uma entrada que a lê.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "Duas saídas na mesma rede, ou uma entrada sem quem a acione, reprovam com as portas envolvidas.",
+    "naoCobre": "Ruído induzido no fio que muda o nível lido.",
+    "origem": "eletrifica:modulos/conexoes/verificador.py"
+  },
+  {
+    "id": "lig-nivel-logico",
+    "camada": "ligacoes",
+    "capacidade": "Quem emite e quem lê um sinal usam níveis compatíveis (3,3 V contra 5 V), com conversor de nível onde faltar.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "Uma saída de 5 V numa entrada de 3,3 V sem conversor reprova com as duas tensões.",
+    "naoCobre": "Margem real de ruído e limiar que varia com temperatura e lote.",
+    "origem": "eletrifica:modulos/conexoes/padroes.py"
+  },
+  {
+    "id": "lig-curto",
+    "camada": "ligacoes",
+    "capacidade": "Nenhuma ligação une redes de tensões diferentes nem a alimentação direto ao terra.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "Duas redes unidas por engano num circuito de teste reprovam citando as portas que as unem.",
+    "naoCobre": "Ponte de solda, cavaco metálico e isolação gasta no chicote.",
+    "origem": "eletrifica:modulos/sistema/defeitos.py"
+  },
+  {
+    "id": "lig-porta-sem-ligacao",
+    "camada": "ligacoes",
+    "capacidade": "Toda porta da ficha está ligada ou declarada como livre de propósito.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "Uma porta obrigatória sem fio reprova com a peça e a porta.",
+    "naoCobre": "Fio que rompe com o uso.",
+    "origem": "eletrifica:modulos/conexoes/verificador.py"
+  },
+  {
+    "id": "lig-terra-comum",
+    "camada": "ligacoes",
+    "capacidade": "Placas e fontes que trocam sinal compartilham a referência de terra.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Duas placas ligadas por sinal sem terra comum reprovam com o sinal e as placas.",
+    "naoCobre": "Laço de terra e ruído de modo comum de um chicote real."
+  },
+  {
+    "id": "lig-barramento",
+    "camada": "ligacoes",
+    "capacidade": "Barramento I2C com pull-up e sem endereço repetido, e UART com transmissão ligada à recepção do outro lado.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Dois sensores com o mesmo endereço, ou TX ligado a TX, reprovam com o barramento e os componentes.",
+    "naoCobre": "Capacitância real do chicote limitando a velocidade do barramento."
+  },
+  {
+    "id": "lig-pino-de-partida",
+    "camada": "ligacoes",
+    "capacidade": "Pino de configuração de partida do microcontrolador (strapping) sem carga que mude o modo de boot.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Um pino de partida ligado a uma carga que o puxa para o nível errado reprova com o pino e o modo resultante.",
+    "naoCobre": "Diferença entre revisões do chip.",
+    "origem": "eletrifica:projetos/cnc-laser/docs/analise.md"
+  },
+  {
+    "id": "lig-esquematico",
+    "camada": "ligacoes",
+    "capacidade": "O esquemático do objeto é gerado da netlist, para a pessoa revisar o circuito.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "O esquemático gerado e a netlist têm as mesmas redes, conferido pela reexportação da netlist do esquemático.",
+    "naoCobre": "A leitura humana do desenho.",
+    "origem": "eletrifica:modulos/pcb/gen_schematic.py"
+  },
+  {
+    "id": "lig-chicote",
+    "camada": "ligacoes",
+    "capacidade": "Cada fio do chicote tem conector, bitola e comprimento declarados entre duas portas da ficha.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Um fio sem conector, com bitola abaixo da corrente da rede ou mais curto que a distância entre as portas reprova.",
+    "naoCobre": "Crimpagem, conector que solta e fadiga do fio."
+  },
+  {
+    "id": "ele-regime",
+    "camada": "eletrico",
+    "capacidade": "Tensão e corrente em regime em cada ramo do circuito do objeto.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "A solução de um circuito de teste confere com a conta à mão e com um simulador de circuito externo dentro de 1%.",
+    "naoCobre": "Tolerância dos componentes reais e resistência de contato.",
+    "origem": "eletrifica:modulos/energia/contatos.py"
+  },
+  {
+    "id": "ele-consumo-contra-fonte",
+    "camada": "eletrico",
+    "capacidade": "O consumo de pico e o médio de todos os componentes contra o que a fonte ou a bateria entregam.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "Um objeto cujo pico passa da corrente da fonte, ou cuja bateria não dura o tempo pedido, reprova com a soma por componente.",
+    "naoCobre": "Envelhecimento e temperatura da bateria.",
+    "origem": "eletrifica:modulos/energia/arvore.py"
+  },
+  {
+    "id": "ele-regulador-calor",
+    "camada": "eletrico",
+    "capacidade": "Potência dissipada em cada regulador e a temperatura de junção contra o limite da folha de dados.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "Um regulador linear com queda e corrente que passam do limite térmico reprova com a temperatura estimada.",
+    "naoCobre": "Fluxo de ar real e contato térmico com o invólucro.",
+    "origem": "eletrifica:modulos/termico/difusao.py"
+  },
+  {
+    "id": "ele-driver-motor",
+    "camada": "eletrico",
+    "capacidade": "A corrente que o driver entrega ao motor contra a corrente nominal dos dois e o limite ajustado.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Um driver ajustado acima da corrente do motor, ou abaixo da corrente que dá o torque pedido, reprova.",
+    "naoCobre": "Ajuste do potenciômetro na placa real e aquecimento do motor."
+  },
+  {
+    "id": "ele-partida-motor",
+    "camada": "eletrico",
+    "capacidade": "O pico de corrente na partida e na reversão dos motores e a queda que ele causa na alimentação do microcontrolador.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "A simulação no tempo da partida de todos os motores juntos mostra a tensão do microcontrolador acima do limite de reinício.",
+    "naoCobre": "Indutância e resistência reais do enrolamento."
+  },
+  {
+    "id": "ele-queda-no-chicote",
+    "camada": "eletrico",
+    "capacidade": "A queda de tensão em cada fio pela bitola, pelo comprimento e pela corrente.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Um fio longo e fino que deixa a carga abaixo da tensão mínima reprova com a queda calculada.",
+    "naoCobre": "Resistência de contato dos conectores com o uso."
+  },
+  {
+    "id": "ele-degrau-de-carga",
+    "camada": "eletrico",
+    "capacidade": "A resposta de cada regulador ao degrau de carga, com a tensão dentro da faixa do componente.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "Um degrau de corrente de teste mantém a tensão na faixa e reprova quando a capacitância de saída cai abaixo da necessária.",
+    "naoCobre": "Ondulação de chaveamento e efeito do desenho real da placa.",
+    "origem": "eletrifica:modulos/energia/vrm.py"
+  },
+  {
+    "id": "ele-protecao",
+    "camada": "eletrico",
+    "capacidade": "Fusível ou proteção eletrônica abre antes de um curto danificar o fio, a fonte ou o componente.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "Um curto simulado no tempo é cortado antes da energia limite do fio mais fino do caminho.",
+    "naoCobre": "Curva real do fusível e arco elétrico.",
+    "origem": "eletrifica:modulos/energia/protecao.py"
+  },
+  {
+    "id": "ele-capacitor-de-reservatorio",
+    "camada": "eletrico",
+    "capacidade": "Cada trilho com carga pulsada tem capacitância de reservatório suficiente para o pico.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Um trilho sem capacitor, ou com capacitância abaixo da necessária, reprova com a queda no pico.",
+    "naoCobre": "Resistência série e envelhecimento do capacitor.",
+    "origem": "eletrifica:projetos/cnc-laser/docs/analise.md"
+  },
+  {
+    "id": "ele-gate-do-transistor",
+    "camada": "eletrico",
+    "capacidade": "O transistor acionado pelo microcontrolador conduz plenamente com a tensão de gate disponível.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Um MOSFET que não satura com 3,3 V reprova pela resistência em condução calculada e pela potência dissipada.",
+    "naoCobre": "Dispersão do limiar entre lotes.",
+    "origem": "eletrifica:projetos/cnc-laser/docs/analise.md"
+  },
+  {
+    "id": "ele-carga-indutiva",
+    "camada": "eletrico",
+    "capacidade": "Motor, relé e solenoide chaveados têm caminho para a corrente de retorno.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Uma carga indutiva chaveada sem diodo de roda livre reprova com o pico de tensão estimado.",
+    "naoCobre": "Interferência eletromagnética irradiada."
+  },
+  {
+    "id": "ele-margem-dos-parametros",
+    "camada": "eletrico",
+    "capacidade": "Quanto cada valor do projeto pode piorar antes de alguma regra reprovar.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "A varredura dos parâmetros dá a folga de cada um e lista os que têm menos que a margem declarada.",
+    "naoCobre": "Combinação real de piores casos e defeito de fabricação.",
+    "origem": "eletrifica:modulos/conexoes/sensibilidade.py"
+  },
+  {
+    "id": "log-compila",
+    "camada": "logico",
+    "capacidade": "O programa do objeto compila para o microcontrolador alvo com a versão de compilador declarada.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "A compilação roda no gate e o reprova com a mensagem do compilador.",
+    "naoCobre": "Diferença entre o binário do gate e o gravado à mão na placa."
+  },
+  {
+    "id": "log-roda-emulado",
+    "camada": "logico",
+    "capacidade": "O binário roda num microcontrolador emulado, chamado como programa externo.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Um programa de teste que alterna um pino produz na emulação os níveis nos tempos esperados.",
+    "naoCobre": "Comportamento não documentado do silício e erratas do chip."
+  },
+  {
+    "id": "log-pinos-do-programa",
+    "camada": "logico",
+    "capacidade": "O pino que o programa configura e usa é o que a netlist liga ao componente, com a função certa.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Um programa que escreve num pino ligado a outro componente reprova pelo cruzamento da configuração com a netlist.",
+    "naoCobre": "Pino danificado na placa."
+  },
+  {
+    "id": "log-pwm",
+    "camada": "logico",
+    "capacidade": "O PWM sai com a frequência, a resolução e a faixa que o driver ou o servo pedem.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "A emulação mede a frequência e o ciclo de trabalho no pino e compara com o pedido do componente.",
+    "naoCobre": "Distorção do sinal no fio até o driver."
+  },
+  {
+    "id": "log-adc",
+    "camada": "logico",
+    "capacidade": "O ADC lê o sensor com a faixa, a referência e a resolução certas.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Um sensor cuja tensão máxima passa da referência do ADC reprova, e a leitura emulada converte para a grandeza física com o erro declarado.",
+    "naoCobre": "Ruído real da leitura e deriva da referência."
+  },
+  {
+    "id": "log-uart",
+    "camada": "logico",
+    "capacidade": "A UART entre placas usa a mesma taxa e o mesmo formato dos dois lados.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Duas placas emuladas trocam mensagens sem erro, e uma taxa diferente reprova.",
+    "naoCobre": "Erro de relógio real dos cristais."
+  },
+  {
+    "id": "log-i2c",
+    "camada": "logico",
+    "capacidade": "O I2C fala com o sensor no endereço e na velocidade certos e trata o sensor que não responde.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "O sensor emulado responde às leituras do programa, e um endereço errado reprova.",
+    "naoCobre": "Travamento do barramento por ruído real."
+  },
+  {
+    "id": "log-tempo-real",
+    "camada": "logico",
+    "capacidade": "O laço de controle cumpre o período e o prazo, medidos em ciclos na emulação.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "O pior tempo de execução do laço, medido no cenário mais pesado, fica abaixo do período com a folga declarada.",
+    "naoCobre": "Interrupções de periféricos que a emulação não reproduz."
+  },
+  {
+    "id": "log-falha-de-sensor",
+    "camada": "logico",
+    "capacidade": "O programa detecta sensor ausente, travado ou fora da faixa e leva o objeto a estado seguro.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Cada falha injetada no sensor emulado leva o programa ao estado seguro no prazo declarado.",
+    "naoCobre": "Falha intermitente de origem mecânica."
+  },
+  {
+    "id": "log-sequencia-de-partida",
+    "camada": "logico",
+    "capacidade": "A sequência de energização e partida como máquina de estados, com guarda em cada transição e falha injetável.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "Cada falha injetada para a partida com o motivo e o bloco culpado.",
+    "naoCobre": "Ordem real de subida das fontes.",
+    "origem": "eletrifica:modulos/sistema/boot.py"
+  },
+  {
+    "id": "log-cao-de-guarda",
+    "camada": "logico",
+    "capacidade": "O cão de guarda reinicia o programa travado e o objeto volta a estado seguro.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Um travamento injetado no programa emulado provoca o reinício e o estado seguro no prazo declarado.",
+    "naoCobre": "Travamento por falha de memória do chip."
+  },
+  {
+    "id": "fis-modelo-dinamico",
+    "camada": "fisico",
+    "capacidade": "O modelo de corpos rígidos montado da ficha, com elos, juntas, eixos, massas e inércias.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "O modelo do braço montado da ficha reproduz a cinemática direta da montagem do Modelar em toda pose de teste, dentro de 0,1 mm.",
+    "naoCobre": "Peças que se deformam."
+  },
+  {
+    "id": "fis-torque-gravidade",
+    "camada": "fisico",
+    "capacidade": "O torque de cada junta contra a carga na ferramenta e a gravidade, na pior pose.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "A varredura de poses dá o torque máximo de cada junta e reprova o motor com redução cujo torque nominal fica abaixo dele com a margem declarada.",
+    "naoCobre": "Rendimento real da redução e torque perdido com o aquecimento."
+  },
+  {
+    "id": "fis-inercia-aceleracao",
+    "camada": "fisico",
+    "capacidade": "O torque para acelerar os elos no perfil de movimento pedido, somado ao da gravidade.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "O perfil de movimento de teste reprova quando o torque dinâmico passa da curva do motor.",
+    "naoCobre": "Vibração dos elos e da base."
+  },
+  {
+    "id": "fis-curva-do-motor",
+    "camada": "fisico",
+    "capacidade": "A curva de torque contra velocidade de cada motor com a tensão do driver.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "O ponto de operação de cada junta no cenário fica dentro da curva, e o passo perdido do motor de passo é acusado.",
+    "naoCobre": "Ressonância do motor de passo."
+  },
+  {
+    "id": "fis-limite-de-curso",
+    "camada": "fisico",
+    "capacidade": "Os limites de curso de cada junta, com batente e fim de curso.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Um comando além do limite é recusado pelo programa e, se passar, a junta para no batente com a força estimada.",
+    "naoCobre": "Desgaste do batente."
+  },
+  {
+    "id": "fis-colisao-entre-pecas",
+    "camada": "fisico",
+    "capacidade": "Nenhuma peça atravessa outra em todo o espaço de juntas permitido.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "A varredura do espaço de juntas do braço acha as poses de colisão e reprova quando alguma fica dentro dos limites de curso.",
+    "naoCobre": "Fios e parafusos que a ficha não traz."
+  },
+  {
+    "id": "fis-atrito-e-folga",
+    "camada": "fisico",
+    "capacidade": "Atrito e folga em cada junta e redução como parâmetros declarados, com o efeito na precisão da ferramenta.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "O erro de posição da ferramenta com a folga declarada fica abaixo da precisão pedida.",
+    "naoCobre": "Folga mecânica real, que só a medida no objeto montado dá."
+  },
+  {
+    "id": "fis-rigidez",
+    "camada": "fisico",
+    "capacidade": "A deflexão dos elos sob a carga e o efeito na posição da ferramenta.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "A deflexão estimada de cada elo na pior pose fica abaixo da precisão pedida.",
+    "naoCobre": "Propriedades reais do material impresso ou usinado."
+  },
+  {
+    "id": "fis-chicote-na-junta",
+    "camada": "fisico",
+    "capacidade": "O chicote que atravessa uma junta aguenta o curso inteiro sem esticar nem dobrar abaixo do raio mínimo.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "O comprimento e a curvatura do chicote em cada pose do curso ficam dentro do declarado.",
+    "naoCobre": "Fadiga do fio depois de muitos ciclos."
+  },
+  {
+    "id": "fis-calor-no-involucro",
+    "camada": "fisico",
+    "capacidade": "A temperatura dentro do invólucro com o calor da camada elétrica e as aberturas da ficha.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "A temperatura estimada de cada componente no invólucro fica abaixo do limite dele no cenário mais quente.",
+    "naoCobre": "Calor real, fluxo de ar e sol direto.",
+    "origem": "eletrifica:modulos/termico/difusao.py"
+  },
+  {
+    "id": "fis-equilibrio",
+    "camada": "fisico",
+    "capacidade": "O centro de pressão dentro do polígono de apoio, parado e andando (robô humanoide).",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "A trajetória de passo de teste mantém o centro de pressão dentro do pé com a margem declarada.",
+    "naoCobre": "Atrito real do chão e irregularidade do piso."
+  },
+  {
+    "id": "laco-relogio-comum",
+    "camada": "laco",
+    "capacidade": "O programa emulado, o circuito e a física avançam no mesmo relógio, com passo declarado e resultado determinístico.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Duas execuções do mesmo cenário gravam o mesmo registro, byte a byte.",
+    "naoCobre": "Atrasos de comunicação que o modelo não declara."
+  },
+  {
+    "id": "laco-junta-ao-angulo",
+    "camada": "laco",
+    "capacidade": "O programa lê o sensor simulado e move a junta simulada até o ângulo pedido.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "No braço, cada junta chega ao ângulo pedido com o erro final e o tempo de acomodação dentro do declarado.",
+    "naoCobre": "Ruído real do sensor e folga da redução."
+  },
+  {
+    "id": "laco-estabilidade",
+    "camada": "laco",
+    "capacidade": "O controle é estável, com sobressinal e margem dentro do limite, variando a carga e a inércia.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "A varredura de carga e de pose não mostra oscilação nem sobressinal acima do declarado.",
+    "naoCobre": "Dinâmica não modelada, como a flexão dos elos."
+  },
+  {
+    "id": "laco-saturacao",
+    "camada": "laco",
+    "capacidade": "O controle sobrevive ao comando que satura o driver ou o motor sem perder a posição.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Um passo grande de ângulo satura o driver e a junta chega ao alvo sem disparar o integrador.",
+    "naoCobre": "Aquecimento do motor em saturação longa."
+  },
+  {
+    "id": "laco-trajetoria",
+    "camada": "laco",
+    "capacidade": "Várias juntas movendo-se juntas levam a ferramenta pelo caminho pedido, sem colisão.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "O desvio da ferramenta em relação ao caminho de teste fica dentro da precisão pedida.",
+    "naoCobre": "Erro de calibração da posição zero das juntas."
+  },
+  {
+    "id": "laco-consumo-no-movimento",
+    "camada": "laco",
+    "capacidade": "A corrente e o calor medidos durante o movimento do cenário, além do regime.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "O pico de corrente do cenário fica abaixo da fonte e da proteção, e a temperatura final abaixo do limite.",
+    "naoCobre": "Calor real acumulado em uso prolongado."
+  },
+  {
+    "id": "laco-injecao-de-falha",
+    "camada": "laco",
+    "capacidade": "Falha injetada durante o movimento (sensor travado, fio aberto, motor travado, queda da fonte) leva o objeto a estado seguro.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Cada falha da lista leva o objeto ao estado seguro no prazo declarado, sem colisão.",
+    "naoCobre": "Combinação de falhas reais que não estão na lista.",
+    "origem": "eletrifica:modulos/sistema/boot.py"
+  },
+  {
+    "id": "laco-equilibrio",
+    "camada": "laco",
+    "capacidade": "O controle mantém o robô humanoide de pé, com um empurrão, e o faz andar sem cair.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "O cenário de empurrão e o de passos terminam com o robô de pé e o centro de pressão dentro do apoio.",
+    "naoCobre": "Atrito real do chão e elasticidade das juntas."
+  },
+  {
+    "id": "laco-registro",
+    "camada": "laco",
+    "capacidade": "Cada cenário grava o registro no tempo (comando, corrente, ângulo, temperatura) que a pessoa vê e o gate confere.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "O registro do cenário passa nas condições declaradas dele, e uma condição violada reprova citando o instante.",
+    "naoCobre": "A observação do objeto real em uso."
+  },
+  {
+    "id": "ponte-esquema-da-ficha",
+    "camada": "ponte",
+    "capacidade": "O esquema JSON versionado da ficha do objeto, conferido pelos dois repositórios.",
+    "dono": "ponte",
+    "estado": "falta",
+    "prova": "Uma ficha com campo ausente ou de versão desconhecida é recusada pelos dois lados com o campo e a versão.",
+    "naoCobre": "Dado que a ficha não declara."
+  },
+  {
+    "id": "ponte-ficha-exportada",
+    "camada": "ponte",
+    "capacidade": "O Modelar exporta a ficha do braço com geometria, peças com identificador, portas elétricas, volumes livres, massa e inércia.",
+    "dono": "modelar",
+    "estado": "falta",
+    "prova": "A ficha do braço exportada passa no esquema e é reproduzida igual em duas exportações.",
+    "naoCobre": "Peças compradas que a receita representa só pelo volume."
+  },
+  {
+    "id": "ponte-massa-e-inercia",
+    "camada": "ponte",
+    "capacidade": "A massa, o centro de massa e a inércia de cada peça e de cada conjunto móvel, a partir da geometria e do material declarado.",
+    "dono": "modelar",
+    "estado": "falta",
+    "prova": "Para uma peça de teste de forma simples, os valores da ficha conferem com a conta à mão.",
+    "naoCobre": "Densidade real, parafusos e fios que a geometria não traz."
+  },
+  {
+    "id": "ponte-portas-eletricas",
+    "camada": "ponte",
+    "capacidade": "Cada componente da ficha traz as portas elétricas com posição e tipo, pelo nome da família de componentes.",
+    "dono": "modelar",
+    "estado": "falta",
+    "prova": "Todo componente da ficha do braço tem as portas que o modelo elétrico da mesma família pede.",
+    "naoCobre": "Conector real diferente do modelado."
+  },
+  {
+    "id": "ponte-esquema-do-pedido",
+    "camada": "ponte",
+    "capacidade": "O esquema JSON versionado do pedido, com espaço, posição, passagem e saída de ar por peça.",
+    "dono": "ponte",
+    "estado": "falta",
+    "prova": "Um pedido que cita peça que não existe na ficha é recusado com o identificador.",
+    "naoCobre": "Pedido que o Modelar não consegue cumprir sem mudar a forma aprovada."
+  },
+  {
+    "id": "ponte-espaco-placa-e-chicote",
+    "camada": "ponte",
+    "capacidade": "A simulação acha o volume para a placa, o driver e a fonte e o caminho do chicote, e escreve o pedido.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "O pedido do braço cabe nos volumes livres da ficha ou diz qual peça precisa de mais espaço e quanto.",
+    "naoCobre": "Espaço de mão e ferramenta para montar e fazer manutenção.",
+    "origem": "eletrifica:modulos/conexoes/posicao.py"
+  },
+  {
+    "id": "ponte-altura-de-componente",
+    "camada": "ponte",
+    "capacidade": "Cada componente da placa cabe no volume pedido com a altura real dele, inclusive debaixo de outro módulo.",
+    "dono": "ponte",
+    "estado": "falta",
+    "prova": "Um capacitor mais alto que o vão sob o módulo de cima reprova com a altura e o vão.",
+    "naoCobre": "Componente substituído por outro de corpo diferente na compra.",
+    "origem": "eletrifica:projetos/cnc-laser/docs/analise.md"
+  },
+  {
+    "id": "ponte-saida-de-ar",
+    "camada": "ponte",
+    "capacidade": "A área e o lugar das aberturas pedidos a partir do calor que a camada elétrica calculou.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Com as aberturas pedidas, a temperatura simulada no invólucro fica abaixo do limite.",
+    "naoCobre": "Poeira e obstrução das aberturas em uso."
+  },
+  {
+    "id": "ponte-pedido-cumprido",
+    "camada": "ponte",
+    "capacidade": "O Modelar cumpre o pedido na receita da peça, e a ficha nova mostra o espaço, a posição e a passagem atendidos.",
+    "dono": "modelar",
+    "estado": "falta",
+    "prova": "Cada item do pedido do braço aparece atendido na ficha exportada de novo, ou volta com o motivo.",
+    "naoCobre": "A aprovação de forma, que é da pessoa."
+  },
+  {
+    "id": "ponte-verificacao-no-modelar",
+    "camada": "ponte",
+    "capacidade": "As réguas do Modelar conferem o objeto com o pedido cumprido (contato, colisão e referencial), e a pessoa aprova a forma.",
+    "dono": "modelar",
+    "estado": "falta",
+    "prova": "Os gates do Modelar passam com a receita alterada, e a aprovação fica registrada lá.",
+    "naoCobre": "A montagem física do objeto."
+  }
+]

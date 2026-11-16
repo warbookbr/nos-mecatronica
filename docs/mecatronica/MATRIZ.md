@@ -1,39 +1,110 @@
 # Matriz da simulação
 
-Gerado de `docs/mecatronica/matriz.json` por `npm run matriz:gerar`; não edite à mão. Cada linha é uma capacidade que a simulação precisa ter para achar um erro de projeto antes do teste prático, com quem a faz, em que estado está, como se prova e o que a simulação não substitui.
+Gerado de `docs/mecatronica/matriz.json` por `npm run matriz:gerar`; não edite à mão. Cada linha é uma capacidade que a simulação precisa ter para achar um erro de projeto antes do teste prático, com quem a faz, em que estado está, como se prova e o que a simulação não substitui. Na coluna origem, `eletrifica:<caminho>` é um arquivo do [Eletrifica](https://github.com/brigsd/Eletrifica), de onde vem o que já existe ou a evidência que pede a linha.
 
 ## Resumo por estado
 
 | Camada | falta | parcial | feito | total |
 | --- | ---: | ---: | ---: | ---: |
-| Ligações | 0 | 0 | 0 | 0 |
-| Elétrico | 0 | 0 | 0 | 0 |
-| Lógico | 0 | 0 | 0 | 0 |
-| Físico | 0 | 0 | 0 | 0 |
-| Laço fechado | 0 | 0 | 0 | 0 |
-| Ponte com o Modelar | 0 | 0 | 0 | 0 |
-| Todas | 0 | 0 | 0 | 0 |
+| Ligações | 5 | 7 | 0 | 12 |
+| Elétrico | 6 | 6 | 0 | 12 |
+| Lógico | 10 | 1 | 0 | 11 |
+| Físico | 11 | 0 | 0 | 11 |
+| Laço fechado | 9 | 0 | 0 | 9 |
+| Ponte com o Modelar | 9 | 1 | 0 | 10 |
+| Todas | 50 | 15 | 0 | 65 |
 
 ## Ligações
 
-Nenhuma linha ainda.
+| id | capacidade | dono | estado | como se prova | o que não cobre | origem |
+| --- | --- | --- | --- | --- | --- | --- |
+| `lig-pino-no-lugar` | Cada fio liga o pino certo do componente certo: a netlist do objeto confere com o mapa de pinos de cada componente. | mecatronica | parcial | Uma netlist de teste com dois fios trocados num conector reprova, citando o componente, o pino e o fio. | Fio crimpado no terminal errado e conector encaixado deslocado na montagem real. | `eletrifica:modulos/pcb/verify_netlist.py` |
+| `lig-alimentacao-com-fonte` | Toda porta de alimentação tem caminho até uma fonte com a tensão que ela pede. | mecatronica | parcial | Um componente com a porta de alimentação sem caminho até a fonte, ou ligado a uma fonte de outra tensão, reprova com a porta e a rede. | Mau contato, fio solto e fonte com defeito. | `eletrifica:modulos/conexoes/verificador.py` |
+| `lig-polaridade` | Fonte, bateria, capacitor eletrolítico, diodo e motor com sentido ligados com a polaridade certa. | mecatronica | falta | Cada componente polarizado ligado ao contrário num circuito de teste reprova antes da conta elétrica. | Componente montado invertido na placa e marcação errada do fabricante. |  |
+| `lig-sentido-de-sinal` | Cada rede de sinal tem uma só saída que a aciona e pelo menos uma entrada que a lê. | mecatronica | parcial | Duas saídas na mesma rede, ou uma entrada sem quem a acione, reprovam com as portas envolvidas. | Ruído induzido no fio que muda o nível lido. | `eletrifica:modulos/conexoes/verificador.py` |
+| `lig-nivel-logico` | Quem emite e quem lê um sinal usam níveis compatíveis (3,3 V contra 5 V), com conversor de nível onde faltar. | mecatronica | parcial | Uma saída de 5 V numa entrada de 3,3 V sem conversor reprova com as duas tensões. | Margem real de ruído e limiar que varia com temperatura e lote. | `eletrifica:modulos/conexoes/padroes.py` |
+| `lig-curto` | Nenhuma ligação une redes de tensões diferentes nem a alimentação direto ao terra. | mecatronica | parcial | Duas redes unidas por engano num circuito de teste reprovam citando as portas que as unem. | Ponte de solda, cavaco metálico e isolação gasta no chicote. | `eletrifica:modulos/sistema/defeitos.py` |
+| `lig-porta-sem-ligacao` | Toda porta da ficha está ligada ou declarada como livre de propósito. | mecatronica | parcial | Uma porta obrigatória sem fio reprova com a peça e a porta. | Fio que rompe com o uso. | `eletrifica:modulos/conexoes/verificador.py` |
+| `lig-terra-comum` | Placas e fontes que trocam sinal compartilham a referência de terra. | mecatronica | falta | Duas placas ligadas por sinal sem terra comum reprovam com o sinal e as placas. | Laço de terra e ruído de modo comum de um chicote real. |  |
+| `lig-barramento` | Barramento I2C com pull-up e sem endereço repetido, e UART com transmissão ligada à recepção do outro lado. | mecatronica | falta | Dois sensores com o mesmo endereço, ou TX ligado a TX, reprovam com o barramento e os componentes. | Capacitância real do chicote limitando a velocidade do barramento. |  |
+| `lig-pino-de-partida` | Pino de configuração de partida do microcontrolador (strapping) sem carga que mude o modo de boot. | mecatronica | falta | Um pino de partida ligado a uma carga que o puxa para o nível errado reprova com o pino e o modo resultante. | Diferença entre revisões do chip. | `eletrifica:projetos/cnc-laser/docs/analise.md` |
+| `lig-esquematico` | O esquemático do objeto é gerado da netlist, para a pessoa revisar o circuito. | mecatronica | parcial | O esquemático gerado e a netlist têm as mesmas redes, conferido pela reexportação da netlist do esquemático. | A leitura humana do desenho. | `eletrifica:modulos/pcb/gen_schematic.py` |
+| `lig-chicote` | Cada fio do chicote tem conector, bitola e comprimento declarados entre duas portas da ficha. | mecatronica | falta | Um fio sem conector, com bitola abaixo da corrente da rede ou mais curto que a distância entre as portas reprova. | Crimpagem, conector que solta e fadiga do fio. |  |
 
 ## Elétrico
 
-Nenhuma linha ainda.
+| id | capacidade | dono | estado | como se prova | o que não cobre | origem |
+| --- | --- | --- | --- | --- | --- | --- |
+| `ele-regime` | Tensão e corrente em regime em cada ramo do circuito do objeto. | mecatronica | parcial | A solução de um circuito de teste confere com a conta à mão e com um simulador de circuito externo dentro de 1%. | Tolerância dos componentes reais e resistência de contato. | `eletrifica:modulos/energia/contatos.py` |
+| `ele-consumo-contra-fonte` | O consumo de pico e o médio de todos os componentes contra o que a fonte ou a bateria entregam. | mecatronica | parcial | Um objeto cujo pico passa da corrente da fonte, ou cuja bateria não dura o tempo pedido, reprova com a soma por componente. | Envelhecimento e temperatura da bateria. | `eletrifica:modulos/energia/arvore.py` |
+| `ele-regulador-calor` | Potência dissipada em cada regulador e a temperatura de junção contra o limite da folha de dados. | mecatronica | parcial | Um regulador linear com queda e corrente que passam do limite térmico reprova com a temperatura estimada. | Fluxo de ar real e contato térmico com o invólucro. | `eletrifica:modulos/termico/difusao.py` |
+| `ele-driver-motor` | A corrente que o driver entrega ao motor contra a corrente nominal dos dois e o limite ajustado. | mecatronica | falta | Um driver ajustado acima da corrente do motor, ou abaixo da corrente que dá o torque pedido, reprova. | Ajuste do potenciômetro na placa real e aquecimento do motor. |  |
+| `ele-partida-motor` | O pico de corrente na partida e na reversão dos motores e a queda que ele causa na alimentação do microcontrolador. | mecatronica | falta | A simulação no tempo da partida de todos os motores juntos mostra a tensão do microcontrolador acima do limite de reinício. | Indutância e resistência reais do enrolamento. |  |
+| `ele-queda-no-chicote` | A queda de tensão em cada fio pela bitola, pelo comprimento e pela corrente. | mecatronica | falta | Um fio longo e fino que deixa a carga abaixo da tensão mínima reprova com a queda calculada. | Resistência de contato dos conectores com o uso. |  |
+| `ele-degrau-de-carga` | A resposta de cada regulador ao degrau de carga, com a tensão dentro da faixa do componente. | mecatronica | parcial | Um degrau de corrente de teste mantém a tensão na faixa e reprova quando a capacitância de saída cai abaixo da necessária. | Ondulação de chaveamento e efeito do desenho real da placa. | `eletrifica:modulos/energia/vrm.py` |
+| `ele-protecao` | Fusível ou proteção eletrônica abre antes de um curto danificar o fio, a fonte ou o componente. | mecatronica | parcial | Um curto simulado no tempo é cortado antes da energia limite do fio mais fino do caminho. | Curva real do fusível e arco elétrico. | `eletrifica:modulos/energia/protecao.py` |
+| `ele-capacitor-de-reservatorio` | Cada trilho com carga pulsada tem capacitância de reservatório suficiente para o pico. | mecatronica | falta | Um trilho sem capacitor, ou com capacitância abaixo da necessária, reprova com a queda no pico. | Resistência série e envelhecimento do capacitor. | `eletrifica:projetos/cnc-laser/docs/analise.md` |
+| `ele-gate-do-transistor` | O transistor acionado pelo microcontrolador conduz plenamente com a tensão de gate disponível. | mecatronica | falta | Um MOSFET que não satura com 3,3 V reprova pela resistência em condução calculada e pela potência dissipada. | Dispersão do limiar entre lotes. | `eletrifica:projetos/cnc-laser/docs/analise.md` |
+| `ele-carga-indutiva` | Motor, relé e solenoide chaveados têm caminho para a corrente de retorno. | mecatronica | falta | Uma carga indutiva chaveada sem diodo de roda livre reprova com o pico de tensão estimado. | Interferência eletromagnética irradiada. |  |
+| `ele-margem-dos-parametros` | Quanto cada valor do projeto pode piorar antes de alguma regra reprovar. | mecatronica | parcial | A varredura dos parâmetros dá a folga de cada um e lista os que têm menos que a margem declarada. | Combinação real de piores casos e defeito de fabricação. | `eletrifica:modulos/conexoes/sensibilidade.py` |
 
 ## Lógico
 
-Nenhuma linha ainda.
+| id | capacidade | dono | estado | como se prova | o que não cobre | origem |
+| --- | --- | --- | --- | --- | --- | --- |
+| `log-compila` | O programa do objeto compila para o microcontrolador alvo com a versão de compilador declarada. | mecatronica | falta | A compilação roda no gate e o reprova com a mensagem do compilador. | Diferença entre o binário do gate e o gravado à mão na placa. |  |
+| `log-roda-emulado` | O binário roda num microcontrolador emulado, chamado como programa externo. | mecatronica | falta | Um programa de teste que alterna um pino produz na emulação os níveis nos tempos esperados. | Comportamento não documentado do silício e erratas do chip. |  |
+| `log-pinos-do-programa` | O pino que o programa configura e usa é o que a netlist liga ao componente, com a função certa. | mecatronica | falta | Um programa que escreve num pino ligado a outro componente reprova pelo cruzamento da configuração com a netlist. | Pino danificado na placa. |  |
+| `log-pwm` | O PWM sai com a frequência, a resolução e a faixa que o driver ou o servo pedem. | mecatronica | falta | A emulação mede a frequência e o ciclo de trabalho no pino e compara com o pedido do componente. | Distorção do sinal no fio até o driver. |  |
+| `log-adc` | O ADC lê o sensor com a faixa, a referência e a resolução certas. | mecatronica | falta | Um sensor cuja tensão máxima passa da referência do ADC reprova, e a leitura emulada converte para a grandeza física com o erro declarado. | Ruído real da leitura e deriva da referência. |  |
+| `log-uart` | A UART entre placas usa a mesma taxa e o mesmo formato dos dois lados. | mecatronica | falta | Duas placas emuladas trocam mensagens sem erro, e uma taxa diferente reprova. | Erro de relógio real dos cristais. |  |
+| `log-i2c` | O I2C fala com o sensor no endereço e na velocidade certos e trata o sensor que não responde. | mecatronica | falta | O sensor emulado responde às leituras do programa, e um endereço errado reprova. | Travamento do barramento por ruído real. |  |
+| `log-tempo-real` | O laço de controle cumpre o período e o prazo, medidos em ciclos na emulação. | mecatronica | falta | O pior tempo de execução do laço, medido no cenário mais pesado, fica abaixo do período com a folga declarada. | Interrupções de periféricos que a emulação não reproduz. |  |
+| `log-falha-de-sensor` | O programa detecta sensor ausente, travado ou fora da faixa e leva o objeto a estado seguro. | mecatronica | falta | Cada falha injetada no sensor emulado leva o programa ao estado seguro no prazo declarado. | Falha intermitente de origem mecânica. |  |
+| `log-sequencia-de-partida` | A sequência de energização e partida como máquina de estados, com guarda em cada transição e falha injetável. | mecatronica | parcial | Cada falha injetada para a partida com o motivo e o bloco culpado. | Ordem real de subida das fontes. | `eletrifica:modulos/sistema/boot.py` |
+| `log-cao-de-guarda` | O cão de guarda reinicia o programa travado e o objeto volta a estado seguro. | mecatronica | falta | Um travamento injetado no programa emulado provoca o reinício e o estado seguro no prazo declarado. | Travamento por falha de memória do chip. |  |
 
 ## Físico
 
-Nenhuma linha ainda.
+| id | capacidade | dono | estado | como se prova | o que não cobre | origem |
+| --- | --- | --- | --- | --- | --- | --- |
+| `fis-modelo-dinamico` | O modelo de corpos rígidos montado da ficha, com elos, juntas, eixos, massas e inércias. | mecatronica | falta | O modelo do braço montado da ficha reproduz a cinemática direta da montagem do Modelar em toda pose de teste, dentro de 0,1 mm. | Peças que se deformam. |  |
+| `fis-torque-gravidade` | O torque de cada junta contra a carga na ferramenta e a gravidade, na pior pose. | mecatronica | falta | A varredura de poses dá o torque máximo de cada junta e reprova o motor com redução cujo torque nominal fica abaixo dele com a margem declarada. | Rendimento real da redução e torque perdido com o aquecimento. |  |
+| `fis-inercia-aceleracao` | O torque para acelerar os elos no perfil de movimento pedido, somado ao da gravidade. | mecatronica | falta | O perfil de movimento de teste reprova quando o torque dinâmico passa da curva do motor. | Vibração dos elos e da base. |  |
+| `fis-curva-do-motor` | A curva de torque contra velocidade de cada motor com a tensão do driver. | mecatronica | falta | O ponto de operação de cada junta no cenário fica dentro da curva, e o passo perdido do motor de passo é acusado. | Ressonância do motor de passo. |  |
+| `fis-limite-de-curso` | Os limites de curso de cada junta, com batente e fim de curso. | mecatronica | falta | Um comando além do limite é recusado pelo programa e, se passar, a junta para no batente com a força estimada. | Desgaste do batente. |  |
+| `fis-colisao-entre-pecas` | Nenhuma peça atravessa outra em todo o espaço de juntas permitido. | mecatronica | falta | A varredura do espaço de juntas do braço acha as poses de colisão e reprova quando alguma fica dentro dos limites de curso. | Fios e parafusos que a ficha não traz. |  |
+| `fis-atrito-e-folga` | Atrito e folga em cada junta e redução como parâmetros declarados, com o efeito na precisão da ferramenta. | mecatronica | falta | O erro de posição da ferramenta com a folga declarada fica abaixo da precisão pedida. | Folga mecânica real, que só a medida no objeto montado dá. |  |
+| `fis-rigidez` | A deflexão dos elos sob a carga e o efeito na posição da ferramenta. | mecatronica | falta | A deflexão estimada de cada elo na pior pose fica abaixo da precisão pedida. | Propriedades reais do material impresso ou usinado. |  |
+| `fis-chicote-na-junta` | O chicote que atravessa uma junta aguenta o curso inteiro sem esticar nem dobrar abaixo do raio mínimo. | mecatronica | falta | O comprimento e a curvatura do chicote em cada pose do curso ficam dentro do declarado. | Fadiga do fio depois de muitos ciclos. |  |
+| `fis-calor-no-involucro` | A temperatura dentro do invólucro com o calor da camada elétrica e as aberturas da ficha. | mecatronica | falta | A temperatura estimada de cada componente no invólucro fica abaixo do limite dele no cenário mais quente. | Calor real, fluxo de ar e sol direto. | `eletrifica:modulos/termico/difusao.py` |
+| `fis-equilibrio` | O centro de pressão dentro do polígono de apoio, parado e andando (robô humanoide). | mecatronica | falta | A trajetória de passo de teste mantém o centro de pressão dentro do pé com a margem declarada. | Atrito real do chão e irregularidade do piso. |  |
 
 ## Laço fechado
 
-Nenhuma linha ainda.
+| id | capacidade | dono | estado | como se prova | o que não cobre | origem |
+| --- | --- | --- | --- | --- | --- | --- |
+| `laco-relogio-comum` | O programa emulado, o circuito e a física avançam no mesmo relógio, com passo declarado e resultado determinístico. | mecatronica | falta | Duas execuções do mesmo cenário gravam o mesmo registro, byte a byte. | Atrasos de comunicação que o modelo não declara. |  |
+| `laco-junta-ao-angulo` | O programa lê o sensor simulado e move a junta simulada até o ângulo pedido. | mecatronica | falta | No braço, cada junta chega ao ângulo pedido com o erro final e o tempo de acomodação dentro do declarado. | Ruído real do sensor e folga da redução. |  |
+| `laco-estabilidade` | O controle é estável, com sobressinal e margem dentro do limite, variando a carga e a inércia. | mecatronica | falta | A varredura de carga e de pose não mostra oscilação nem sobressinal acima do declarado. | Dinâmica não modelada, como a flexão dos elos. |  |
+| `laco-saturacao` | O controle sobrevive ao comando que satura o driver ou o motor sem perder a posição. | mecatronica | falta | Um passo grande de ângulo satura o driver e a junta chega ao alvo sem disparar o integrador. | Aquecimento do motor em saturação longa. |  |
+| `laco-trajetoria` | Várias juntas movendo-se juntas levam a ferramenta pelo caminho pedido, sem colisão. | mecatronica | falta | O desvio da ferramenta em relação ao caminho de teste fica dentro da precisão pedida. | Erro de calibração da posição zero das juntas. |  |
+| `laco-consumo-no-movimento` | A corrente e o calor medidos durante o movimento do cenário, além do regime. | mecatronica | falta | O pico de corrente do cenário fica abaixo da fonte e da proteção, e a temperatura final abaixo do limite. | Calor real acumulado em uso prolongado. |  |
+| `laco-injecao-de-falha` | Falha injetada durante o movimento (sensor travado, fio aberto, motor travado, queda da fonte) leva o objeto a estado seguro. | mecatronica | falta | Cada falha da lista leva o objeto ao estado seguro no prazo declarado, sem colisão. | Combinação de falhas reais que não estão na lista. | `eletrifica:modulos/sistema/boot.py` |
+| `laco-equilibrio` | O controle mantém o robô humanoide de pé, com um empurrão, e o faz andar sem cair. | mecatronica | falta | O cenário de empurrão e o de passos terminam com o robô de pé e o centro de pressão dentro do apoio. | Atrito real do chão e elasticidade das juntas. |  |
+| `laco-registro` | Cada cenário grava o registro no tempo (comando, corrente, ângulo, temperatura) que a pessoa vê e o gate confere. | mecatronica | falta | O registro do cenário passa nas condições declaradas dele, e uma condição violada reprova citando o instante. | A observação do objeto real em uso. |  |
 
 ## Ponte com o Modelar
 
-Nenhuma linha ainda.
+| id | capacidade | dono | estado | como se prova | o que não cobre | origem |
+| --- | --- | --- | --- | --- | --- | --- |
+| `ponte-esquema-da-ficha` | O esquema JSON versionado da ficha do objeto, conferido pelos dois repositórios. | ponte | falta | Uma ficha com campo ausente ou de versão desconhecida é recusada pelos dois lados com o campo e a versão. | Dado que a ficha não declara. |  |
+| `ponte-ficha-exportada` | O Modelar exporta a ficha do braço com geometria, peças com identificador, portas elétricas, volumes livres, massa e inércia. | modelar | falta | A ficha do braço exportada passa no esquema e é reproduzida igual em duas exportações. | Peças compradas que a receita representa só pelo volume. |  |
+| `ponte-massa-e-inercia` | A massa, o centro de massa e a inércia de cada peça e de cada conjunto móvel, a partir da geometria e do material declarado. | modelar | falta | Para uma peça de teste de forma simples, os valores da ficha conferem com a conta à mão. | Densidade real, parafusos e fios que a geometria não traz. |  |
+| `ponte-portas-eletricas` | Cada componente da ficha traz as portas elétricas com posição e tipo, pelo nome da família de componentes. | modelar | falta | Todo componente da ficha do braço tem as portas que o modelo elétrico da mesma família pede. | Conector real diferente do modelado. |  |
+| `ponte-esquema-do-pedido` | O esquema JSON versionado do pedido, com espaço, posição, passagem e saída de ar por peça. | ponte | falta | Um pedido que cita peça que não existe na ficha é recusado com o identificador. | Pedido que o Modelar não consegue cumprir sem mudar a forma aprovada. |  |
+| `ponte-espaco-placa-e-chicote` | A simulação acha o volume para a placa, o driver e a fonte e o caminho do chicote, e escreve o pedido. | mecatronica | parcial | O pedido do braço cabe nos volumes livres da ficha ou diz qual peça precisa de mais espaço e quanto. | Espaço de mão e ferramenta para montar e fazer manutenção. | `eletrifica:modulos/conexoes/posicao.py` |
+| `ponte-altura-de-componente` | Cada componente da placa cabe no volume pedido com a altura real dele, inclusive debaixo de outro módulo. | ponte | falta | Um capacitor mais alto que o vão sob o módulo de cima reprova com a altura e o vão. | Componente substituído por outro de corpo diferente na compra. | `eletrifica:projetos/cnc-laser/docs/analise.md` |
+| `ponte-saida-de-ar` | A área e o lugar das aberturas pedidos a partir do calor que a camada elétrica calculou. | mecatronica | falta | Com as aberturas pedidas, a temperatura simulada no invólucro fica abaixo do limite. | Poeira e obstrução das aberturas em uso. |  |
+| `ponte-pedido-cumprido` | O Modelar cumpre o pedido na receita da peça, e a ficha nova mostra o espaço, a posição e a passagem atendidos. | modelar | falta | Cada item do pedido do braço aparece atendido na ficha exportada de novo, ou volta com o motivo. | A aprovação de forma, que é da pessoa. |  |
+| `ponte-verificacao-no-modelar` | As réguas do Modelar conferem o objeto com o pedido cumprido (contato, colisão e referencial), e a pessoa aprova a forma. | modelar | falta | Os gates do Modelar passam com a receita alterada, e a aprovação fica registrada lá. | A montagem física do objeto. |  |

@@ -69,7 +69,7 @@ export function gerarMarkdown(linhas) {
   const saida = [
     '# Matriz da simulação',
     '',
-    `Gerado de \`${FONTE}\` por \`${COMANDO_GERAR}\`; não edite à mão. Cada linha é uma capacidade que a simulação precisa ter para achar um erro de projeto antes do teste prático, com quem a faz, em que estado está, como se prova e o que a simulação não substitui.`,
+    `Gerado de \`${FONTE}\` por \`${COMANDO_GERAR}\`; não edite à mão. Cada linha é uma capacidade que a simulação precisa ter para achar um erro de projeto antes do teste prático, com quem a faz, em que estado está, como se prova e o que a simulação não substitui. Na coluna origem, \`eletrifica:<caminho>\` é um arquivo do [Eletrifica](https://github.com/brigsd/Eletrifica), de onde vem o que já existe ou a evidência que pede a linha.`,
     '',
     '## Resumo por estado',
     '',
