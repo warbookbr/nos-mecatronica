@@ -1,0 +1,3 @@
+# Os esquemas são a cópia de referência da ponte e são conferidos pelo SHA-256 (decisão 0004); os bytes não mudam com o
+# sistema de quem faz o checkout.
+* text eol=lf
