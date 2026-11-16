@@ -143,7 +143,7 @@
       "id": "modulo-microcontrolador",
       "nome": "Módulo do microcontrolador (3,3 V)",
       "familia": "modulo-de-placa",
-      "variante": "microcontrolador",
+      "variante": "rp2040",
       "conjunto": "fixo",
       "posicao": { "valor": [-22, 20, -40], "origem": "declarado" },
       "orientacao": { "valor": { "eixo": [0, 1, 0], "angulo": 0 }, "origem": "declarado" },
