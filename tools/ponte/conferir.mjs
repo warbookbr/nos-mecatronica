@@ -258,7 +258,9 @@ export function conferir(dado, { lerFicha } = {}) {
     }
   }
   const unicos = new Map();
-  for (const e of erros) if (!unicos.has(e.caminho)) unicos.set(e.caminho, e);
+  /* Fica a primeira recusa de cada campo, salvo a lista mais estreita que a versão antiga impõe depois da geral. */
+  const lista = (e) => e?.regra.startsWith('tem de ser um de ');
+  for (const e of erros) if (!unicos.has(e.caminho) || (lista(unicos.get(e.caminho)) && lista(e))) unicos.set(e.caminho, e);
   return { tipo, versao, erros: [...unicos.values()] };
 }
 

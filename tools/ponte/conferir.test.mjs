@@ -184,6 +184,13 @@ describe('compatibilidade com a 1.0', () => {
     expect(conferir(para10(pedido()), comFicha(ficha())).erros.map((e) => `${e.caminho}: ${e.valor}`)).toEqual(['$.itens[4].tipo: ligacoes']);
   });
 
+  it('recusa o tipo fora da lista num arquivo 1.0 com a lista da 1.0', () => {
+    const f = para10(ficha());
+    f.portas = f.portas.filter((x) => x.tipo !== 'passivo');
+    f.portas[0].tipo = 'pwm';
+    expect(conferir(f).erros.map((e) => e.regra)).toEqual(['tem de ser um de "alimentacao", "terra", "sinal-digital", "sinal-analogico", "barramento", "fase-de-motor"']);
+  });
+
   it('exige a tensão ausente na porta passiva', () => {
     const f = ficha();
     const passiva = f.portas.findIndex((x) => x.tipo === 'passivo');

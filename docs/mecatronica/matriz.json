@@ -549,7 +549,7 @@
     "capacidade": "O esquema JSON versionado da ficha do objeto, conferido pelos dois repositórios.",
     "dono": "ponte",
     "estado": "feito",
-    "prova": "ponte/esquemas/ficha.schema.json na versão 1.0 e npm run ponte:conferir, que aceita a ficha do braço de prova e recusa cada arquivo errado de ponte/exemplos/errados/ (campo ausente, versão desconhecida, tipo de porta fora da lista, valor sem origem) com o caminho do campo, o valor e a versão, byte a byte, por teste; confere também que porta, junta e volume citam peça que existe e que massa, centro de massa e inércia do conjunto batem com as peças. A ficha converte para MJCF por npm run ponte:mjcf, e o MuJoCo 4.0.1 a carregou (decisão 0003). A cópia de referência do esquema mora aqui, com o SHA-256 da versão em ponte/esquemas/versoes.json conferido por teste contra o arquivo atual (decisão 0004).",
+    "prova": "ponte/esquemas/ficha.schema.json na versão 1.1, que acrescenta à 1.0 a porta passiva com a tensão ausente e continua aceitando a 1.0 sem ela, e npm run ponte:conferir, que aceita a ficha do braço de prova e recusa cada arquivo errado de ponte/exemplos/errados/ (campo ausente, versão desconhecida, tipo de porta fora da lista, valor sem origem) com o caminho do campo, o valor e a versão, byte a byte, por teste; confere também que porta, junta e volume citam peça que existe e que massa, centro de massa e inércia do conjunto batem com as peças. A ficha converte para MJCF por npm run ponte:mjcf, e o MuJoCo 4.0.1 a carregou (decisão 0003). A cópia de referência do esquema mora aqui, com o SHA-256 da versão em ponte/esquemas/versoes.json conferido por teste contra o arquivo atual (decisão 0004).",
     "naoCobre": "Dado que a ficha não declara, a verdade dos números contra a peça real e a conferência do lado do Modelar, inclusive a da cópia do esquema, que é do plano da ponte de lá."
   },
   {
@@ -582,11 +582,11 @@
   {
     "id": "ponte-esquema-do-pedido",
     "camada": "ponte",
-    "capacidade": "O esquema JSON versionado do pedido, com espaço, posição, passagem e saída de ar por peça.",
+    "capacidade": "O esquema JSON versionado do pedido, com espaço, posição, passagem e saída de ar por peça, e as ligações de uma placa.",
     "dono": "ponte",
     "estado": "feito",
-    "prova": "ponte/esquemas/pedido.schema.json na versão 1.0 e npm run ponte:conferir, que aceita o pedido do braço de prova contra a ficha a que responde e recusa ponte/exemplos/errados/peca-inexistente.pedido.json com o caminho do campo e o identificador, por teste; recusa também porta que a peça não tem, junta que não existe e revisão de outra ficha. A cópia de referência do esquema mora aqui, com o SHA-256 da versão em ponte/esquemas/versoes.json conferido por teste contra o arquivo atual (decisão 0004).",
-    "naoCobre": "Pedido que o Modelar não consegue cumprir sem mudar a forma aprovada, se o pedido é fisicamente sensato, e a leitura do pedido pelo Modelar, que é do plano da ponte de lá."
+    "prova": "ponte/esquemas/pedido.schema.json na versão 1.1, que acrescenta à 1.0 o item ligacoes e continua aceitando a 1.0 sem ele, e npm run ponte:conferir, que aceita o pedido do braço de prova contra a ficha a que responde e recusa ponte/exemplos/errados/peca-inexistente.pedido.json com o caminho do campo e o identificador, por teste; recusa também porta que a peça não tem, junta que não existe e revisão de outra ficha. No item ligacoes recusa, cada um por um arquivo errado e por teste, a placa que não é peça da ficha, o terminal que não é porta dela, o terminal em duas redes, o terminal repetido na rede, a rede com menos de dois terminais, a rede de identificador repetido e a resposta que cita rede fora do item. A cópia de referência do esquema mora aqui, com o SHA-256 da versão em ponte/esquemas/versoes.json conferido por teste contra o arquivo atual (decisão 0004).",
+    "naoCobre": "Pedido que o Modelar não consegue cumprir sem mudar a forma aprovada, se o pedido é fisicamente sensato, e a leitura do pedido pelo Modelar, que é do plano da ponte de lá. No item ligacoes, se as redes são o circuito certo, se o terminal está num componente montado na placa e o cálculo da largura e da distância mínimas pela corrente e pela tensão, que é da camada elétrica; o traçado e a conferência do cobre são do Modelar."
   },
   {
     "id": "ponte-espaco-placa-e-chicote",

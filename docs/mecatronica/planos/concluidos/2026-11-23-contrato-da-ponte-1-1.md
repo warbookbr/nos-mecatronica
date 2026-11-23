@@ -1,6 +1,6 @@
 # Contrato da ponte 1.1: o item `ligacoes` no pedido e o tipo de porta `passivo` na ficha
 
-**Estado:** ativo
+**Estado:** concluído
 
 **Território:** `ponte/`, `tools/ponte/`
 
@@ -54,4 +54,10 @@ Se a 1.1 obrigar a mudar algum campo que a 1.0 já tinha, o plano para, porque i
 
 ## Fechamento
 
-A preencher.
+Concluído em 2026-11-23, no ramo `claude/admiring-rubin-h9zjwx`, sobre a main da ativação; as fatias estão nos commits `c1d0c1d` (o pedido 1.1 de exemplo e os errados), `dd9f3eb` (esquemas 1.1, regras do conferidor, testes e `versoes.json`) e no commit deste fechamento. A main anda quando o CI do envio passar, e a pessoa aprova a versão 1.1 nesse envio.
+
+O gate de saída vale no ramo. `npm run gates` passou com os seis gates verdes: planos, matriz, links, o conferidor sobre a ficha e o pedido 1.1 do braço de prova, e os testes, que recusam cada errado novo com o caminho do campo e o valor, aceitam a ficha e o pedido rebaixados para 1.0 sem a porta passiva e o item `ligacoes`, recusam os dois num arquivo 1.0 e conferem o SHA-256 da 1.1 contra os arquivos. Nenhum campo da 1.0 mudou; a 1.1 acrescenta o tipo de item, a definição da rede, a resposta das ligações com as redes que não fecharam e o tipo de porta `passivo`, que exige a tensão ausente. O SHA-256 da 1.1 é `c371e178686bf1b52a2cb13a2b9acedecbff60d88db5dc342002e9a3c077aea1` para a ficha e `20b1186ccd6e3206ba607cbaee3b329fbf8248663d5db5f33d2b8f1a674220f0` para o pedido. O conferidor ficou com 300 linhas, no limite da regra do plano dos esquemas.
+
+Além das quatro regras do plano, o conferidor recusa a rede de identificador repetido e a resposta que cita rede fora do item, cada uma com o seu errado, porque o Modelar relata as redes pelo identificador. O MJCF esperado mudou só no comentário que diz a versão da ficha, e a física não mudou, então a carga no MuJoCo da decisão 0003 continua valendo. O resistor e o LED de estado do exemplo estão soldados na placa e contados na massa dela, então os terminais deles são portas passivas da própria placa, regra que o README da ponte passou a dizer.
+
+O resultado observado é que o Modelar tem onde pôr a lista de redes e pode fechar o plano das trilhas copiando os esquemas 1.1 com o SHA-256 acima. Um achado que o processo não pegaria sozinho: a recusa de um tipo de porta fora da lista num arquivo 1.0 passou a citar `passivo` entre os aceitos, porque o conferidor guardava a primeira recusa de cada campo e a da lista geral vem antes da restrição da 1.0. Só o arquivo esperado de `tipo-de-porta` mostrou a mudança; agora a lista mais estreita prevalece, e um teste confere que o arquivo 1.0 é recusado com a lista da 1.0. O cálculo da largura e da distância mínimas pela corrente e pela tensão continua na linha própria da camada elétrica na matriz.
