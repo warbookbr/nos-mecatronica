@@ -16,4 +16,4 @@ A linha "**Planos ativos:**" acima lista o link de cada plano ativo, ou diz "nen
 
 ## Planos em rascunho ou prontos
 
-Nenhum.
+Em rascunho: [do pedido da pessoa ao pacote de construção](2026-11-23-do-pedido-ao-pacote.md), plano-raiz que não se ativa: o caminho de ponta a ponta entre a mecatrônica e o Modelar, dos requisitos ao pacote de construção, em quatro planos filhos. O primeiro filho, [requisitos e caderno do objeto](2026-11-23-requisitos-e-caderno-do-objeto.md), pode ser ativado.
