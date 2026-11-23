@@ -67,7 +67,7 @@ A versão 1.2 do pedido, só com acréscimos opcionais: o pedido inicial, com `f
 5. O dimensionamento com a ficha, o crítico da simulação e a aprovação da pessoa.
 6. A prova com uma sessão nova, a documentação e o fechamento.
 
-Andamento em 2026-11-23: a fatia 1 está escrita em [`ponte/propostas/1.2.md`](../../../ponte/propostas/1.2.md), com o pedido inicial do braço de prova em `ponte/exemplos/braco-de-prova.pedido-inicial.json`, e a pessoa a aprovou em 2026-11-23; a fatia 2 implementa a 1.2 como proposta.
+Andamento em 2026-11-23: a fatia 1 está escrita em [`ponte/propostas/1.2.md`](../../../ponte/propostas/1.2.md), com o pedido inicial do braço de prova em `ponte/exemplos/braco-de-prova.pedido-inicial.json`, e a pessoa a aprovou em 2026-11-23; a fatia 2 está feita, com o esquema 1.2 do pedido, as regras novas no conferidor, um errado por regra e `npm run pedido-inicial`, que gera o exemplo; o exemplo agora traz o nome, a família e a massa do catálogo e não traz o eixo de saída, que o catálogo não dá.
 
 ## Riscos e parada
 

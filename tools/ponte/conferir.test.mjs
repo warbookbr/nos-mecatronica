@@ -15,12 +15,20 @@ const comFicha = (f) => ({ lerFicha: () => ({ ficha: f, caminho: 'ficha.json' })
 const caminhos = (r) => r.erros.map((e) => e.caminho);
 
 describe('ponte:conferir sobre os exemplos', () => {
-  it('os esquemas são JSON Schema 2020-12 e conhecem as versões 1.0 e 1.1', () => {
+  it('os esquemas são JSON Schema 2020-12; a ficha conhece 1.0 e 1.1 e o pedido também a 1.2', () => {
+    const versoes = { ficha: ['1.0', '1.1'], pedido: ['1.0', '1.1', '1.2'] };
     for (const tipo of TIPOS) {
       const esquema = lerEsquema(tipo);
       expect(esquema.$schema).toBe('https://json-schema.org/draft/2020-12/schema');
-      expect(esquema.properties.versao.enum).toEqual(['1.0', '1.1']);
+      expect(esquema.properties.versao.enum).toEqual(versoes[tipo]);
     }
+  });
+
+  it('aceita o pedido inicial do braço de prova sem ler ficha', () => {
+    process.chdir(RAIZ);
+    const { aceito, texto } = conferirArquivo(`${EXEMPLOS}/braco-de-prova.pedido-inicial.json`, { ficha: 'nao-existe.json' });
+    expect(texto).toMatch(/aceito \(pedido, versão 1\.2\)/);
+    expect(aceito).toBe(true);
   });
 
   it('aceita a ficha e o pedido do braço de prova', () => {
@@ -35,9 +43,10 @@ describe('ponte:conferir sobre os exemplos', () => {
   const errados = readdirSync(join(RAIZ, ERRADOS)).filter((n) => n.endsWith('.json')).sort();
   it('há um arquivo errado por regra, cada um com a recusa esperada', () => {
     expect(errados).toEqual([
-      'campo-ausente.ficha.json', 'peca-inexistente.pedido.json', 'placa-inexistente.pedido.json',
+      'acopla-inexistente.pedido.json', 'campo-ausente.ficha.json', 'componente-sem-caixa.pedido.json',
+      'item-no-pedido-inicial.pedido.json', 'massa-sem-origem.pedido.json', 'peca-inexistente.pedido.json', 'placa-inexistente.pedido.json',
       'rede-com-um-terminal.pedido.json', 'rede-da-resposta-inexistente.pedido.json', 'rede-repetida.pedido.json',
-      'terminal-em-duas-redes.pedido.json', 'terminal-inexistente.pedido.json', 'terminal-repetido.pedido.json',
+      'serve-junta-inexistente.pedido.json', 'serve-peca-inexistente.pedido.json', 'terminal-em-duas-redes.pedido.json', 'terminal-inexistente.pedido.json', 'terminal-repetido.pedido.json',
       'tipo-de-porta.ficha.json', 'valor-sem-origem.ficha.json', 'versao-desconhecida.ficha.json',
     ]);
     const recusas = readdirSync(join(RAIZ, ERRADOS)).filter((n) => n.endsWith('.recusa.txt')).sort();
@@ -196,5 +205,35 @@ describe('compatibilidade com a 1.0', () => {
     const passiva = f.portas.findIndex((x) => x.tipo === 'passivo');
     f.portas[passiva].tensao = { valor: 3.3, origem: 'declarado' };
     expect(caminhos(conferir(f))).toEqual([`$.portas[${passiva}].tensao.ausente`, `$.portas[${passiva}].tensao.motivo`, `$.portas[${passiva}].tensao.valor`, `$.portas[${passiva}].tensao.origem`]);
+  });
+});
+
+describe('versão 1.2: o pedido inicial e o item componente', () => {
+  const inicial = () => ler(`${EXEMPLOS}/braco-de-prova.pedido-inicial.json`);
+  const componente = (serve) => ({ ...inicial().itens[0], serve });
+
+  it('aceita item componente num pedido 1.2 que responde à ficha, com serve e resposta que ela tem', () => {
+    const p = { ...pedido(), versao: '1.2' };
+    p.itens.push({ ...componente({ junta: 'ombro' }), resposta: { estado: 'cumprido', revisaoDaFicha: 3, peca: 'motor-ombro' } });
+    p.itens.push({ ...componente({ peca: 'base' }), id: 'outro', acopla: 'motor-23hs30-2804s' });
+    expect(conferir(p, comFicha(ficha())).erros).toEqual([]);
+    p.itens[5].resposta.peca = 'motor-punho';
+    expect(caminhos(conferir(p, comFicha(ficha())))).toEqual(['$.itens[5].resposta.peca']);
+  });
+
+  it('recusa o item componente e a revisão 0 num pedido 1.1', () => {
+    const p = pedido();
+    p.itens.push(componente({ junta: 'ombro' }));
+    expect(conferir(p, comFicha(ficha())).erros.map((e) => `${e.caminho}: ${e.valor}`)).toEqual(['$.itens[5].tipo: componente']);
+    const q = { ...inicial(), versao: '1.1' };
+    expect(caminhos(conferir(q))).toContain('$.ficha.revisao');
+  });
+
+  it('recusa acopla que cita item que não é componente e serve sem junta nem peça', () => {
+    const p = { ...pedido(), versao: '1.2' };
+    p.itens.push({ ...componente({}), acopla: p.itens[0].id });
+    expect(caminhos(conferir(p, comFicha(ficha())))).toEqual(['$.itens[5].serve.peca']);
+    p.itens[5].serve = { peca: 'base' };
+    expect(caminhos(conferir(p, comFicha(ficha())))).toEqual(['$.itens[5].acopla']);
   });
 });

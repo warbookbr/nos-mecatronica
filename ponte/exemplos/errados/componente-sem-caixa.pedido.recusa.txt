@@ -1,0 +1,2 @@
+ponte/exemplos/errados/componente-sem-caixa.pedido.json: recusado (pedido, versão 1.2), 1 problema(s)
+  $.itens[0].caixa: campo obrigatório ausente; recebido nada

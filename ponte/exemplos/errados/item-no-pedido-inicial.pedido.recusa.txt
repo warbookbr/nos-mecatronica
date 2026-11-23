@@ -1,0 +1,2 @@
+ponte/exemplos/errados/item-no-pedido-inicial.pedido.json: recusado (pedido, versão 1.2), 1 problema(s)
+  $.itens[8].tipo: tem de ser "componente"; recebido "espaco"

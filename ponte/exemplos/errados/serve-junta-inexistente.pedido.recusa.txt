@@ -1,0 +1,2 @@
+ponte/exemplos/errados/serve-junta-inexistente.pedido.json: recusado (pedido, versão 1.2), 1 problema(s)
+  $.itens[5].serve.junta: cita uma junta que não existe na ficha; recebido "junta-1"

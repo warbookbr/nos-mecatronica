@@ -1,5 +1,6 @@
-/* Confere a cópia de referência dos esquemas da ponte (decisão 0004): a última versão de ponte/esquemas/versoes.json é a
-   última que os dois esquemas aceitam, e o SHA-256 dela é o dos arquivos atuais. Mudar um esquema sem registrar a versão
+/* Confere a cópia de referência dos esquemas da ponte (decisão 0004): o SHA-256 da última versão de ponte/esquemas/versoes.json
+   é o dos arquivos atuais, e cada esquema aceita até a última versão em que o SHA-256 dele mudou; o que não muda numa
+   versão repete o SHA-256 da anterior. Mudar um esquema sem registrar a versão
    nova falha aqui, antes de a cópia do Modelar ficar diferente da referência com o mesmo número. */
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
@@ -27,11 +28,13 @@ describe('cópia de referência dos esquemas', () => {
     }
   });
 
-  it('a última versão é a última que os esquemas aceitam e tem o SHA-256 dos arquivos atuais', () => {
+  it('a última versão tem o SHA-256 dos arquivos atuais, e cada esquema aceita até a última versão em que mudou', () => {
     const ultima = versoes.at(-1);
     for (const tipo of TIPOS) {
-      expect(lerEsquema(tipo).properties.versao.enum.at(-1)).toBe(ultima.versao);
-      expect(sha256(`${tipo}.schema.json`), `${tipo}.schema.json mudou sem versão nova em versoes.json`).toBe(ultima[`${tipo}.schema.json`]);
+      const arquivo = `${tipo}.schema.json`;
+      expect(sha256(arquivo), `${arquivo} mudou sem versão nova em versoes.json`).toBe(ultima[arquivo]);
+      const mudou = versoes.filter((v, i) => i === 0 || v[arquivo] !== versoes[i - 1][arquivo]).at(-1);
+      expect(lerEsquema(tipo).properties.versao.enum.at(-1)).toBe(mudou.versao);
     }
   });
 });

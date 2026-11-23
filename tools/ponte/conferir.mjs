@@ -178,6 +178,24 @@ function inerciaDoConjunto(pecas, centros, centro) {
   return [total[0][0], total[1][1], total[2][2], total[0][1], total[0][2], total[1][2]];
 }
 
+/* As regras do pedido que não dependem da ficha: cada item tem identificador próprio e o acopla de um item componente
+   cita outro item componente do mesmo pedido. Valem também no pedido inicial, que ainda não tem ficha. */
+export function regrasProprias(p) {
+  const erros = [];
+  const falha = (caminho, regra, valor) => erros.push({ caminho, regra, valor });
+  const vistos = new Map();
+  p.itens.forEach((item, i) => {
+    if (vistos.has(item.id)) falha(`$.itens[${i}].id`, `identificador repetido, já usado em $.itens[${vistos.get(item.id)}]`, item.id);
+    else vistos.set(item.id, i);
+  });
+  p.itens.forEach((item, i) => {
+    if (item.tipo !== 'componente' || item.acopla === undefined) return;
+    const alvo = p.itens.find((x) => x.id === item.acopla);
+    if (!alvo || alvo.tipo !== 'componente' || alvo === item) falha(`$.itens[${i}].acopla`, 'cita um item componente que não existe no pedido', item.acopla);
+  });
+  return erros;
+}
+
 /* As regras de referência do pedido contra a ficha a que ele responde. */
 export function regrasDoPedido(p, f) {
   const erros = [];
@@ -192,11 +210,8 @@ export function regrasDoPedido(p, f) {
     if (!pecas.has(ref.peca)) falha(`${caminho}.peca`, 'cita uma peça que não existe na ficha', ref.peca);
     else if (!portas.has(`${ref.peca}\u0000${ref.porta}`)) falha(`${caminho}.porta`, `cita uma porta que a peça "${ref.peca}" não tem na ficha`, ref.porta);
   };
-  const vistos = new Map();
   p.itens.forEach((item, i) => {
     const onde = `$.itens[${i}]`;
-    if (vistos.has(item.id)) falha(`${onde}.id`, `identificador repetido, já usado em $.itens[${vistos.get(item.id)}]`, item.id);
-    else vistos.set(item.id, i);
     if (item.tipo === 'espaco') peca(`${onde}.dentroDe`, item.dentroDe);
     if (item.tipo === 'posicao') peca(`${onde}.alvo`, item.alvo);
     if (item.tipo === 'saidaDeAr') peca(`${onde}.em`, item.em);
@@ -207,6 +222,11 @@ export function regrasDoPedido(p, f) {
       item.atravessa.forEach((j, k) => { if (!juntas.has(j)) falha(`${onde}.atravessa[${k}]`, 'cita uma junta que não existe na ficha', j); });
     }
     if (item.tipo === 'ligacoes') regrasDasLigacoes(item, onde, { peca, porta, falha });
+    if (item.tipo === 'componente') {
+      if ('junta' in item.serve && !juntas.has(item.serve.junta)) falha(`${onde}.serve.junta`, 'cita uma junta que não existe na ficha', item.serve.junta);
+      if ('peca' in item.serve) peca(`${onde}.serve.peca`, item.serve.peca);
+      if (item.resposta?.peca !== undefined) peca(`${onde}.resposta.peca`, item.resposta.peca);
+    }
   });
   return erros;
 }
@@ -248,7 +268,9 @@ export function conferir(dado, { lerFicha } = {}) {
   }
   validar(dado, esquema, '$', esquema, erros);
   if (!erros.length && tipo === 'ficha') erros.push(...regrasDaFicha(dado));
-  if (!erros.length && tipo === 'pedido') {
+  if (!erros.length && tipo === 'pedido') erros.push(...regrasProprias(dado));
+  /* O pedido inicial (ficha.revisao 0) responde a uma ficha que ainda não existe e não é conferido contra nenhuma. */
+  if (!erros.length && tipo === 'pedido' && dado.ficha.revisao > 0) {
     const lida = lerFicha?.(dado);
     if (lida?.erro) erros.push({ caminho: '$.ficha.caminho', regra: lida.erro, valor: dado.ficha.caminho });
     else if (lida) {

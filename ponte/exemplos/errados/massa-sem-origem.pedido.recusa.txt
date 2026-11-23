@@ -1,0 +1,2 @@
+ponte/exemplos/errados/massa-sem-origem.pedido.json: recusado (pedido, versão 1.2), 1 problema(s)
+  $.itens[2].massa.origem: campo obrigatório ausente; recebido nada

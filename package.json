@@ -15,7 +15,8 @@
     "objetos:conferir": "node tools/objetos/conferir.mjs",
     "componentes:conferir": "node tools/componentes/conferir.mjs",
     "dimensionar": "node camadas/fisico/dimensionamento/dimensionar.mjs",
-    "opcoes": "node camadas/fisico/dimensionamento/opcoes.mjs"
+    "opcoes": "node camadas/fisico/dimensionamento/opcoes.mjs",
+    "pedido-inicial": "node tools/caminho/pedido-inicial.mjs"
   },
   "devDependencies": {
     "vitest": "^4.1.10"

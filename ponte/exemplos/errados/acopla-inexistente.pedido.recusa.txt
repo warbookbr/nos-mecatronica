@@ -1,0 +1,2 @@
+ponte/exemplos/errados/acopla-inexistente.pedido.json: recusado (pedido, versão 1.2), 1 problema(s)
+  $.itens[3].acopla: cita um item componente que não existe no pedido; recebido "motor-17hs8401"
