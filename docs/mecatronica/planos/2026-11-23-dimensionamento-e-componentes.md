@@ -53,6 +53,8 @@ Nenhuma nesta etapa: o torque de um braço plano de duas juntas sai de conta fec
 4. A skill e a escolha da pessoa no braço de prova.
 5. A documentação, a matriz e o fechamento.
 
+Fatias 1, 2 e 3 feitas em 2026-11-23. Fatia 1: o formato do catálogo em `tools/componentes/componente.schema.json`, com a folga de 2 vezes e o catálogo só de NEMA 17 e NEMA 23 aprovados na ativação, e o braço de teste conferido contra a conta à mão em `camadas/fisico/dimensionamento/dimensionamento.test.mjs`. Fatia 2: catorze componentes em `componentes/` e `npm run componentes:conferir`, com teste e três arquivos errados, em `npm run gates`. Fatia 3: `npm run dimensionar` e `npm run opcoes` gravaram o dimensionamento e as opções do braço de prova, com teste de repetição e conferência de que estão em dia nos gates; saíram duas opções, e a fatia 4 espera a pessoa escolher entre elas pela skill.
+
 ## Decisões da pessoa
 
 A folga mínima de torque: a recomendação é 2 vezes o torque calculado na pior pose, porque motor de passo perde passo sem aviso quando passa do limite, e a massa dos elos é estimada antes de haver forma. E o tipo de motor do catálogo inicial: a recomendação é só motor de passo (NEMA 17 e NEMA 23), com redução por polia e correia ou planetária, que cabe no orçamento e no comando por Arduino; servo de modelismo e motor com encoder ficam para quando um requisito de precisão os pedir.

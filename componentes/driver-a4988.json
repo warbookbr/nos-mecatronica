@@ -1,0 +1,87 @@
+{
+  "tipo": "componente",
+  "versao": "1.0",
+  "id": "driver-a4988",
+  "nome": "Driver de passo A4988 em placa portadora",
+  "categoria": "driver",
+  "familia": "modulo-de-placa",
+  "fabricante": "Allegro (circuito A4988) em placa portadora genérica no formato da Pololu",
+  "jaTem": false,
+  "unidades": {
+    "comprimento": "mm",
+    "massa": "g",
+    "torque": "N·m",
+    "velocidade": "rpm",
+    "corrente": "A",
+    "tensao": "V",
+    "resistencia": "Ω",
+    "indutancia": "mH",
+    "angulo": "grau",
+    "potencia": "W",
+    "moeda": "BRL"
+  },
+  "fontes": [
+    {
+      "nome": "folha-a4988",
+      "documento": "Folha de dados do A4988, Allegro MicroSystems"
+    },
+    {
+      "nome": "pololu-a4988",
+      "documento": "Página da placa portadora A4988 da Pololu",
+      "nota": "Cerca de 1 A por fase sem dissipador nem ventilação, até 2 A com refrigeração suficiente."
+    }
+  ],
+  "preco": {
+    "faixa": [
+      10,
+      25
+    ],
+    "data": "2026-11-23",
+    "origem": "estimativa",
+    "nota": "Com o dissipador pequeno que acompanha."
+  },
+  "especificacao": {
+    "correnteMaxima": {
+      "valor": 2,
+      "origem": "declarado",
+      "nota": "Com refrigeração suficiente, pela Pololu."
+    },
+    "correnteContinua": {
+      "valor": 1,
+      "origem": "declarado",
+      "nota": "Sem dissipador nem ventilação forçada, pela Pololu."
+    },
+    "tensao": {
+      "valor": [
+        8,
+        35
+      ],
+      "origem": "declarado"
+    },
+    "tensaoLogica": {
+      "valor": [
+        3,
+        5.5
+      ],
+      "origem": "declarado"
+    },
+    "micropasso": {
+      "valor": 16,
+      "origem": "declarado"
+    },
+    "massa": {
+      "valor": 2,
+      "origem": "estimativa",
+      "nota": "Placa portadora com pinos, sem o dissipador."
+    },
+    "medidas": {
+      "valor": [
+        15.2,
+        20.3,
+        12
+      ],
+      "origem": "declarado",
+      "nota": "Placa de 0,6 × 0,8 polegada; a altura inclui os pinos e o dissipador."
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "tipo": "componente",
+  "versao": "1.0",
+  "id": "reducao-planetaria-nema17-5",
+  "nome": "Redução planetária para NEMA 17, 5,18:1",
+  "categoria": "reducao",
+  "familia": "peca-mecanica",
+  "fabricante": "genérico (caixa planetária de 42 mm, como a série PL da StepperOnline)",
+  "jaTem": false,
+  "unidades": {
+    "comprimento": "mm",
+    "massa": "g",
+    "torque": "N·m",
+    "velocidade": "rpm",
+    "corrente": "A",
+    "tensao": "V",
+    "resistencia": "Ω",
+    "indutancia": "mH",
+    "angulo": "grau",
+    "potencia": "W",
+    "moeda": "BRL"
+  },
+  "fontes": [
+    {
+      "nome": "folha-planetaria-42",
+      "documento": "Folha de dados de caixa planetária de 42 mm para NEMA 17, razão 5,18:1 (StepperOnline e revendedores genéricos)",
+      "nota": "A razão, a eficiência e a folga são as da folha; a massa, as medidas e o torque de trabalho são lembrança, sem conferência no documento."
+    }
+  ],
+  "preco": {
+    "faixa": [
+      180,
+      320
+    ],
+    "data": "2026-11-23",
+    "origem": "estimativa",
+    "nota": "Só a caixa, para montar no motor; vendida montada no motor custa parecido com a soma."
+  },
+  "especificacao": {
+    "tipo": "planetaria",
+    "paraMotores": [
+      "nema-17"
+    ],
+    "razao": {
+      "valor": 5.18,
+      "origem": "declarado",
+      "nota": "Um estágio planetário; a razão nominal 5:1 é 5,18:1 de fato."
+    },
+    "eficiencia": {
+      "valor": 0.9,
+      "origem": "declarado",
+      "nota": "A folha dá 90% para um estágio."
+    },
+    "folga": {
+      "valor": 1,
+      "origem": "declarado",
+      "nota": "A folha dá até 1 grau sem carga."
+    },
+    "torqueMaximo": {
+      "valor": 3,
+      "origem": "estimativa",
+      "nota": "Torque nominal de saída de caixa planetária de 42 mm de um estágio, entre 2 e 4 N·m nas folhas; ficou 3 N·m."
+    },
+    "massa": {
+      "valor": 200,
+      "origem": "estimativa",
+      "nota": "Caixa planetária de 42 mm de um estágio, sem o motor."
+    },
+    "medidas": {
+      "valor": [
+        42,
+        42,
+        40
+      ],
+      "origem": "estimativa",
+      "nota": "Face de 42 mm e comprimento da caixa sem o eixo de saída."
+    }
+  }
+}

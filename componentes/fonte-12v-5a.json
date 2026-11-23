@@ -1,0 +1,73 @@
+{
+  "tipo": "componente",
+  "versao": "1.0",
+  "id": "fonte-12v-5a",
+  "nome": "Fonte chaveada de 12 V e 5 A",
+  "categoria": "fonte",
+  "familia": "fonte-chaveada",
+  "fabricante": "genérico (fonte chaveada de 60 W em caixa metálica)",
+  "jaTem": true,
+  "unidades": {
+    "comprimento": "mm",
+    "massa": "g",
+    "torque": "N·m",
+    "velocidade": "rpm",
+    "corrente": "A",
+    "tensao": "V",
+    "resistencia": "Ω",
+    "indutancia": "mH",
+    "angulo": "grau",
+    "potencia": "W",
+    "moeda": "BRL"
+  },
+  "fontes": [
+    {
+      "nome": "requisitos-braco-de-prova",
+      "documento": "O que a pessoa disse que já tem, nos requisitos do braço de prova"
+    },
+    {
+      "nome": "fonte-60w-generica",
+      "documento": "Folha de dados genérica de fonte chaveada de 12 V e 60 W em caixa metálica"
+    }
+  ],
+  "preco": {
+    "faixa": [
+      50,
+      90
+    ],
+    "data": "2026-11-23",
+    "origem": "estimativa",
+    "nota": "Só de referência: a pessoa já tem a fonte e ela não entra no custo."
+  },
+  "especificacao": {
+    "tensao": {
+      "valor": 12,
+      "origem": "declarado",
+      "nota": "Dito pela pessoa."
+    },
+    "corrente": {
+      "valor": 5,
+      "origem": "declarado",
+      "nota": "Dito pela pessoa."
+    },
+    "potencia": {
+      "valor": 60,
+      "origem": "declarado",
+      "nota": "12 V × 5 A."
+    },
+    "massa": {
+      "valor": 300,
+      "origem": "estimativa",
+      "nota": "Fonte genérica de 60 W em caixa metálica; a pessoa não pesou a dela."
+    },
+    "medidas": {
+      "valor": [
+        111,
+        78,
+        36
+      ],
+      "origem": "estimativa",
+      "nota": "Caixa típica de fonte de 60 W; a pessoa não mediu a dela."
+    }
+  }
+}

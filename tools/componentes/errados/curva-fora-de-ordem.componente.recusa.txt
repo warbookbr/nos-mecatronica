@@ -1,0 +1,2 @@
+tools/componentes/errados/curva-fora-de-ordem.componente.json: recusado (componente, versão 1.0), 1 problema(s)
+  $.especificacao.curva.pontos[4]: curva fora de ordem: a velocidade tem de subir a cada ponto, e o ponto anterior tem 180 rpm; recebido [120,0.32]

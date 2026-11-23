@@ -1,0 +1,70 @@
+{
+  "tipo": "componente",
+  "versao": "1.0",
+  "id": "placa-arduino-uno",
+  "nome": "Placa Arduino Uno",
+  "categoria": "placa-de-controle",
+  "familia": "modulo-de-placa",
+  "fabricante": "Arduino (Uno R3, ATmega328P) ou compatível",
+  "jaTem": true,
+  "unidades": {
+    "comprimento": "mm",
+    "massa": "g",
+    "torque": "N·m",
+    "velocidade": "rpm",
+    "corrente": "A",
+    "tensao": "V",
+    "resistencia": "Ω",
+    "indutancia": "mH",
+    "angulo": "grau",
+    "potencia": "W",
+    "moeda": "BRL"
+  },
+  "fontes": [
+    {
+      "nome": "arduino-uno-r3",
+      "documento": "Página técnica do Arduino Uno Rev3, Arduino"
+    }
+  ],
+  "preco": {
+    "faixa": [
+      60,
+      150
+    ],
+    "data": "2026-11-23",
+    "origem": "estimativa",
+    "nota": "Só de referência: a pessoa já tem a placa e ela não entra no custo."
+  },
+  "especificacao": {
+    "tensaoDeEntrada": {
+      "valor": [
+        7,
+        12
+      ],
+      "origem": "declarado",
+      "nota": "Faixa recomendada no conector de alimentação; com 12 V o regulador da placa esquenta."
+    },
+    "tensaoLogica": {
+      "valor": 5,
+      "origem": "declarado"
+    },
+    "pinosDigitais": {
+      "valor": 14,
+      "origem": "declarado",
+      "nota": "Seis deles com PWM."
+    },
+    "massa": {
+      "valor": 25,
+      "origem": "declarado"
+    },
+    "medidas": {
+      "valor": [
+        68.6,
+        53.4,
+        15
+      ],
+      "origem": "declarado",
+      "nota": "A altura é estimativa, com o conector USB."
+    }
+  }
+}

@@ -1,0 +1,253 @@
+{
+  "tipo": "dimensionamento",
+  "versao": "1.0",
+  "objeto": "braco-de-prova",
+  "requisitos": {
+    "revisao": 1
+  },
+  "modelo": "Braço serial plano de duas juntas num plano vertical: a junta 1 (ombro) na base, o elo 1, a junta 2 (cotovelo), o elo 2 e a carga além da ponta do elo 2.",
+  "unidades": {
+    "comprimento": "mm",
+    "massa": "g",
+    "torque": "N·m",
+    "inercia": "kg·m²",
+    "potencia": "W",
+    "velocidadeLinear": "mm/s",
+    "aceleracaoLinear": "mm/s²",
+    "velocidadeAngular": "grau/s",
+    "aceleracaoAngular": "grau/s²",
+    "tensao": "V"
+  },
+  "entradas": {
+    "alcance": {
+      "valor": 300,
+      "origem": "requisitos",
+      "nota": "requisitos.alcance."
+    },
+    "carga": {
+      "valor": 150,
+      "origem": "requisitos",
+      "nota": "requisitos.carga.piorCaso, no ponto da carga."
+    },
+    "distanciaDaCarga": {
+      "valor": 30,
+      "origem": "requisitos",
+      "nota": "Lida de requisitos.carga.ondeFica, medida além da ponta do elo 2, onde a garra se prende; os elos somam o alcance, e com isso a carga fica a alcance + esta distância do ombro, o que é conservador."
+    },
+    "velocidadeDaPonta": {
+      "valor": 100,
+      "origem": "requisitos",
+      "nota": "requisitos.velocidade.ponta."
+    },
+    "tensao": {
+      "valor": 12,
+      "origem": "requisitos",
+      "nota": "A maior de requisitos.alimentacao.tensoes; é a dos drivers e a da curva dos motores."
+    },
+    "folgaMinima": {
+      "valor": 2,
+      "origem": "pessoa",
+      "nota": "Aprovada pela pessoa na ativação do plano de dimensionamento, em 2026-11-23: o torque disponível tem de ser pelo menos 2 vezes o total."
+    }
+  },
+  "hipoteses": {
+    "divisaoDoAlcance": {
+      "valor": 0.5,
+      "origem": "estimativa",
+      "nota": "Os dois elos somam o alcance e têm o mesmo comprimento; a divisão igual é a que dá o maior espaço de trabalho ao braço plano de duas juntas."
+    },
+    "secaoDoElo": {
+      "valor": {
+        "largura": 30,
+        "altura": 20,
+        "parede": 2.5
+      },
+      "origem": "estimativa",
+      "nota": "Elo impresso como tubo retangular oco de 30 por 20 mm com parede de 2,5 mm, que equivale a um elo com nervuras e as pontas mais cheias; vale até haver a forma do Modelar."
+    },
+    "densidade": {
+      "valor": 1.24,
+      "origem": "estimativa",
+      "nota": "PLA maciço, 1,24 g/cm³; a parede da seção já conta só o material."
+    },
+    "aceleracaoDaPonta": {
+      "valor": 500,
+      "origem": "estimativa",
+      "nota": "Perfil trapezoidal: a ponta chega a 100 mm/s em 0,2 s e 10 mm, um quinto do caminho típico de 200 mm, e freia igual."
+    },
+    "fracaoMinimaDoAlcance": {
+      "valor": 0.3333333333333333,
+      "origem": "estimativa",
+      "nota": "A ponta não chega mais perto do ombro que um terço do alcance; no braço de prova são 100 mm, o começo da faixa do espaço de trabalho."
+    },
+    "fracaoMaximaDoAlcance": {
+      "valor": 0.9,
+      "origem": "estimativa",
+      "nota": "A ponta anda à velocidade pedida até 90% do alcance; mais perto do braço esticado a junta 2 teria de girar sem limite para manter a velocidade da ponta, e o programa reduz a velocidade ali."
+    },
+    "gravidade": {
+      "valor": 9.80665,
+      "origem": "declarado",
+      "nota": "Gravidade padrão, em m/s²."
+    },
+    "varredura": {
+      "valor": 200,
+      "origem": "declarado",
+      "nota": "Intervalos iguais da distância do ombro à ponta, do raio mínimo ao máximo, com os extremos."
+    }
+  },
+  "elos": [
+    {
+      "id": "elo-1",
+      "comprimento": {
+        "valor": 150,
+        "origem": "estimativa",
+        "nota": "Metade do alcance."
+      },
+      "massa": {
+        "valor": 41.85,
+        "origem": "estimativa",
+        "nota": "Seção de 225 mm² vezes o comprimento vezes a densidade."
+      }
+    },
+    {
+      "id": "elo-2",
+      "comprimento": {
+        "valor": 150,
+        "origem": "estimativa",
+        "nota": "Metade do alcance."
+      },
+      "massa": {
+        "valor": 41.85,
+        "origem": "estimativa",
+        "nota": "Seção de 225 mm² vezes o comprimento vezes a densidade."
+      }
+    }
+  ],
+  "massaNoCotovelo": {
+    "valor": 340,
+    "origem": "estimativa",
+    "nota": "O motor e a redução do conjunto mais leve do catálogo que cobre a junta 2 com a folga, presos na ponta do elo 1; as opções refazem a junta 1 com a massa de cada conjunto.",
+    "conjunto": {
+      "motor": "motor-17hs4401",
+      "reducao": "reducao-gt2-20-60",
+      "driver": "driver-drv8825"
+    }
+  },
+  "iteracoes": [
+    {
+      "massaNoCotovelo": 0,
+      "torqueTotalDaJunta1": 0.7085,
+      "conjuntoMaisLeveDaJunta2": {
+        "motor": "motor-17hs4401",
+        "reducao": "reducao-gt2-20-60",
+        "driver": "driver-drv8825",
+        "massa": 340
+      }
+    },
+    {
+      "massaNoCotovelo": 340,
+      "torqueTotalDaJunta1": 1.2492,
+      "conjuntoMaisLeveDaJunta2": {
+        "motor": "motor-17hs4401",
+        "reducao": "reducao-gt2-20-60",
+        "driver": "driver-drv8825",
+        "massa": 340
+      }
+    }
+  ],
+  "juntas": [
+    {
+      "id": "junta-1",
+      "torqueGravidade": {
+        "valor": 1.1087,
+        "origem": "estimativa",
+        "nota": "Braço esticado na horizontal: cada massa vezes a distância horizontal até a junta, vezes a gravidade."
+      },
+      "inercia": {
+        "valor": 0.026496,
+        "origem": "estimativa",
+        "nota": "Na pose esticada, a maior: elo como barra fina, carga e massa no cotovelo como pontos."
+      },
+      "aceleracao": {
+        "valor": 303.9,
+        "origem": "estimativa",
+        "nota": "A maior da varredura, com a ponta a 100 mm do ombro."
+      },
+      "torqueAceleracao": {
+        "valor": 0.1405,
+        "origem": "estimativa",
+        "nota": "A inércia na pose esticada vezes a maior aceleração angular da varredura."
+      },
+      "torqueTotal": {
+        "valor": 1.2492,
+        "origem": "estimativa",
+        "nota": "Gravidade mais aceleração, somadas no pior caso de cada uma."
+      },
+      "torquePedido": {
+        "valor": 2.4984,
+        "origem": "estimativa",
+        "nota": "O torque total vezes a folga mínima de 2."
+      },
+      "velocidade": {
+        "valor": 60.8,
+        "origem": "estimativa",
+        "nota": "A maior da varredura, com a ponta a 100 mm do ombro andando a 100 mm/s na pior direção."
+      },
+      "potencia": {
+        "valor": 1.325,
+        "origem": "estimativa",
+        "nota": "O torque total vezes a maior velocidade da junta, os dois no pior caso; é o teto da potência mecânica na saída da junta."
+      }
+    },
+    {
+      "id": "junta-2",
+      "torqueGravidade": {
+        "valor": 0.2956,
+        "origem": "estimativa",
+        "nota": "Braço esticado na horizontal: cada massa vezes a distância horizontal até a junta, vezes a gravidade."
+      },
+      "inercia": {
+        "valor": 0.005174,
+        "origem": "estimativa",
+        "nota": "Na pose esticada, a maior: elo como barra fina, carga e massa no cotovelo como pontos."
+      },
+      "aceleracao": {
+        "valor": 438.2,
+        "origem": "estimativa",
+        "nota": "A maior da varredura, com a ponta a 270 mm do ombro."
+      },
+      "torqueAceleracao": {
+        "valor": 0.0396,
+        "origem": "estimativa",
+        "nota": "A inércia na pose esticada vezes a maior aceleração angular da varredura."
+      },
+      "torqueTotal": {
+        "valor": 0.3351,
+        "origem": "estimativa",
+        "nota": "Gravidade mais aceleração, somadas no pior caso de cada uma."
+      },
+      "torquePedido": {
+        "valor": 0.6703,
+        "origem": "estimativa",
+        "nota": "O torque total vezes a folga mínima de 2."
+      },
+      "velocidade": {
+        "valor": 87.6,
+        "origem": "estimativa",
+        "nota": "A maior da varredura, com a ponta a 270 mm do ombro andando a 100 mm/s na pior direção."
+      },
+      "potencia": {
+        "valor": 0.513,
+        "origem": "estimativa",
+        "nota": "O torque total vezes a maior velocidade da junta, os dois no pior caso; é o teto da potência mecânica na saída da junta."
+      }
+    }
+  ],
+  "elosContraCarga": {
+    "valor": 0.254,
+    "origem": "estimativa",
+    "nota": "O momento dos elos no ombro dividido pelo da carga, na pose esticada; acima de 1 o dimensionamento para e pergunta à pessoa."
+  },
+  "naoCobre": "A massa real dos elos, que só a ficha do Modelar traz depois da forma; a inércia própria do motor do cotovelo e a do rotor refletida pela redução; o acoplamento entre as juntas quando as duas aceleram juntas; atrito, folga e rigidez da transmissão; e o motor do cotovelo levado para a base por correia, que tiraria a massa do cotovelo."
+}

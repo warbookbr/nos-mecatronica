@@ -1,0 +1,87 @@
+{
+  "tipo": "componente",
+  "versao": "1.0",
+  "id": "driver-drv8825",
+  "nome": "Driver de passo DRV8825 em placa portadora",
+  "categoria": "driver",
+  "familia": "modulo-de-placa",
+  "fabricante": "Texas Instruments (circuito DRV8825) em placa portadora genérica no formato da Pololu",
+  "jaTem": false,
+  "unidades": {
+    "comprimento": "mm",
+    "massa": "g",
+    "torque": "N·m",
+    "velocidade": "rpm",
+    "corrente": "A",
+    "tensao": "V",
+    "resistencia": "Ω",
+    "indutancia": "mH",
+    "angulo": "grau",
+    "potencia": "W",
+    "moeda": "BRL"
+  },
+  "fontes": [
+    {
+      "nome": "folha-drv8825",
+      "documento": "Folha de dados do DRV8825, Texas Instruments"
+    },
+    {
+      "nome": "pololu-drv8825",
+      "documento": "Página da placa portadora DRV8825 da Pololu",
+      "nota": "Cerca de 1,5 A por fase sem dissipador nem ventilação, até 2,2 A com refrigeração suficiente."
+    }
+  ],
+  "preco": {
+    "faixa": [
+      15,
+      35
+    ],
+    "data": "2026-11-23",
+    "origem": "estimativa",
+    "nota": "Com o dissipador pequeno que acompanha."
+  },
+  "especificacao": {
+    "correnteMaxima": {
+      "valor": 2.2,
+      "origem": "declarado",
+      "nota": "Com refrigeração suficiente, pela Pololu."
+    },
+    "correnteContinua": {
+      "valor": 1.5,
+      "origem": "declarado",
+      "nota": "Sem dissipador nem ventilação forçada, pela Pololu."
+    },
+    "tensao": {
+      "valor": [
+        8.2,
+        45
+      ],
+      "origem": "declarado"
+    },
+    "tensaoLogica": {
+      "valor": [
+        2.5,
+        5.25
+      ],
+      "origem": "declarado"
+    },
+    "micropasso": {
+      "valor": 32,
+      "origem": "declarado"
+    },
+    "massa": {
+      "valor": 2,
+      "origem": "estimativa",
+      "nota": "Placa portadora com pinos, sem o dissipador."
+    },
+    "medidas": {
+      "valor": [
+        15.2,
+        20.3,
+        12
+      ],
+      "origem": "declarado",
+      "nota": "Placa de 0,6 × 0,8 polegada; a altura inclui os pinos e o dissipador."
+    }
+  }
+}

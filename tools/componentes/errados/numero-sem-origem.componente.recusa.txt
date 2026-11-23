@@ -1,0 +1,2 @@
+tools/componentes/errados/numero-sem-origem.componente.json: recusado (componente, versão 1.0), 1 problema(s)
+  $.especificacao.torqueDeRetencao.origem: campo obrigatório ausente; recebido nada

@@ -375,27 +375,27 @@
     "camada": "fisico",
     "capacidade": "O torque de cada junta contra a carga na ferramenta e a gravidade, na pior pose.",
     "dono": "mecatronica",
-    "estado": "falta",
+    "estado": "parcial",
     "prova": "A varredura de poses dá o torque máximo de cada junta e reprova o motor com redução cujo torque nominal fica abaixo dele com a margem declarada.",
-    "naoCobre": "Rendimento real da redução e torque perdido com o aquecimento."
+    "naoCobre": "Rendimento real da redução e torque perdido com o aquecimento. Hoje só o braço plano de duas juntas, na pose esticada e com a massa dos elos estimada antes da forma (camadas/fisico/dimensionamento/); a varredura de poses com a massa da ficha ainda falta."
   },
   {
     "id": "fis-inercia-aceleracao",
     "camada": "fisico",
     "capacidade": "O torque para acelerar os elos no perfil de movimento pedido, somado ao da gravidade.",
     "dono": "mecatronica",
-    "estado": "falta",
+    "estado": "parcial",
     "prova": "O perfil de movimento de teste reprova quando o torque dinâmico passa da curva do motor.",
-    "naoCobre": "Vibração dos elos e da base."
+    "naoCobre": "Vibração dos elos e da base. Hoje é conta fechada do braço plano de duas juntas: a inércia na pose esticada vezes a maior aceleração angular de uma varredura de poses, sem o acoplamento entre as juntas nem a inércia do rotor; o perfil de movimento simulado contra a curva ainda falta."
   },
   {
     "id": "fis-curva-do-motor",
     "camada": "fisico",
     "capacidade": "A curva de torque contra velocidade de cada motor com a tensão do driver.",
     "dono": "mecatronica",
-    "estado": "falta",
+    "estado": "parcial",
     "prova": "O ponto de operação de cada junta no cenário fica dentro da curva, e o passo perdido do motor de passo é acusado.",
-    "naoCobre": "Ressonância do motor de passo."
+    "naoCobre": "Ressonância do motor de passo. Hoje a curva de cada motor do catálogo em componentes/ dá o torque na velocidade pedida de cada junta, reduzido pela corrente do driver; a curva é estimativa quando a folha só dá o torque de retenção, e o passo perdido num cenário ainda não é acusado."
   },
   {
     "id": "fis-limite-de-curso",
@@ -658,7 +658,7 @@
     "camada": "projeto",
     "capacidade": "Dos requisitos sai o torque de cada junta na pior pose, com a massa dos elos estimada antes de haver forma, e a velocidade e a potência que cada junta pede.",
     "dono": "mecatronica",
-    "estado": "falta",
+    "estado": "feito",
     "prova": "Para um braço de teste de duas juntas, o torque calculado confere com a conta à mão, e cada número diz se vem dos requisitos ou de estimativa.",
     "naoCobre": "A massa real dos elos, que só a ficha do Modelar traz depois da forma, e atrito, folga e rigidez da transmissão."
   },
@@ -667,9 +667,9 @@
     "camada": "projeto",
     "capacidade": "Do dimensionamento saem duas ou três combinações de motor, redução, driver, placa e fonte do catálogo, lado a lado com custo, folga e tamanho, para a pessoa escolher, e a escolha vira o espaço que cada componente pede ao Modelar.",
     "dono": "mecatronica",
-    "estado": "falta",
+    "estado": "parcial",
     "prova": "Para os requisitos de um objeto de teste, as opções saem do catálogo com a fonte de cada número, nenhuma fica abaixo do torque pedido, e a escolhida gera um pedido de espaço aceito por npm run ponte:conferir.",
-    "naoCobre": "Preço e disponibilidade no dia da compra e componente fora do catálogo."
+    "naoCobre": "Preço e disponibilidade no dia da compra e componente fora do catálogo. Hoje as opções saem do catálogo com a folga, o custo e as medidas (npm run opcoes); a escolha da pessoa e o pedido de espaço ao Modelar ainda faltam."
   },
   {
     "id": "proj-roteiro",

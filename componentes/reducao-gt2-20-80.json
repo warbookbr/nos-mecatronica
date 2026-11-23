@@ -1,0 +1,83 @@
+{
+  "tipo": "componente",
+  "versao": "1.0",
+  "id": "reducao-gt2-20-80",
+  "nome": "Redução por polia e correia GT2, 20 para 80 dentes (4:1)",
+  "categoria": "reducao",
+  "familia": "peca-mecanica",
+  "fabricante": "genérico (polias GT2 de alumínio e correia GT2 de 6 mm)",
+  "jaTem": false,
+  "unidades": {
+    "comprimento": "mm",
+    "massa": "g",
+    "torque": "N·m",
+    "velocidade": "rpm",
+    "corrente": "A",
+    "tensao": "V",
+    "resistencia": "Ω",
+    "indutancia": "mH",
+    "angulo": "grau",
+    "potencia": "W",
+    "moeda": "BRL"
+  },
+  "fontes": [
+    {
+      "nome": "perfil-gt2",
+      "documento": "Perfil de correia GT2 de passo 2 mm (Gates PowerGrip GT2), diâmetro primitivo = dentes × 2 mm ÷ π"
+    },
+    {
+      "nome": "revendedores-gt2",
+      "documento": "Anúncios genéricos de polias GT2 de 20 e 80 dentes e correia fechada de 6 mm"
+    }
+  ],
+  "preco": {
+    "faixa": [
+      50,
+      100
+    ],
+    "data": "2026-11-23",
+    "origem": "estimativa",
+    "nota": "As duas polias e uma correia fechada; o eixo, os rolamentos e o esticador ficam na forma."
+  },
+  "especificacao": {
+    "tipo": "polia-e-correia",
+    "paraMotores": [
+      "nema-17",
+      "nema-23"
+    ],
+    "razao": {
+      "valor": 4,
+      "origem": "declarado",
+      "nota": "80 ÷ 20 dentes."
+    },
+    "eficiencia": {
+      "valor": 0.95,
+      "origem": "estimativa",
+      "nota": "Correia dentada bem esticada fica entre 0,95 e 0,98; ficou o menor."
+    },
+    "folga": {
+      "valor": 0.1,
+      "origem": "estimativa",
+      "nota": "Correia dentada não tem folga de engrenagem; o valor cobre a elasticidade da correia sob a carga do braço."
+    },
+    "torqueMaximo": {
+      "valor": 2.5,
+      "origem": "estimativa",
+      "nota": "Tração de trabalho de 100 N na correia de 6 mm (estimativa, cerca de um sexto da ruptura) vezes o raio primitivo da polia de 80 dentes, 25,5 mm."
+    },
+    "massa": {
+      "valor": 80,
+      "origem": "estimativa",
+      "nota": "Polia de 20 dentes cerca de 8 g, de 80 dentes cerca de 60 g, correia cerca de 6 g, com folga para os parafusos."
+    },
+    "medidas": {
+      "valor": [
+        55,
+        16,
+        120
+      ],
+      "origem": "estimativa",
+      "nota": "Diâmetro da polia maior com flange, largura com cubo, e comprimento da polia menor à maior com 70 mm entre centros."
+    }
+  }
+}

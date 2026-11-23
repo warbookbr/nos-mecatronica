@@ -1,0 +1,126 @@
+{
+  "tipo": "componente",
+  "versao": "1.0",
+  "id": "motor-17hs8401",
+  "nome": "Motor de passo NEMA 17 de 48 mm, 0,52 N·m",
+  "categoria": "motor-de-passo",
+  "familia": "motor-de-passo",
+  "fabricante": "genérico (modelo 17HS8401, de vários fabricantes chineses)",
+  "jaTem": false,
+  "unidades": {
+    "comprimento": "mm",
+    "massa": "g",
+    "torque": "N·m",
+    "velocidade": "rpm",
+    "corrente": "A",
+    "tensao": "V",
+    "resistencia": "Ω",
+    "indutancia": "mH",
+    "angulo": "grau",
+    "potencia": "W",
+    "moeda": "BRL"
+  },
+  "fontes": [
+    {
+      "nome": "folha-17hs8401",
+      "documento": "Folha de dados genérica do 17HS8401 (42 × 42 × 48 mm, 1,8 A)"
+    }
+  ],
+  "preco": {
+    "faixa": [
+      60,
+      100
+    ],
+    "data": "2026-11-23",
+    "origem": "estimativa"
+  },
+  "especificacao": {
+    "tamanho": "nema-17",
+    "torqueDeRetencao": {
+      "valor": 0.52,
+      "origem": "declarado"
+    },
+    "corrente": {
+      "valor": 1.8,
+      "origem": "declarado",
+      "nota": "Por fase, ligação bipolar."
+    },
+    "resistencia": {
+      "valor": 1.8,
+      "origem": "declarado"
+    },
+    "indutancia": {
+      "valor": 3.2,
+      "origem": "declarado"
+    },
+    "passo": {
+      "valor": 1.8,
+      "origem": "declarado"
+    },
+    "eixo": {
+      "valor": 5,
+      "origem": "declarado"
+    },
+    "massa": {
+      "valor": 350,
+      "origem": "estimativa",
+      "nota": "As folhas de revendedores dão de 340 a 390 g; sem uma folha do fabricante, ficou 350 g."
+    },
+    "medidas": {
+      "valor": [
+        42.3,
+        42.3,
+        48
+      ],
+      "origem": "declarado",
+      "nota": "Face quadrada e comprimento do corpo, sem o eixo."
+    },
+    "curva": {
+      "tensao": {
+        "valor": 12,
+        "origem": "estimativa",
+        "nota": "A tensão da fonte que a pessoa já tem, no driver."
+      },
+      "pontos": [
+        [
+          30,
+          0.416
+        ],
+        [
+          60,
+          0.416
+        ],
+        [
+          90,
+          0.416
+        ],
+        [
+          120,
+          0.416
+        ],
+        [
+          180,
+          0.361
+        ],
+        [
+          240,
+          0.271
+        ],
+        [
+          300,
+          0.217
+        ],
+        [
+          450,
+          0.144
+        ],
+        [
+          600,
+          0.108
+        ]
+      ],
+      "origem": "estimativa",
+      "nota": "A folha só dá o torque de retenção. Regra: até a velocidade de canto o torque em movimento é 80% do de retenção, e acima dela cai com o inverso da velocidade; a velocidade de canto, em rpm, é 60 × V ÷ (4 × L × I) ÷ 200 passos por volta, com V = 12 V, L a indutância e I a corrente nominal, e aqui dá 156 rpm. A regra ignora a ressonância de meia velocidade e vale com a corrente nominal; com corrente menor o dimensionamento reduz o torque na mesma proporção."
+    }
+  }
+}

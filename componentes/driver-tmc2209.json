@@ -1,0 +1,87 @@
+{
+  "tipo": "componente",
+  "versao": "1.0",
+  "id": "driver-tmc2209",
+  "nome": "Driver de passo TMC2209 em placa portadora",
+  "categoria": "driver",
+  "familia": "modulo-de-placa",
+  "fabricante": "Trinamic, hoje Analog Devices (circuito TMC2209), em placa portadora genérica no formato da Pololu",
+  "jaTem": false,
+  "unidades": {
+    "comprimento": "mm",
+    "massa": "g",
+    "torque": "N·m",
+    "velocidade": "rpm",
+    "corrente": "A",
+    "tensao": "V",
+    "resistencia": "Ω",
+    "indutancia": "mH",
+    "angulo": "grau",
+    "potencia": "W",
+    "moeda": "BRL"
+  },
+  "fontes": [
+    {
+      "nome": "folha-tmc2209",
+      "documento": "Folha de dados do TMC2209, Trinamic"
+    },
+    {
+      "nome": "portadora-tmc2209",
+      "documento": "Placas portadoras genéricas do TMC2209 (BigTreeTech, Fysetc e outras)"
+    }
+  ],
+  "preco": {
+    "faixa": [
+      35,
+      70
+    ],
+    "data": "2026-11-23",
+    "origem": "estimativa",
+    "nota": "Com o dissipador que acompanha."
+  },
+  "especificacao": {
+    "correnteMaxima": {
+      "valor": 2,
+      "origem": "declarado",
+      "nota": "A folha dá 2 A eficazes e 2,8 A de pico."
+    },
+    "correnteContinua": {
+      "valor": 1.4,
+      "origem": "estimativa",
+      "nota": "As placas portadoras aquecem acima de cerca de 1,2 a 1,5 A eficazes sem ventilação; ficou 1,4 A."
+    },
+    "tensao": {
+      "valor": [
+        4.75,
+        29
+      ],
+      "origem": "declarado"
+    },
+    "tensaoLogica": {
+      "valor": [
+        3.3,
+        5
+      ],
+      "origem": "declarado"
+    },
+    "micropasso": {
+      "valor": 256,
+      "origem": "declarado",
+      "nota": "Por interpolação interna; os pinos dão até 1/64."
+    },
+    "massa": {
+      "valor": 3,
+      "origem": "estimativa",
+      "nota": "Placa portadora com pinos, sem o dissipador."
+    },
+    "medidas": {
+      "valor": [
+        15.2,
+        20.3,
+        14
+      ],
+      "origem": "estimativa",
+      "nota": "Formato da Pololu; a altura inclui os pinos e o dissipador maior."
+    }
+  }
+}

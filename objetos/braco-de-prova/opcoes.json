@@ -1,0 +1,407 @@
+{
+  "tipo": "opcoes",
+  "versao": "1.0",
+  "objeto": "braco-de-prova",
+  "dimensionamento": {
+    "arquivo": "dimensionamento.json",
+    "revisaoDosRequisitos": 1
+  },
+  "unidades": {
+    "torque": "N·m",
+    "velocidadeAngular": "grau/s",
+    "velocidadeDoMotor": "rpm",
+    "corrente": "A",
+    "massa": "g",
+    "comprimento": "mm",
+    "moeda": "BRL"
+  },
+  "folgaMinima": 2,
+  "orcamento": 800,
+  "regras": {
+    "torque": "O torque disponível é o da curva do motor na velocidade da junta vezes a razão da redução, vezes a fração da corrente nominal que o driver sustenta sem ventilação, vezes a razão e a eficiência da redução, e limitado ao torque máximo dela. A folga é ele dividido pelo torque total da junta (gravidade mais aceleração); a da opção é a menor das duas juntas.",
+    "junta1": "A junta 1 se refaz com a massa do motor e da redução da junta 2 de cada combinação no cotovelo; por isso o torque dela muda de uma opção para outra.",
+    "corrente": "A demanda é 0.667 vezes a soma das correntes de fase aplicadas mais 0.5 A da placa e do regulador; O driver chaveado tira da fonte cerca de dois terços da corrente de fase que aplica no motor, regra usual de dimensionamento de fonte para motor de passo. Tudo estimativa.",
+    "custo": "A soma das faixas de preço do catálogo, sem o que a pessoa já tem; é referência com a data do catálogo, sem frete nem o material impresso.",
+    "escolha": "A mais barata pelo topo da faixa e a que usa mais do que a pessoa já tem saem das combinações cujo topo da faixa cabe no orçamento (ou de todas, se nenhuma couber); a de maior folga sai de todas e diz quanto passa do orçamento. Quando dois critérios dão a mesma combinação, ela aparece uma vez com os dois."
+  },
+  "contagem": {
+    "conjuntosPorJunta": 45,
+    "junta2ComFolga": 43,
+    "junta1ComFolga": 54,
+    "semFonte": 0,
+    "semPlaca": 0,
+    "combinacoes": 54
+  },
+  "opcoes": [
+    {
+      "id": "opcao-1",
+      "criterios": [
+        "mais-barata",
+        "usa-o-que-ja-tem"
+      ],
+      "juntas": [
+        {
+          "junta": "junta-1",
+          "motor": "motor-23hs30-2804s",
+          "reducao": "reducao-gt2-20-80",
+          "driver": "driver-drv8825",
+          "torqueTotal": 1.2492,
+          "velocidadeDaJunta": 60.8,
+          "rpmDoMotor": 40.5,
+          "torqueDaCurva": 1.52,
+          "correnteAplicada": 1.5,
+          "torqueDisponivel": 2.5,
+          "limitadoPor": "reducao",
+          "folga": 2
+        },
+        {
+          "junta": "junta-2",
+          "motor": "motor-17hs4401",
+          "reducao": "reducao-gt2-20-60",
+          "driver": "driver-drv8825",
+          "torqueTotal": 0.3351,
+          "velocidadeDaJunta": 87.6,
+          "rpmDoMotor": 43.8,
+          "torqueDaCurva": 0.32,
+          "correnteAplicada": 1.5,
+          "torqueDisponivel": 0.8047,
+          "limitadoPor": "motor",
+          "folga": 2.4
+        }
+      ],
+      "torqueDaJunta1": {
+        "gravidade": 1.1087,
+        "aceleracao": 0.1405,
+        "massaNoCotovelo": 340
+      },
+      "folga": 2,
+      "fonte": "fonte-12v-5a",
+      "placa": "placa-arduino-uno",
+      "corrente": {
+        "demanda": 2.5,
+        "daFonte": 5
+      },
+      "custo": {
+        "faixa": [
+          345,
+          610
+        ],
+        "orcamento": 800,
+        "cabe": true,
+        "passaDoOrcamento": 0,
+        "jaTem": [
+          "fonte-12v-5a",
+          "placa-arduino-uno"
+        ],
+        "itens": [
+          {
+            "id": "driver-drv8825",
+            "quantidade": 2,
+            "faixa": [
+              15,
+              35
+            ]
+          },
+          {
+            "id": "fonte-12v-5a",
+            "quantidade": 1,
+            "faixa": [
+              0,
+              0
+            ]
+          },
+          {
+            "id": "motor-17hs4401",
+            "quantidade": 1,
+            "faixa": [
+              45,
+              80
+            ]
+          },
+          {
+            "id": "motor-23hs30-2804s",
+            "quantidade": 1,
+            "faixa": [
+              180,
+              280
+            ]
+          },
+          {
+            "id": "placa-arduino-uno",
+            "quantidade": 1,
+            "faixa": [
+              0,
+              0
+            ]
+          },
+          {
+            "id": "reducao-gt2-20-60",
+            "quantidade": 1,
+            "faixa": [
+              40,
+              80
+            ]
+          },
+          {
+            "id": "reducao-gt2-20-80",
+            "quantidade": 1,
+            "faixa": [
+              50,
+              100
+            ]
+          }
+        ]
+      },
+      "medidas": [
+        {
+          "id": "driver-drv8825",
+          "caixa": [
+            15.2,
+            20.3,
+            12
+          ],
+          "massa": 2
+        },
+        {
+          "id": "fonte-12v-5a",
+          "caixa": [
+            111,
+            78,
+            36
+          ],
+          "massa": 300
+        },
+        {
+          "id": "motor-17hs4401",
+          "caixa": [
+            42.3,
+            42.3,
+            40
+          ],
+          "massa": 280
+        },
+        {
+          "id": "motor-23hs30-2804s",
+          "caixa": [
+            57,
+            57,
+            76
+          ],
+          "massa": 1000
+        },
+        {
+          "id": "placa-arduino-uno",
+          "caixa": [
+            68.6,
+            53.4,
+            15
+          ],
+          "massa": 25
+        },
+        {
+          "id": "reducao-gt2-20-60",
+          "caixa": [
+            42,
+            16,
+            100
+          ],
+          "massa": 60
+        },
+        {
+          "id": "reducao-gt2-20-80",
+          "caixa": [
+            55,
+            16,
+            120
+          ],
+          "massa": 80
+        }
+      ]
+    },
+    {
+      "id": "opcao-2",
+      "criterios": [
+        "maior-folga"
+      ],
+      "juntas": [
+        {
+          "junta": "junta-1",
+          "motor": "motor-23hs30-2804s",
+          "reducao": "reducao-planetaria-nema23-5",
+          "driver": "driver-drv8825",
+          "torqueTotal": 1.281,
+          "velocidadeDaJunta": 60.8,
+          "rpmDoMotor": 50.6,
+          "torqueDaCurva": 1.52,
+          "correnteAplicada": 1.5,
+          "torqueDisponivel": 3.6643,
+          "limitadoPor": "motor",
+          "folga": 2.86
+        },
+        {
+          "junta": "junta-2",
+          "motor": "motor-17hs4401",
+          "reducao": "reducao-gt2-20-80",
+          "driver": "driver-drv8825",
+          "torqueTotal": 0.3351,
+          "velocidadeDaJunta": 87.6,
+          "rpmDoMotor": 58.4,
+          "torqueDaCurva": 0.32,
+          "correnteAplicada": 1.5,
+          "torqueDisponivel": 1.0729,
+          "limitadoPor": "motor",
+          "folga": 3.2
+        }
+      ],
+      "torqueDaJunta1": {
+        "gravidade": 1.1381,
+        "aceleracao": 0.1429,
+        "massaNoCotovelo": 360
+      },
+      "folga": 2.86,
+      "fonte": "fonte-12v-5a",
+      "placa": "placa-arduino-uno",
+      "corrente": {
+        "demanda": 2.5,
+        "daFonte": 5
+      },
+      "custo": {
+        "faixa": [
+          555,
+          980
+        ],
+        "orcamento": 800,
+        "cabe": false,
+        "passaDoOrcamento": 180,
+        "jaTem": [
+          "fonte-12v-5a",
+          "placa-arduino-uno"
+        ],
+        "itens": [
+          {
+            "id": "driver-drv8825",
+            "quantidade": 2,
+            "faixa": [
+              15,
+              35
+            ]
+          },
+          {
+            "id": "fonte-12v-5a",
+            "quantidade": 1,
+            "faixa": [
+              0,
+              0
+            ]
+          },
+          {
+            "id": "motor-17hs4401",
+            "quantidade": 1,
+            "faixa": [
+              45,
+              80
+            ]
+          },
+          {
+            "id": "motor-23hs30-2804s",
+            "quantidade": 1,
+            "faixa": [
+              180,
+              280
+            ]
+          },
+          {
+            "id": "placa-arduino-uno",
+            "quantidade": 1,
+            "faixa": [
+              0,
+              0
+            ]
+          },
+          {
+            "id": "reducao-gt2-20-80",
+            "quantidade": 1,
+            "faixa": [
+              50,
+              100
+            ]
+          },
+          {
+            "id": "reducao-planetaria-nema23-5",
+            "quantidade": 1,
+            "faixa": [
+              250,
+              450
+            ]
+          }
+        ]
+      },
+      "medidas": [
+        {
+          "id": "driver-drv8825",
+          "caixa": [
+            15.2,
+            20.3,
+            12
+          ],
+          "massa": 2
+        },
+        {
+          "id": "fonte-12v-5a",
+          "caixa": [
+            111,
+            78,
+            36
+          ],
+          "massa": 300
+        },
+        {
+          "id": "motor-17hs4401",
+          "caixa": [
+            42.3,
+            42.3,
+            40
+          ],
+          "massa": 280
+        },
+        {
+          "id": "motor-23hs30-2804s",
+          "caixa": [
+            57,
+            57,
+            76
+          ],
+          "massa": 1000
+        },
+        {
+          "id": "placa-arduino-uno",
+          "caixa": [
+            68.6,
+            53.4,
+            15
+          ],
+          "massa": 25
+        },
+        {
+          "id": "reducao-gt2-20-80",
+          "caixa": [
+            55,
+            16,
+            120
+          ],
+          "massa": 80
+        },
+        {
+          "id": "reducao-planetaria-nema23-5",
+          "caixa": [
+            57,
+            57,
+            55
+          ],
+          "massa": 550
+        }
+      ]
+    }
+  ],
+  "falta": null
+}

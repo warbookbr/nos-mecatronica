@@ -1,0 +1,79 @@
+{
+  "tipo": "componente",
+  "versao": "1.0",
+  "id": "reducao-planetaria-nema23-5",
+  "nome": "Redução planetária para NEMA 23, 5:1",
+  "categoria": "reducao",
+  "familia": "peca-mecanica",
+  "fabricante": "genérico (caixa planetária de 57 mm, como a série PL da StepperOnline)",
+  "jaTem": false,
+  "unidades": {
+    "comprimento": "mm",
+    "massa": "g",
+    "torque": "N·m",
+    "velocidade": "rpm",
+    "corrente": "A",
+    "tensao": "V",
+    "resistencia": "Ω",
+    "indutancia": "mH",
+    "angulo": "grau",
+    "potencia": "W",
+    "moeda": "BRL"
+  },
+  "fontes": [
+    {
+      "nome": "folha-planetaria-57",
+      "documento": "Folha de dados de caixa planetária de 57 mm para NEMA 23, razão 5:1 (StepperOnline e revendedores genéricos)",
+      "nota": "A eficiência e a folga são as típicas de um estágio nas folhas; a razão exata, a massa, as medidas e o torque de trabalho são lembrança, sem conferência no documento."
+    }
+  ],
+  "preco": {
+    "faixa": [
+      250,
+      450
+    ],
+    "data": "2026-11-23",
+    "origem": "estimativa",
+    "nota": "Só a caixa, para montar no motor."
+  },
+  "especificacao": {
+    "tipo": "planetaria",
+    "paraMotores": [
+      "nema-23"
+    ],
+    "razao": {
+      "valor": 5,
+      "origem": "estimativa",
+      "nota": "Razão nominal; há caixas de 57 mm com 5:1 exato e outras com 5,18:1. Confirme na caixa comprada."
+    },
+    "eficiencia": {
+      "valor": 0.9,
+      "origem": "declarado",
+      "nota": "As folhas dão 90% para um estágio."
+    },
+    "folga": {
+      "valor": 1,
+      "origem": "estimativa",
+      "nota": "As folhas dão de 0,25 a 1 grau sem carga conforme a classe; ficou o maior."
+    },
+    "torqueMaximo": {
+      "valor": 10,
+      "origem": "estimativa",
+      "nota": "Torque nominal de saída de caixa planetária de 57 mm de um estágio, entre 8 e 20 N·m nas folhas; ficou 10 N·m."
+    },
+    "massa": {
+      "valor": 550,
+      "origem": "estimativa",
+      "nota": "Caixa planetária de 57 mm de um estágio, sem o motor."
+    },
+    "medidas": {
+      "valor": [
+        57,
+        57,
+        55
+      ],
+      "origem": "estimativa",
+      "nota": "Face de 57 mm e comprimento da caixa sem o eixo de saída."
+    }
+  }
+}

@@ -13,6 +13,9 @@ export const GATES = [
   ['ponte:conferir ficha', ['tools/ponte/conferir.mjs', 'ponte/exemplos/braco-de-prova.ficha.json']],
   ['ponte:conferir pedido', ['tools/ponte/conferir.mjs', 'ponte/exemplos/braco-de-prova.pedido.json']],
   ['objetos:conferir', ['tools/objetos/conferir.mjs']],
+  ['componentes:conferir', ['tools/componentes/conferir.mjs']],
+  ['dimensionar braco-de-prova em dia', ['camadas/fisico/dimensionamento/dimensionar.mjs', 'braco-de-prova', '--check']],
+  ['opcoes braco-de-prova em dia', ['camadas/fisico/dimensionamento/opcoes.mjs', 'braco-de-prova', '--check']],
   ['test', ['node_modules/vitest/vitest.mjs', 'run']],
 ];
 

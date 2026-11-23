@@ -12,7 +12,10 @@
     "docs:links:check": "node tools/docs/links.mjs",
     "ponte:conferir": "node tools/ponte/conferir.mjs",
     "ponte:mjcf": "node tools/ponte/mjcf.mjs",
-    "objetos:conferir": "node tools/objetos/conferir.mjs"
+    "objetos:conferir": "node tools/objetos/conferir.mjs",
+    "componentes:conferir": "node tools/componentes/conferir.mjs",
+    "dimensionar": "node camadas/fisico/dimensionamento/dimensionar.mjs",
+    "opcoes": "node camadas/fisico/dimensionamento/opcoes.mjs"
   },
   "devDependencies": {
     "vitest": "^4.1.10"
