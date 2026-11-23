@@ -2,7 +2,7 @@
 
 Um plano é o que autoriza implementação neste repositório. Sem plano ativo, o backlog não autoriza nada. Cada plano é um arquivo nesta pasta com o nome `AAAA-MM-DD-assunto-curto.md`, escrito a partir do [modelo](MODELO.md), e o gate `npm run planos:check` confere as regras abaixo.
 
-**Planos ativos:** nenhum.
+**Planos ativos:** [contrato da ponte 1.1](2026-11-23-contrato-da-ponte-1-1.md).
 
 ## Regras
 
