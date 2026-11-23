@@ -557,27 +557,27 @@
     "camada": "ponte",
     "capacidade": "O Modelar exporta a ficha do braço com geometria, peças com identificador, portas elétricas, volumes livres, massa e inércia.",
     "dono": "modelar",
-    "estado": "falta",
-    "prova": "A ficha do braço exportada passa no esquema e é reproduzida igual em duas exportações.",
-    "naoCobre": "Peças compradas que a receita representa só pelo volume."
+    "estado": "feito",
+    "prova": "npm run exportar:ficha -- braco-robotico, no nos-modelar (plano da ponte de lá, concluído em 2026-11-23): a ficha 1.1 do braço, com 39 peças com nó próprio na malha, 7 conjuntos, 6 juntas com o eixo medido no anel e 161 portas, sai igual byte a byte em duas exportações e passa na cópia conferida do esquema e no npm run ponte:conferir daqui.",
+    "naoCobre": "Peças compradas que a receita representa só pelo volume, volumes livres medidos (a ficha os leva vazios) e motor e redutor modelados nas juntas (acionadaPor sai nulo)."
   },
   {
     "id": "ponte-massa-e-inercia",
     "camada": "ponte",
     "capacidade": "A massa, o centro de massa e a inércia de cada peça e de cada conjunto móvel, a partir da geometria e do material declarado.",
     "dono": "modelar",
-    "estado": "falta",
-    "prova": "Para uma peça de teste de forma simples, os valores da ficha conferem com a conta à mão.",
-    "naoCobre": "Densidade real, parafusos e fios que a geometria não traz."
+    "estado": "feito",
+    "prova": "modulos/ficha-do-objeto/src/massa.js no nos-modelar confere com a conta fechada do cubo e do cilindro; a ficha do braço traz massa, centro e inércia de cada peça pela malha e pela densidade declarada (47 kg no total), cada conjunto bate com as peças no ponte:conferir, e o MJCF dela carregou no MuJoCo com 56,6 N·m de gravidade no ombro e no cotovelo.",
+    "naoCobre": "Densidade real (as do braço são estimativa: PLA impresso, alumínio e uma média para a eletrônica), peça oca modelada maciça, parafusos e fios que a geometria não traz."
   },
   {
     "id": "ponte-portas-eletricas",
     "camada": "ponte",
     "capacidade": "Cada componente da ficha traz as portas elétricas com posição e tipo, pelo nome da família de componentes.",
     "dono": "modelar",
-    "estado": "falta",
-    "prova": "Todo componente da ficha do braço tem as portas que o modelo elétrico da mesma família pede.",
-    "naoCobre": "Conector real diferente do modelado."
+    "estado": "parcial",
+    "prova": "A família de componentes do Modelar tipa sozinha os terminais passivos e a pinagem da placa portadora do driver de passo, e a ponte do objeto declara o resto; a ficha do braço sai com 161 portas, e o pedido de ligações da placa (47 redes) passa no ponte:conferir contra ela.",
+    "naoCobre": "Os pinos do microcontrolador, do regulador e dos conectores são estimativa tirada da lista de redes de exemplo, 22 pinos do microcontrolador ficam fora da ficha sem tipo, e falta o modelo elétrico de cada família para conferir que as portas são as que ele pede."
   },
   {
     "id": "ponte-esquema-do-pedido",
@@ -622,9 +622,9 @@
     "camada": "ponte",
     "capacidade": "O Modelar cumpre o pedido na receita da peça, e a ficha nova mostra o espaço, a posição e a passagem atendidos.",
     "dono": "modelar",
-    "estado": "falta",
-    "prova": "Cada item do pedido do braço aparece atendido na ficha exportada de novo, ou volta com o motivo.",
-    "naoCobre": "A aprovação de forma, que é da pessoa."
+    "estado": "parcial",
+    "prova": "npm run conferir:pedido no nos-modelar responde cada item do pedido medindo a forma de agora (espaço livre e fora de sólido, posição, área da saída de ar, ligações contra as redes traçadas), e o pedido de prova do braço saiu com três itens cumpridos, quatro não cumpridos com o motivo e o recusado sem resposta.",
+    "naoCobre": "Cumprir um pedido mudando a receita, que ainda não aconteceu com pedido real; a passagem, que volta sempre não cumprida porque o Modelar não modela chicote; e a aprovação de forma, que é da pessoa."
   },
   {
     "id": "ponte-verificacao-no-modelar",
