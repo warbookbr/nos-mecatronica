@@ -25,6 +25,10 @@
       "serve": {
         "junta": "junta-1"
       },
+      "eixoDeSaida": {
+        "diametro": 8,
+        "comprimento": 21
+      },
       "motivo": {
         "linhaDaMatriz": "fis-torque-gravidade",
         "texto": "componente escolhido pela pessoa em 2026-11-23",
@@ -53,6 +57,10 @@
       },
       "serve": {
         "junta": "junta-1"
+      },
+      "eixoDeSaida": {
+        "diametro": 14,
+        "comprimento": 25
       },
       "acopla": "motor-23hs30-2804s",
       "motivo": {
@@ -83,6 +91,10 @@
       },
       "serve": {
         "junta": "junta-2"
+      },
+      "eixoDeSaida": {
+        "diametro": 5,
+        "comprimento": 24
       },
       "motivo": {
         "linhaDaMatriz": "fis-torque-gravidade",

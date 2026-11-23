@@ -123,6 +123,14 @@
       ],
       "origem": "estimativa",
       "nota": "A folha só dá o torque de retenção. Regra: até a velocidade de canto o torque em movimento é 80% do de retenção, e acima dela cai com o inverso da velocidade; a velocidade de canto, em rpm, é 60 × V ÷ (4 × L × I) ÷ 200 passos por volta, com V = 12 V, L a indutância e I a corrente nominal, e aqui dá 89 rpm. A regra ignora a ressonância de meia velocidade e vale com a corrente nominal; com corrente menor o dimensionamento reduz o torque na mesma proporção."
+    },
+    "eixoDeSaida": {
+      "valor": [
+        8,
+        21
+      ],
+      "origem": "declarado",
+      "nota": "eixo de 8 mm com 21 mm para fora da flange, da folha do NEMA 23; [diâmetro, comprimento] em mm"
     }
   }
 }

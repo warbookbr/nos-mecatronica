@@ -5,33 +5,104 @@
   "description": "Um componente do catálogo em componentes/<id>.json, que o dimensionamento cruza com o torque e a corrente de cada objeto. Unidades fixas: mm, g, N·m, rpm, A, V, Ω, mH, grau, W e BRL. Todo número vem com a origem da ponte (declarado da folha de dados, medido ou estimativa) e pode trazer uma nota; o componente traz a lista das fontes de onde os números vieram, pelo nome do documento ou do fabricante genérico, e o preço como faixa em reais com a data da consulta. O componente que a pessoa já tem sai com jaTem verdadeiro. A especificação muda com a categoria: motor de passo, redução, driver, placa de controle ou fonte. A familia é o nome da família de componentes do Modelar, para a ficha e o catálogo se acharem, ou null quando o Modelar não tem família para ele.",
   "$comment": "Regra de versão, a mesma da ponte. Ficam fora do JSON Schema e são conferidos por tools/componentes/conferir.mjs: a curva de torque com a velocidade sempre subindo e o torque nunca subindo, e nenhum ponto acima do torque de retenção; as faixas com o mínimo até o máximo; a data do preço como AAAA-MM-DD; fontes sem nome repetido; e, na pasta do catálogo, o id igual ao nome do arquivo.",
   "type": "object",
-  "required": ["tipo", "versao", "id", "nome", "categoria", "familia", "fabricante", "jaTem", "unidades", "fontes", "preco", "especificacao"],
+  "required": [
+    "tipo",
+    "versao",
+    "id",
+    "nome",
+    "categoria",
+    "familia",
+    "fabricante",
+    "jaTem",
+    "unidades",
+    "fontes",
+    "preco",
+    "especificacao"
+  ],
   "additionalProperties": false,
   "properties": {
-    "tipo": { "const": "componente" },
-    "versao": { "enum": ["1.0"] },
-    "id": { "$ref": "#/$defs/id" },
-    "nome": { "$ref": "#/$defs/texto" },
-    "categoria": { "enum": ["motor-de-passo", "reducao", "driver", "placa-de-controle", "fonte"] },
-    "familia": { "$ref": "#/$defs/idOuNulo" },
-    "fabricante": { "$ref": "#/$defs/texto" },
-    "jaTem": { "type": "boolean" },
+    "tipo": {
+      "const": "componente"
+    },
+    "versao": {
+      "enum": [
+        "1.0"
+      ]
+    },
+    "id": {
+      "$ref": "#/$defs/id"
+    },
+    "nome": {
+      "$ref": "#/$defs/texto"
+    },
+    "categoria": {
+      "enum": [
+        "motor-de-passo",
+        "reducao",
+        "driver",
+        "placa-de-controle",
+        "fonte"
+      ]
+    },
+    "familia": {
+      "$ref": "#/$defs/idOuNulo"
+    },
+    "fabricante": {
+      "$ref": "#/$defs/texto"
+    },
+    "jaTem": {
+      "type": "boolean"
+    },
     "unidades": {
       "type": "object",
-      "required": ["comprimento", "massa", "torque", "velocidade", "corrente", "tensao", "resistencia", "indutancia", "angulo", "potencia", "moeda"],
+      "required": [
+        "comprimento",
+        "massa",
+        "torque",
+        "velocidade",
+        "corrente",
+        "tensao",
+        "resistencia",
+        "indutancia",
+        "angulo",
+        "potencia",
+        "moeda"
+      ],
       "additionalProperties": false,
       "properties": {
-        "comprimento": { "const": "mm" },
-        "massa": { "const": "g" },
-        "torque": { "const": "N·m" },
-        "velocidade": { "const": "rpm" },
-        "corrente": { "const": "A" },
-        "tensao": { "const": "V" },
-        "resistencia": { "const": "Ω" },
-        "indutancia": { "const": "mH" },
-        "angulo": { "const": "grau" },
-        "potencia": { "const": "W" },
-        "moeda": { "const": "BRL" }
+        "comprimento": {
+          "const": "mm"
+        },
+        "massa": {
+          "const": "g"
+        },
+        "torque": {
+          "const": "N·m"
+        },
+        "velocidade": {
+          "const": "rpm"
+        },
+        "corrente": {
+          "const": "A"
+        },
+        "tensao": {
+          "const": "V"
+        },
+        "resistencia": {
+          "const": "Ω"
+        },
+        "indutancia": {
+          "const": "mH"
+        },
+        "angulo": {
+          "const": "grau"
+        },
+        "potencia": {
+          "const": "W"
+        },
+        "moeda": {
+          "const": "BRL"
+        }
       }
     },
     "fontes": {
@@ -40,158 +111,562 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["nome", "documento"],
+        "required": [
+          "nome",
+          "documento"
+        ],
         "additionalProperties": false,
         "properties": {
-          "nome": { "$ref": "#/$defs/id" },
-          "documento": { "$ref": "#/$defs/texto" },
-          "nota": { "$ref": "#/$defs/texto" }
+          "nome": {
+            "$ref": "#/$defs/id"
+          },
+          "documento": {
+            "$ref": "#/$defs/texto"
+          },
+          "nota": {
+            "$ref": "#/$defs/texto"
+          }
         }
       }
     },
     "preco": {
       "description": "Faixa de referência [mínimo, máximo] em reais, com a data da consulta; sempre estimativa, nunca preço de compra.",
       "type": "object",
-      "required": ["faixa", "data", "origem"],
+      "required": [
+        "faixa",
+        "data",
+        "origem"
+      ],
       "additionalProperties": false,
       "properties": {
-        "faixa": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number", "minimum": 0 } },
-        "data": { "$ref": "#/$defs/texto" },
-        "origem": { "const": "estimativa" },
-        "nota": { "$ref": "#/$defs/texto" }
+        "faixa": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "data": {
+          "$ref": "#/$defs/texto"
+        },
+        "origem": {
+          "const": "estimativa"
+        },
+        "nota": {
+          "$ref": "#/$defs/texto"
+        }
       }
     },
-    "especificacao": { "type": "object" }
+    "especificacao": {
+      "type": "object"
+    }
   },
   "allOf": [
-    { "if": { "required": ["categoria"], "properties": { "categoria": { "const": "motor-de-passo" } } }, "then": { "properties": { "especificacao": { "$ref": "#/$defs/motor" } } } },
-    { "if": { "required": ["categoria"], "properties": { "categoria": { "const": "reducao" } } }, "then": { "properties": { "especificacao": { "$ref": "#/$defs/reducao" } } } },
-    { "if": { "required": ["categoria"], "properties": { "categoria": { "const": "driver" } } }, "then": { "properties": { "especificacao": { "$ref": "#/$defs/driver" } } } },
-    { "if": { "required": ["categoria"], "properties": { "categoria": { "const": "placa-de-controle" } } }, "then": { "properties": { "especificacao": { "$ref": "#/$defs/placa" } } } },
-    { "if": { "required": ["categoria"], "properties": { "categoria": { "const": "fonte" } } }, "then": { "properties": { "especificacao": { "$ref": "#/$defs/fonte" } } } }
+    {
+      "if": {
+        "required": [
+          "categoria"
+        ],
+        "properties": {
+          "categoria": {
+            "const": "motor-de-passo"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "especificacao": {
+            "$ref": "#/$defs/motor"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "categoria"
+        ],
+        "properties": {
+          "categoria": {
+            "const": "reducao"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "especificacao": {
+            "$ref": "#/$defs/reducao"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "categoria"
+        ],
+        "properties": {
+          "categoria": {
+            "const": "driver"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "especificacao": {
+            "$ref": "#/$defs/driver"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "categoria"
+        ],
+        "properties": {
+          "categoria": {
+            "const": "placa-de-controle"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "especificacao": {
+            "$ref": "#/$defs/placa"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "categoria"
+        ],
+        "properties": {
+          "categoria": {
+            "const": "fonte"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "especificacao": {
+            "$ref": "#/$defs/fonte"
+          }
+        }
+      }
+    }
   ],
   "$defs": {
-    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
-    "idOuNulo": { "type": ["string", "null"], "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
-    "texto": { "type": "string", "minLength": 1 },
-    "origem": { "enum": ["declarado", "medido", "estimativa"] },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "idOuNulo": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "texto": {
+      "type": "string",
+      "minLength": 1
+    },
+    "origem": {
+      "enum": [
+        "declarado",
+        "medido",
+        "estimativa"
+      ]
+    },
     "numero": {
       "type": "object",
-      "required": ["valor", "origem"],
+      "required": [
+        "valor",
+        "origem"
+      ],
       "additionalProperties": false,
-      "properties": { "valor": { "type": "number", "exclusiveMinimum": 0 }, "origem": { "$ref": "#/$defs/origem" }, "nota": { "$ref": "#/$defs/texto" } }
+      "properties": {
+        "valor": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "origem": {
+          "$ref": "#/$defs/origem"
+        },
+        "nota": {
+          "$ref": "#/$defs/texto"
+        }
+      }
     },
     "inteiro": {
       "type": "object",
-      "required": ["valor", "origem"],
+      "required": [
+        "valor",
+        "origem"
+      ],
       "additionalProperties": false,
-      "properties": { "valor": { "type": "integer", "minimum": 1 }, "origem": { "$ref": "#/$defs/origem" }, "nota": { "$ref": "#/$defs/texto" } }
+      "properties": {
+        "valor": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "origem": {
+          "$ref": "#/$defs/origem"
+        },
+        "nota": {
+          "$ref": "#/$defs/texto"
+        }
+      }
     },
     "faixa": {
       "type": "object",
-      "required": ["valor", "origem"],
+      "required": [
+        "valor",
+        "origem"
+      ],
       "additionalProperties": false,
       "properties": {
-        "valor": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number", "exclusiveMinimum": 0 } },
-        "origem": { "$ref": "#/$defs/origem" },
-        "nota": { "$ref": "#/$defs/texto" }
+        "valor": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        },
+        "origem": {
+          "$ref": "#/$defs/origem"
+        },
+        "nota": {
+          "$ref": "#/$defs/texto"
+        }
       }
     },
     "medidas": {
       "description": "A caixa que o componente ocupa, [largura, altura, comprimento] em mm; no motor, a face e o corpo sem o eixo.",
       "type": "object",
-      "required": ["valor", "origem"],
+      "required": [
+        "valor",
+        "origem"
+      ],
       "additionalProperties": false,
       "properties": {
-        "valor": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "type": "number", "exclusiveMinimum": 0 } },
-        "origem": { "$ref": "#/$defs/origem" },
-        "nota": { "$ref": "#/$defs/texto" }
+        "valor": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        },
+        "origem": {
+          "$ref": "#/$defs/origem"
+        },
+        "nota": {
+          "$ref": "#/$defs/texto"
+        }
       }
     },
-    "tamanho": { "enum": ["nema-17", "nema-23"] },
+    "tamanho": {
+      "enum": [
+        "nema-17",
+        "nema-23"
+      ]
+    },
     "motor": {
       "type": "object",
-      "required": ["tamanho", "torqueDeRetencao", "corrente", "resistencia", "indutancia", "passo", "eixo", "massa", "medidas", "curva"],
+      "required": [
+        "tamanho",
+        "torqueDeRetencao",
+        "corrente",
+        "resistencia",
+        "indutancia",
+        "passo",
+        "eixo",
+        "massa",
+        "medidas",
+        "curva"
+      ],
       "additionalProperties": false,
       "properties": {
-        "tamanho": { "$ref": "#/$defs/tamanho" },
-        "torqueDeRetencao": { "$ref": "#/$defs/numero" },
-        "corrente": { "description": "Corrente nominal por fase, em A.", "$ref": "#/$defs/numero" },
-        "resistencia": { "description": "Resistência por fase, em Ω.", "$ref": "#/$defs/numero" },
-        "indutancia": { "description": "Indutância por fase, em mH.", "$ref": "#/$defs/numero" },
-        "passo": { "description": "Ângulo do passo inteiro, em grau.", "$ref": "#/$defs/numero" },
-        "eixo": { "description": "Diâmetro do eixo, em mm.", "$ref": "#/$defs/numero" },
-        "massa": { "$ref": "#/$defs/numero" },
-        "medidas": { "$ref": "#/$defs/medidas" },
+        "tamanho": {
+          "$ref": "#/$defs/tamanho"
+        },
+        "torqueDeRetencao": {
+          "$ref": "#/$defs/numero"
+        },
+        "corrente": {
+          "description": "Corrente nominal por fase, em A.",
+          "$ref": "#/$defs/numero"
+        },
+        "resistencia": {
+          "description": "Resistência por fase, em Ω.",
+          "$ref": "#/$defs/numero"
+        },
+        "indutancia": {
+          "description": "Indutância por fase, em mH.",
+          "$ref": "#/$defs/numero"
+        },
+        "passo": {
+          "description": "Ângulo do passo inteiro, em grau.",
+          "$ref": "#/$defs/numero"
+        },
+        "eixo": {
+          "description": "Diâmetro do eixo, em mm.",
+          "$ref": "#/$defs/numero"
+        },
+        "massa": {
+          "$ref": "#/$defs/numero"
+        },
+        "medidas": {
+          "$ref": "#/$defs/medidas"
+        },
         "curva": {
           "description": "O torque que o motor dá em movimento contra a velocidade, com a corrente nominal e a tensão do driver: pontos [rpm, N·m] com a velocidade subindo. Abaixo do primeiro ponto vale o primeiro torque; acima do último o motor não serve.",
           "type": "object",
-          "required": ["tensao", "pontos", "origem"],
+          "required": [
+            "tensao",
+            "pontos",
+            "origem"
+          ],
           "additionalProperties": false,
           "properties": {
-            "tensao": { "$ref": "#/$defs/numero" },
+            "tensao": {
+              "$ref": "#/$defs/numero"
+            },
             "pontos": {
               "type": "array",
               "minItems": 2,
-              "items": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number", "minimum": 0 } }
+              "items": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              }
             },
-            "origem": { "$ref": "#/$defs/origem" },
-            "nota": { "$ref": "#/$defs/texto" }
+            "origem": {
+              "$ref": "#/$defs/origem"
+            },
+            "nota": {
+              "$ref": "#/$defs/texto"
+            }
+          }
+        },
+        "eixoDeSaida": {
+          "description": "O eixo que sai da face da frente, opcional: [diâmetro, comprimento para fora da flange], em mm, para a forma alinhar a junta.",
+          "type": "object",
+          "required": [
+            "valor",
+            "origem"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "valor": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            },
+            "origem": {
+              "$ref": "#/$defs/origem"
+            },
+            "nota": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         }
       }
     },
     "reducao": {
       "type": "object",
-      "required": ["tipo", "paraMotores", "razao", "eficiencia", "folga", "torqueMaximo", "massa", "medidas"],
+      "required": [
+        "tipo",
+        "paraMotores",
+        "razao",
+        "eficiencia",
+        "folga",
+        "torqueMaximo",
+        "massa",
+        "medidas"
+      ],
       "additionalProperties": false,
       "properties": {
-        "tipo": { "enum": ["polia-e-correia", "planetaria"] },
-        "paraMotores": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/tamanho" } },
-        "razao": { "description": "Voltas do motor por volta da saída.", "$ref": "#/$defs/numero" },
-        "eficiencia": { "description": "Fração do torque que chega à saída, de 0 a 1.", "$ref": "#/$defs/numero" },
-        "folga": { "description": "Folga angular na saída, em grau.", "$ref": "#/$defs/numero" },
-        "torqueMaximo": { "description": "O torque que a saída aguenta em trabalho contínuo, em N·m.", "$ref": "#/$defs/numero" },
-        "massa": { "$ref": "#/$defs/numero" },
-        "medidas": { "$ref": "#/$defs/medidas" }
+        "tipo": {
+          "enum": [
+            "polia-e-correia",
+            "planetaria"
+          ]
+        },
+        "paraMotores": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/tamanho"
+          }
+        },
+        "razao": {
+          "description": "Voltas do motor por volta da saída.",
+          "$ref": "#/$defs/numero"
+        },
+        "eficiencia": {
+          "description": "Fração do torque que chega à saída, de 0 a 1.",
+          "$ref": "#/$defs/numero"
+        },
+        "folga": {
+          "description": "Folga angular na saída, em grau.",
+          "$ref": "#/$defs/numero"
+        },
+        "torqueMaximo": {
+          "description": "O torque que a saída aguenta em trabalho contínuo, em N·m.",
+          "$ref": "#/$defs/numero"
+        },
+        "massa": {
+          "$ref": "#/$defs/numero"
+        },
+        "medidas": {
+          "$ref": "#/$defs/medidas"
+        },
+        "eixoDeSaida": {
+          "description": "O eixo que sai da face da frente, opcional: [diâmetro, comprimento para fora da flange], em mm, para a forma alinhar a junta.",
+          "type": "object",
+          "required": [
+            "valor",
+            "origem"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "valor": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            },
+            "origem": {
+              "$ref": "#/$defs/origem"
+            },
+            "nota": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
       }
     },
     "driver": {
       "type": "object",
-      "required": ["correnteMaxima", "correnteContinua", "tensao", "tensaoLogica", "micropasso", "massa", "medidas"],
+      "required": [
+        "correnteMaxima",
+        "correnteContinua",
+        "tensao",
+        "tensaoLogica",
+        "micropasso",
+        "massa",
+        "medidas"
+      ],
       "additionalProperties": false,
       "properties": {
-        "correnteMaxima": { "description": "A corrente por fase que a folha dá como máxima, com refrigeração, em A.", "$ref": "#/$defs/numero" },
-        "correnteContinua": { "description": "A corrente por fase que a placa portadora sustenta sem ventilação forçada, em A; é a que o dimensionamento usa.", "$ref": "#/$defs/numero" },
-        "tensao": { "description": "A faixa de tensão do motor [mínima, máxima], em V.", "$ref": "#/$defs/faixa" },
-        "tensaoLogica": { "description": "A faixa da tensão lógica [mínima, máxima], em V.", "$ref": "#/$defs/faixa" },
-        "micropasso": { "description": "O maior divisor do passo.", "$ref": "#/$defs/inteiro" },
-        "massa": { "$ref": "#/$defs/numero" },
-        "medidas": { "$ref": "#/$defs/medidas" }
+        "correnteMaxima": {
+          "description": "A corrente por fase que a folha dá como máxima, com refrigeração, em A.",
+          "$ref": "#/$defs/numero"
+        },
+        "correnteContinua": {
+          "description": "A corrente por fase que a placa portadora sustenta sem ventilação forçada, em A; é a que o dimensionamento usa.",
+          "$ref": "#/$defs/numero"
+        },
+        "tensao": {
+          "description": "A faixa de tensão do motor [mínima, máxima], em V.",
+          "$ref": "#/$defs/faixa"
+        },
+        "tensaoLogica": {
+          "description": "A faixa da tensão lógica [mínima, máxima], em V.",
+          "$ref": "#/$defs/faixa"
+        },
+        "micropasso": {
+          "description": "O maior divisor do passo.",
+          "$ref": "#/$defs/inteiro"
+        },
+        "massa": {
+          "$ref": "#/$defs/numero"
+        },
+        "medidas": {
+          "$ref": "#/$defs/medidas"
+        }
       }
     },
     "placa": {
       "type": "object",
-      "required": ["tensaoDeEntrada", "tensaoLogica", "pinosDigitais", "massa", "medidas"],
+      "required": [
+        "tensaoDeEntrada",
+        "tensaoLogica",
+        "pinosDigitais",
+        "massa",
+        "medidas"
+      ],
       "additionalProperties": false,
       "properties": {
-        "tensaoDeEntrada": { "description": "A faixa recomendada na entrada de alimentação [mínima, máxima], em V.", "$ref": "#/$defs/faixa" },
-        "tensaoLogica": { "description": "A tensão dos pinos, em V.", "$ref": "#/$defs/numero" },
-        "pinosDigitais": { "$ref": "#/$defs/inteiro" },
-        "massa": { "$ref": "#/$defs/numero" },
-        "medidas": { "$ref": "#/$defs/medidas" }
+        "tensaoDeEntrada": {
+          "description": "A faixa recomendada na entrada de alimentação [mínima, máxima], em V.",
+          "$ref": "#/$defs/faixa"
+        },
+        "tensaoLogica": {
+          "description": "A tensão dos pinos, em V.",
+          "$ref": "#/$defs/numero"
+        },
+        "pinosDigitais": {
+          "$ref": "#/$defs/inteiro"
+        },
+        "massa": {
+          "$ref": "#/$defs/numero"
+        },
+        "medidas": {
+          "$ref": "#/$defs/medidas"
+        }
       }
     },
     "fonte": {
       "type": "object",
-      "required": ["tensao", "corrente", "potencia", "massa", "medidas"],
+      "required": [
+        "tensao",
+        "corrente",
+        "potencia",
+        "massa",
+        "medidas"
+      ],
       "additionalProperties": false,
       "properties": {
-        "tensao": { "$ref": "#/$defs/numero" },
-        "corrente": { "description": "A corrente contínua que a fonte dá, em A.", "$ref": "#/$defs/numero" },
-        "potencia": { "$ref": "#/$defs/numero" },
-        "massa": { "$ref": "#/$defs/numero" },
-        "medidas": { "$ref": "#/$defs/medidas" }
+        "tensao": {
+          "$ref": "#/$defs/numero"
+        },
+        "corrente": {
+          "description": "A corrente contínua que a fonte dá, em A.",
+          "$ref": "#/$defs/numero"
+        },
+        "potencia": {
+          "$ref": "#/$defs/numero"
+        },
+        "massa": {
+          "$ref": "#/$defs/numero"
+        },
+        "medidas": {
+          "$ref": "#/$defs/medidas"
+        }
       }
     }
   }

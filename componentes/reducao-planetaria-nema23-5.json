@@ -74,6 +74,14 @@
       ],
       "origem": "estimativa",
       "nota": "Face de 57 mm e comprimento da caixa sem o eixo de saída."
+    },
+    "eixoDeSaida": {
+      "valor": [
+        14,
+        25
+      ],
+      "origem": "estimativa",
+      "nota": "eixo de saída típico de 14 mm por 25 mm das planetárias de 57 mm; conferir na folha do modelo comprado; [diâmetro, comprimento] em mm"
     }
   }
 }
