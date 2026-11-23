@@ -1,0 +1,2 @@
+ponte/exemplos/errados/terminal-inexistente.pedido.json: recusado (pedido, versão 1.1), 1 problema(s)
+  $.itens[4].redes[7].terminais[1].porta: cita uma porta que a peça "placa-de-controle" não tem na ficha; recebido "r2-1"

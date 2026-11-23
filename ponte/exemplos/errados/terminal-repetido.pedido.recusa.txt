@@ -1,0 +1,2 @@
+ponte/exemplos/errados/terminal-repetido.pedido.json: recusado (pedido, versão 1.1), 1 problema(s)
+  $.itens[4].redes[3].terminais[2]: terminal repetido na rede, já em $.itens[4].redes[3].terminais[0]; recebido {"peca":"modulo-microcontrolador","porta":"gpio25"}

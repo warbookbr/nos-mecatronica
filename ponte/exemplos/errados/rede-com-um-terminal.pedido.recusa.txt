@@ -1,0 +1,2 @@
+ponte/exemplos/errados/rede-com-um-terminal.pedido.json: recusado (pedido, versão 1.1), 1 problema(s)
+  $.itens[4].redes[7].terminais: tem de ter pelo menos 2 item(ns); recebido [{"peca":"modulo-microcontrolador","porta":"gpio15"}]

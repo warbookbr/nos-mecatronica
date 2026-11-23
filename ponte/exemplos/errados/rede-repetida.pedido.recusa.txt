@@ -1,0 +1,2 @@
+ponte/exemplos/errados/rede-repetida.pedido.json: recusado (pedido, versão 1.1), 1 problema(s)
+  $.itens[4].redes[6].id: identificador repetido, já usado em $.itens[4].redes[4]; recebido "dir-ombro"

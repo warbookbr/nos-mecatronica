@@ -206,8 +206,31 @@ export function regrasDoPedido(p, f) {
       if (item.de.length !== item.para.length) falha(`${onde}.para`, `tem de ter tantas portas quanto "de", ${item.de.length}`, item.para.length);
       item.atravessa.forEach((j, k) => { if (!juntas.has(j)) falha(`${onde}.atravessa[${k}]`, 'cita uma junta que não existe na ficha', j); });
     }
+    if (item.tipo === 'ligacoes') regrasDasLigacoes(item, onde, { peca, porta, falha });
   });
   return erros;
+}
+
+/* As regras do item ligacoes: a placa e cada terminal existem na ficha, cada terminal está numa rede só e uma vez só,
+   cada rede tem identificador próprio e a resposta cita só redes do item. */
+function regrasDasLigacoes(item, onde, { peca, porta, falha }) {
+  peca(`${onde}.placa`, item.placa);
+  const redes = new Map();
+  const terminais = new Map();
+  item.redes.forEach((rede, r) => {
+    const aqui = `${onde}.redes[${r}]`;
+    if (redes.has(rede.id)) falha(`${aqui}.id`, `identificador repetido, já usado em ${onde}.redes[${redes.get(rede.id)}]`, rede.id);
+    else redes.set(rede.id, r);
+    rede.terminais.forEach((t, k) => {
+      porta(`${aqui}.terminais[${k}]`, t);
+      const chave = `${t.peca}\u0000${t.porta}`;
+      const antes = terminais.get(chave);
+      if (!antes) terminais.set(chave, { r, k, id: rede.id });
+      else if (antes.r === r) falha(`${aqui}.terminais[${k}]`, `terminal repetido na rede, já em ${aqui}.terminais[${antes.k}]`, t);
+      else falha(`${aqui}.terminais[${k}]`, `terminal já ligado à rede "${antes.id}" em ${onde}.redes[${antes.r}].terminais[${antes.k}]`, t);
+    });
+  });
+  (item.resposta?.redes ?? []).forEach((id, k) => { if (!redes.has(id)) falha(`${onde}.resposta.redes[${k}]`, 'cita uma rede que não existe no item', id); });
 }
 
 /* Confere um documento já lido. Devolve { tipo, versao, erros }; `lerFicha` dá a ficha que um pedido cita. */

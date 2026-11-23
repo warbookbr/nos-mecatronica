@@ -1,0 +1,2 @@
+ponte/exemplos/errados/rede-da-resposta-inexistente.pedido.json: recusado (pedido, versão 1.1), 1 problema(s)
+  $.itens[4].resposta.redes[0]: cita uma rede que não existe no item; recebido "12v-motor"

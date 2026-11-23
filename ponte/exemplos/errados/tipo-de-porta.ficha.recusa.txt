@@ -1,2 +1,2 @@
 ponte/exemplos/errados/tipo-de-porta.ficha.json: recusado (ficha, versão 1.0), 1 problema(s)
-  $.portas[15].tipo: tem de ser um de "alimentacao", "terra", "sinal-digital", "sinal-analogico", "barramento", "fase-de-motor"; recebido "pwm"
+  $.portas[15].tipo: tem de ser um de "alimentacao", "terra", "sinal-digital", "sinal-analogico", "barramento", "fase-de-motor", "passivo"; recebido "pwm"

@@ -1,2 +1,2 @@
 ponte/exemplos/errados/versao-desconhecida.ficha.json: recusado (ficha, versão 2.0), 1 problema(s)
-  $.versao: versão desconhecida; o esquema da ficha conhece 1.0; recebido "2.0"
+  $.versao: versão desconhecida; o esquema da ficha conhece 1.0, 1.1; recebido "2.0"

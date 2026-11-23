@@ -15,11 +15,11 @@ const comFicha = (f) => ({ lerFicha: () => ({ ficha: f, caminho: 'ficha.json' })
 const caminhos = (r) => r.erros.map((e) => e.caminho);
 
 describe('ponte:conferir sobre os exemplos', () => {
-  it('os esquemas são JSON Schema 2020-12 na versão 1.0', () => {
+  it('os esquemas são JSON Schema 2020-12 e conhecem as versões 1.0 e 1.1', () => {
     for (const tipo of TIPOS) {
       const esquema = lerEsquema(tipo);
       expect(esquema.$schema).toBe('https://json-schema.org/draft/2020-12/schema');
-      expect(esquema.properties.versao.enum).toEqual(['1.0']);
+      expect(esquema.properties.versao.enum).toEqual(['1.0', '1.1']);
     }
   });
 
@@ -27,7 +27,7 @@ describe('ponte:conferir sobre os exemplos', () => {
     process.chdir(RAIZ);
     for (const nome of ['braco-de-prova.ficha.json', 'braco-de-prova.pedido.json']) {
       const { aceito, texto } = conferirArquivo(`${EXEMPLOS}/${nome}`);
-      expect(texto).toMatch(/aceito \((ficha|pedido), versão 1\.0\)/);
+      expect(texto).toMatch(/aceito \((ficha|pedido), versão 1\.1\)/);
       expect(aceito).toBe(true);
     }
   });
@@ -35,8 +35,10 @@ describe('ponte:conferir sobre os exemplos', () => {
   const errados = readdirSync(join(RAIZ, ERRADOS)).filter((n) => n.endsWith('.json')).sort();
   it('há um arquivo errado por regra, cada um com a recusa esperada', () => {
     expect(errados).toEqual([
-      'campo-ausente.ficha.json', 'peca-inexistente.pedido.json', 'tipo-de-porta.ficha.json',
-      'valor-sem-origem.ficha.json', 'versao-desconhecida.ficha.json',
+      'campo-ausente.ficha.json', 'peca-inexistente.pedido.json', 'placa-inexistente.pedido.json',
+      'rede-com-um-terminal.pedido.json', 'rede-da-resposta-inexistente.pedido.json', 'rede-repetida.pedido.json',
+      'terminal-em-duas-redes.pedido.json', 'terminal-inexistente.pedido.json', 'terminal-repetido.pedido.json',
+      'tipo-de-porta.ficha.json', 'valor-sem-origem.ficha.json', 'versao-desconhecida.ficha.json',
     ]);
     const recusas = readdirSync(join(RAIZ, ERRADOS)).filter((n) => n.endsWith('.recusa.txt')).sort();
     expect(recusas).toEqual(errados.map((n) => n.replace(/\.json$/, '.recusa.txt')));
@@ -140,5 +142,52 @@ describe('regras de referência do pedido', () => {
     expect(caminhos(conferir(p, comFicha(ficha())))).toEqual([
       '$.itens[0].resposta.revisaoDaFicha', '$.itens[1].resposta.estado', '$.itens[3].tipo',
     ]);
+  });
+
+  it('recusa no item ligacoes a placa e o terminal que a ficha não tem, o terminal repetido ou em duas redes e a rede curta', () => {
+    const p = pedido();
+    const lig = p.itens[4];
+    lig.placa = 'placa';
+    lig.redes[0].terminais[1].peca = 'driver-punho';
+    lig.redes[2].terminais.push({ peca: 'driver-ombro', porta: 'gnd' }, { peca: 'driver-cotovelo', porta: 'vdd' });
+    lig.redes[3].id = 'gnd';
+    lig.resposta = { estado: 'nao-cumprido', motivo: 'não fechou', redes: ['led-estado', 'led'] };
+    expect(conferir(p, comFicha(ficha())).erros.map((e) => `${e.caminho}: ${e.regra}`)).toEqual([
+      '$.itens[4].placa: cita uma peça que não existe na ficha',
+      '$.itens[4].redes[0].terminais[1].peca: cita uma peça que não existe na ficha',
+      '$.itens[4].redes[2].terminais[3]: terminal já ligado à rede "gnd" em $.itens[4].redes[1].terminais[0]',
+      '$.itens[4].redes[2].terminais[4]: terminal repetido na rede, já em $.itens[4].redes[2].terminais[2]',
+      '$.itens[4].redes[3].id: identificador repetido, já usado em $.itens[4].redes[1]',
+      '$.itens[4].resposta.redes[1]: cita uma rede que não existe no item',
+    ]);
+    lig.redes[4].terminais.pop();
+    expect(caminhos(conferir(p, comFicha(ficha())))).toEqual(['$.itens[4].redes[4].terminais']);
+  });
+});
+
+describe('compatibilidade com a 1.0', () => {
+  const para10 = (doc) => ({ ...doc, versao: '1.0' });
+
+  it('aceita a ficha e o pedido 1.0, que não usam a porta passiva nem o item ligacoes', () => {
+    const f = para10(ficha());
+    f.portas = f.portas.filter((x) => x.tipo !== 'passivo');
+    const p = para10(pedido());
+    p.itens = p.itens.filter((x) => x.tipo !== 'ligacoes');
+    expect(conferir(f).erros).toEqual([]);
+    expect(conferir(p, comFicha(ficha())).erros).toEqual([]);
+  });
+
+  it('recusa a porta passiva e o item ligacoes num arquivo 1.0', () => {
+    const f = para10(ficha());
+    const passiva = f.portas.findIndex((x) => x.tipo === 'passivo');
+    expect(conferir(f).erros.map((e) => `${e.caminho}: ${e.valor}`)[0]).toBe(`$.portas[${passiva}].tipo: passivo`);
+    expect(conferir(para10(pedido()), comFicha(ficha())).erros.map((e) => `${e.caminho}: ${e.valor}`)).toEqual(['$.itens[4].tipo: ligacoes']);
+  });
+
+  it('exige a tensão ausente na porta passiva', () => {
+    const f = ficha();
+    const passiva = f.portas.findIndex((x) => x.tipo === 'passivo');
+    f.portas[passiva].tensao = { valor: 3.3, origem: 'declarado' };
+    expect(caminhos(conferir(f))).toEqual([`$.portas[${passiva}].tensao.ausente`, `$.portas[${passiva}].tensao.motivo`, `$.portas[${passiva}].tensao.valor`, `$.portas[${passiva}].tensao.origem`]);
   });
 });

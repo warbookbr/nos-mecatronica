@@ -1,5 +1,5 @@
 <mujoco model="braco-de-prova">
-  <!-- gerado de uma ficha da ponte (versão 1.0, revisão 3) por npm run ponte:mjcf; não edite à mão -->
+  <!-- gerado de uma ficha da ponte (versão 1.1, revisão 3) por npm run ponte:mjcf; não edite à mão -->
   <compiler angle="degree" inertiafromgeom="false"/>
   <option timestep="0.001" gravity="0 -9.81 0"/>
   <worldbody>

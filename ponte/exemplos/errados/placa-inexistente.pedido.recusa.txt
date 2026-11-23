@@ -1,0 +1,2 @@
+ponte/exemplos/errados/placa-inexistente.pedido.json: recusado (pedido, versão 1.1), 1 problema(s)
+  $.itens[4].placa: cita uma peça que não existe na ficha; recebido "placa-principal"
