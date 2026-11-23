@@ -18,8 +18,18 @@
     },
     {
       "etapa": "componentes",
-      "estado": "aberta",
-      "arquivos": []
+      "estado": "aprovada",
+      "arquivos": [
+        "componentes.json",
+        "opcoes.json",
+        "dimensionamento.json"
+      ],
+      "aprovacao": {
+        "quem": "Tiago",
+        "data": "2026-11-23",
+        "oQue": "componentes.json, revisão 1: a opção 2 de opcoes.json",
+        "frase": "Escolho a opção 2."
+      }
     },
     {
       "etapa": "forma",

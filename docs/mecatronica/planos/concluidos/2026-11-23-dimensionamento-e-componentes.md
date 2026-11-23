@@ -1,6 +1,6 @@
 # Dimensionamento e escolha de componentes: dos requisitos ao torque de cada junta e às opções para a pessoa escolher
 
-**Estado:** ativo
+**Estado:** concluído
 
 **Território:** `componentes/`, `camadas/fisico/dimensionamento/`, `tools/componentes/`, `.claude/skills/escolher-componentes/`, `objetos/braco-de-prova/`.
 
@@ -8,11 +8,11 @@ Ativado pela pessoa em 2026-11-23, que aprovou a folga mínima de torque de 2 ve
 
 **Responsável:** a IA da sessão implementa; a pessoa aprova a folga de torque e o formato do catálogo antes da fatia 2, e escolhe entre as opções na fatia 4.
 
-**Repositório e base:** `warbookbr/nos-mecatronica`, main na ativação. Filho 2 do plano-raiz [do pedido da pessoa ao pacote de construção](2026-11-23-do-pedido-ao-pacote.md), depois do filho 1, concluído em 2026-11-23.
+**Repositório e base:** `warbookbr/nos-mecatronica`, main na ativação. Filho 2 do plano-raiz [do pedido da pessoa ao pacote de construção](../2026-11-23-do-pedido-ao-pacote.md), depois do filho 1, concluído em 2026-11-23.
 
 ## Problema observado
 
-O braço de prova tem os requisitos aprovados (`objetos/braco-de-prova/requisitos.json`: 150 g no pior caso a 30 mm além da última junta, alcance de 300 mm num plano vertical, 100 mm/s na ponta, 2 mm de precisão, 12 V da tomada, até 800 reais), e nada transforma esses números em componentes. A pasta `componentes/` só tem o README, a camada física não tem código, e as linhas `fis-torque-gravidade`, `fis-inercia-aceleracao`, `fis-curva-do-motor`, `proj-dimensionamento` e `proj-escolha-de-componentes` da [matriz](../MATRIZ.md) estão em falta. Sem isso, a próxima etapa do caminho, a forma no Modelar, começaria sem saber que motor vai dentro de cada junta, que é o erro que o braço de seis eixos do Modelar já mostrou.
+O braço de prova tem os requisitos aprovados (`objetos/braco-de-prova/requisitos.json`: 150 g no pior caso a 30 mm além da última junta, alcance de 300 mm num plano vertical, 100 mm/s na ponta, 2 mm de precisão, 12 V da tomada, até 800 reais), e nada transforma esses números em componentes. A pasta `componentes/` só tem o README, a camada física não tem código, e as linhas `fis-torque-gravidade`, `fis-inercia-aceleracao`, `fis-curva-do-motor`, `proj-dimensionamento` e `proj-escolha-de-componentes` da [matriz](../../MATRIZ.md) estão em falta. Sem isso, a próxima etapa do caminho, a forma no Modelar, começaria sem saber que motor vai dentro de cada junta, que é o erro que o braço de seis eixos do Modelar já mostrou.
 
 ## Resultado
 
@@ -53,7 +53,7 @@ Nenhuma nesta etapa: o torque de um braço plano de duas juntas sai de conta fec
 4. A skill e a escolha da pessoa no braço de prova.
 5. A documentação, a matriz e o fechamento.
 
-Fatias 1, 2 e 3 feitas em 2026-11-23. Fatia 1: o formato do catálogo em `tools/componentes/componente.schema.json`, com a folga de 2 vezes e o catálogo só de NEMA 17 e NEMA 23 aprovados na ativação, e o braço de teste conferido contra a conta à mão em `camadas/fisico/dimensionamento/dimensionamento.test.mjs`. Fatia 2: catorze componentes em `componentes/` e `npm run componentes:conferir`, com teste e três arquivos errados, em `npm run gates`. Fatia 3: `npm run dimensionar` e `npm run opcoes` gravaram o dimensionamento e as opções do braço de prova, com teste de repetição e conferência de que estão em dia nos gates; saíram duas opções, e a fatia 4 espera a pessoa escolher entre elas pela skill.
+Todas as fatias feitas em 2026-11-23. Fatia 4: a skill `escolher-componentes` e a escolha da pessoa, a opção 2, gravada em `objetos/braco-de-prova/componentes.json` e aprovada no caderno. Fatia 5: este fechamento. Fatias 1, 2 e 3: Fatia 1: o formato do catálogo em `tools/componentes/componente.schema.json`, com a folga de 2 vezes e o catálogo só de NEMA 17 e NEMA 23 aprovados na ativação, e o braço de teste conferido contra a conta à mão em `camadas/fisico/dimensionamento/dimensionamento.test.mjs`. Fatia 2: catorze componentes em `componentes/` e `npm run componentes:conferir`, com teste e três arquivos errados, em `npm run gates`. Fatia 3: `npm run dimensionar` e `npm run opcoes` gravaram o dimensionamento e as opções do braço de prova, com teste de repetição e conferência de que estão em dia nos gates; saíram duas opções, e a fatia 4 espera a pessoa escolher entre elas pela skill.
 
 ## Decisões da pessoa
 
@@ -65,4 +65,8 @@ Se o torque pedido não couber em nenhuma combinação do catálogo dentro do or
 
 ## Fechamento
 
-A preencher.
+Concluído em 2026-11-23. Dos requisitos aprovados do braço de prova saem o torque e a velocidade de cada junta (`npm run dimensionar`), as combinações do catálogo de catorze componentes com a folga mínima de 2 (`npm run opcoes`), e a escolha da pessoa pela skill `escolher-componentes`: a opção 2, com NEMA 23 e redução planetária de 5:1 no ombro (folga de 2,86), NEMA 17 e correia de 4:1 no cotovelo (folga de 3,2), drivers DRV8825, o Arduino Uno e a fonte de 12 V que a pessoa já tem, a R$ 555 a 980. A pessoa a escolheu sabendo que o topo da faixa passa até R$ 180 do orçamento, com a frase "Escolho a opção 2.".
+
+Os gates: (1) o braço de teste confere com a conta à mão; (2) o dimensionamento e as opções saem iguais em duas execuções, e a conferência de que estão em dia entrou nos gates; (3) o conferidor do catálogo aceita os catorze e recusa cada errado; (4) a etapa de componentes do caderno está aprovada com a frase da pessoa; (5) a matriz e os README dizem o que existe, com os gates verdes.
+
+Um achado que o processo não pegava: a opção mais barata passava com a folga exatamente em 2 por causa de um limite de torque da correia que é estimativa, e o cálculo trata estimativa e folha de dados do mesmo jeito. A skill passou a mandar dizer à pessoa o que é estimativa e pesa na escolha. Voltam ao backlog: a folga calculada também contra o valor estimado com uma margem própria de incerteza; um driver de uns 3 A no catálogo, porque os três de hoje sustentam cerca de 1,5 A sem ventilação contra os 2,8 A do NEMA 23; os números lembrados sem conferir na folha (indutância, massa e eixo do NEMA 23 de 76 mm, massa dos NEMA 17 de 48 mm e medidas das planetárias), todos marcados como estimativa; e a posição da carga, que os requisitos dão a 30 mm além da última junta e o cálculo leu, pelo lado seguro, como 30 mm além da ponta do segundo elo.

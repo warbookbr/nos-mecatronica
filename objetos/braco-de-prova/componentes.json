@@ -1,0 +1,31 @@
+{
+  "tipo": "componentes",
+  "versao": "1.0",
+  "objeto": "braco-de-prova",
+  "revisao": 1,
+  "opcoes": "opcoes.json",
+  "escolhida": "opcao-2",
+  "juntas": [
+    {
+      "junta": "junta-1",
+      "motor": "motor-23hs30-2804s",
+      "reducao": "reducao-planetaria-nema23-5",
+      "driver": "driver-drv8825",
+      "folga": 2.86
+    },
+    {
+      "junta": "junta-2",
+      "motor": "motor-17hs4401",
+      "reducao": "reducao-gt2-20-80",
+      "driver": "driver-drv8825",
+      "folga": 3.2
+    }
+  ],
+  "placa": "placa-arduino-uno",
+  "fonte": "fonte-12v-5a",
+  "custo": [
+    555,
+    980
+  ],
+  "nota": "A opção de maior folga (2,86 no ombro, 3,2 no cotovelo). Custo estimado de R$ 555 a 980, que pode passar até R$ 180 do orçamento no topo da faixa; a pessoa aceitou. Um driver de uns 3 A daria mais margem ao ombro, porque o DRV8825 sustenta cerca de 1,5 A sem ventilação contra os 2,8 A do NEMA 23."
+}

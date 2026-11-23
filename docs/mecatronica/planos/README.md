@@ -2,7 +2,7 @@
 
 Um plano é o que autoriza implementação neste repositório. Sem plano ativo, o backlog não autoriza nada. Cada plano é um arquivo nesta pasta com o nome `AAAA-MM-DD-assunto-curto.md`, escrito a partir do [modelo](MODELO.md), e o gate `npm run planos:check` confere as regras abaixo.
 
-**Planos ativos:** [dimensionamento e escolha de componentes](2026-11-23-dimensionamento-e-componentes.md).
+**Planos ativos:** nenhum.
 
 ## Regras
 
@@ -16,4 +16,4 @@ A linha "**Planos ativos:**" acima lista o link de cada plano ativo, ou diz "nen
 
 ## Planos em rascunho ou prontos
 
-Em rascunho: [do pedido da pessoa ao pacote de construção](2026-11-23-do-pedido-ao-pacote.md), plano-raiz que não se ativa: o caminho de ponta a ponta entre a mecatrônica e o Modelar, dos requisitos ao pacote de construção, em quatro planos filhos. O primeiro filho, [requisitos e caderno do objeto](concluidos/2026-11-23-requisitos-e-caderno-do-objeto.md), foi concluído em 2026-11-23, e o segundo, dimensionamento e escolha de componentes, está ativo.
+Em rascunho: [do pedido da pessoa ao pacote de construção](2026-11-23-do-pedido-ao-pacote.md), plano-raiz que não se ativa: o caminho de ponta a ponta entre a mecatrônica e o Modelar, dos requisitos ao pacote de construção, em quatro planos filhos. O primeiro filho, [requisitos e caderno do objeto](concluidos/2026-11-23-requisitos-e-caderno-do-objeto.md), foi concluído em 2026-11-23, e o segundo, [dimensionamento e escolha de componentes](concluidos/2026-11-23-dimensionamento-e-componentes.md), também.

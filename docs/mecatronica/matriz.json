@@ -669,7 +669,7 @@
     "dono": "mecatronica",
     "estado": "parcial",
     "prova": "Para os requisitos de um objeto de teste, as opções saem do catálogo com a fonte de cada número, nenhuma fica abaixo do torque pedido, e a escolhida gera um pedido de espaço aceito por npm run ponte:conferir.",
-    "naoCobre": "Preço e disponibilidade no dia da compra e componente fora do catálogo. Hoje as opções saem do catálogo com a folga, o custo e as medidas (npm run opcoes); a escolha da pessoa e o pedido de espaço ao Modelar ainda faltam."
+    "naoCobre": "Preço e disponibilidade no dia da compra e componente fora do catálogo. As opções saem do catálogo (npm run opcoes), a skill escolher-componentes as mostra, e a pessoa escolheu a do braço de prova em 2026-11-23 (objetos/braco-de-prova/componentes.json, aprovada no caderno); falta o pedido de espaço ao Modelar, que precisa de ficha com a forma e é do filho 3 do plano-raiz."
   },
   {
     "id": "proj-roteiro",
