@@ -1,8 +1,10 @@
 # Dimensionamento e escolha de componentes: dos requisitos ao torque de cada junta e às opções para a pessoa escolher
 
-**Estado:** rascunho
+**Estado:** ativo
 
-**Território:** a declarar ao ativar: `componentes/`, `camadas/fisico/dimensionamento/`, `tools/componentes/`, `.claude/skills/escolher-componentes/`, `objetos/braco-de-prova/`.
+**Território:** `componentes/`, `camadas/fisico/dimensionamento/`, `tools/componentes/`, `.claude/skills/escolher-componentes/`, `objetos/braco-de-prova/`.
+
+Ativado pela pessoa em 2026-11-23, que aprovou a folga mínima de torque de 2 vezes e o catálogo inicial só de motores de passo NEMA 17 e NEMA 23, com redução por polia e correia ou planetária.
 
 **Responsável:** a IA da sessão implementa; a pessoa aprova a folga de torque e o formato do catálogo antes da fatia 2, e escolhe entre as opções na fatia 4.
 
