@@ -1,8 +1,10 @@
 # Roteiro de ponta a ponta: o braço de duas juntas do pedido da pessoa à simulação aprovada, pelos dois repositórios
 
-**Estado:** rascunho
+**Estado:** ativo
 
-**Território:** a declarar ao ativar: `tools/caminho/`, `.claude/agents/critico-da-simulacao.md`, `.claude/skills/conduzir-caminho/`, `ponte/`, `tools/ponte/`, `camadas/fisico/`, `objetos/braco-de-prova/`.
+**Território:** `tools/caminho/`, `.claude/agents/critico-da-simulacao.md`, `.claude/skills/conduzir-caminho/`, `ponte/`, `tools/ponte/`, `camadas/fisico/`, `objetos/braco-de-prova/`.
+
+Ativado pela pessoa em 2026-11-23, junto com o plano irmão do Modelar.
 
 **Responsável:** a IA da sessão implementa nos dois repositórios; a pessoa aprova a mudança do contrato da ponte, a forma do braço de prova no Modelar e o resultado da simulação.
 
@@ -64,6 +66,8 @@ A versão 1.2 do pedido, só com acréscimos opcionais: o pedido inicial, com `f
 4. No Modelar, pelo plano irmão: a forma do braço de prova com os componentes, aprovada pela pessoa, a ficha e a resposta ao pedido inicial.
 5. O dimensionamento com a ficha, o crítico da simulação e a aprovação da pessoa.
 6. A prova com uma sessão nova, a documentação e o fechamento.
+
+Andamento em 2026-11-23: a fatia 1 está escrita em [`ponte/propostas/1.2.md`](../../../ponte/propostas/1.2.md), com o pedido inicial do braço de prova em `ponte/exemplos/braco-de-prova.pedido-inicial.json`, e espera a aprovação da pessoa.
 
 ## Riscos e parada
 

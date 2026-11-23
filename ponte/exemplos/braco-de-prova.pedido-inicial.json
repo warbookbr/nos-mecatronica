@@ -1,0 +1,257 @@
+{
+  "tipo": "pedido",
+  "versao": "1.2",
+  "objeto": "braco-de-prova",
+  "ficha": {
+    "caminho": "braco-de-prova.ficha.json",
+    "revisao": 0
+  },
+  "itens": [
+    {
+      "id": "motor-23hs30-2804s",
+      "tipo": "componente",
+      "componente": "motor-23hs30-2804s",
+      "nome": "Motor de passo NEMA 23 de 76 mm",
+      "familia": null,
+      "caixa": [
+        57,
+        57,
+        76
+      ],
+      "massa": {
+        "valor": 1000,
+        "origem": "estimativa"
+      },
+      "serve": {
+        "junta": "junta-1"
+      },
+      "eixoDeSaida": {
+        "diametro": 8,
+        "comprimento": 21
+      },
+      "motivo": {
+        "linhaDaMatriz": "fis-torque-gravidade",
+        "texto": "componente escolhido pela pessoa em 2026-11-23",
+        "resultado": {
+          "grandeza": "massa",
+          "valor": 1000,
+          "unidade": "g",
+          "origem": "estimativa"
+        }
+      }
+    },
+    {
+      "id": "reducao-planetaria-nema23-5",
+      "tipo": "componente",
+      "componente": "reducao-planetaria-nema23-5",
+      "nome": "Redução planetária 5:1 para NEMA 23",
+      "familia": null,
+      "caixa": [
+        57,
+        57,
+        55
+      ],
+      "massa": {
+        "valor": 550,
+        "origem": "estimativa"
+      },
+      "serve": {
+        "junta": "junta-1"
+      },
+      "eixoDeSaida": {
+        "diametro": 14,
+        "comprimento": 25
+      },
+      "acopla": "motor-23hs30-2804s",
+      "motivo": {
+        "linhaDaMatriz": "fis-torque-gravidade",
+        "texto": "componente escolhido pela pessoa em 2026-11-23",
+        "resultado": {
+          "grandeza": "massa",
+          "valor": 550,
+          "unidade": "g",
+          "origem": "estimativa"
+        }
+      }
+    },
+    {
+      "id": "motor-17hs4401",
+      "tipo": "componente",
+      "componente": "motor-17hs4401",
+      "nome": "Motor de passo NEMA 17 de 40 mm",
+      "familia": null,
+      "caixa": [
+        42.3,
+        42.3,
+        40
+      ],
+      "massa": {
+        "valor": 280,
+        "origem": "declarado"
+      },
+      "serve": {
+        "junta": "junta-2"
+      },
+      "eixoDeSaida": {
+        "diametro": 5,
+        "comprimento": 24
+      },
+      "motivo": {
+        "linhaDaMatriz": "fis-torque-gravidade",
+        "texto": "componente escolhido pela pessoa em 2026-11-23",
+        "resultado": {
+          "grandeza": "massa",
+          "valor": 280,
+          "unidade": "g",
+          "origem": "declarado"
+        }
+      }
+    },
+    {
+      "id": "reducao-gt2-20-80",
+      "tipo": "componente",
+      "componente": "reducao-gt2-20-80",
+      "nome": "Polias GT2 de 20 e 80 dentes com correia de 6 mm",
+      "familia": null,
+      "caixa": [
+        55,
+        16,
+        120
+      ],
+      "massa": {
+        "valor": 80,
+        "origem": "estimativa"
+      },
+      "serve": {
+        "junta": "junta-2"
+      },
+      "acopla": "motor-17hs4401",
+      "motivo": {
+        "linhaDaMatriz": "fis-torque-gravidade",
+        "texto": "componente escolhido pela pessoa em 2026-11-23",
+        "resultado": {
+          "grandeza": "massa",
+          "valor": 80,
+          "unidade": "g",
+          "origem": "estimativa"
+        }
+      }
+    },
+    {
+      "id": "driver-junta-1",
+      "tipo": "componente",
+      "componente": "driver-drv8825",
+      "nome": "Driver de passo DRV8825 em placa portadora",
+      "familia": "componente-eletronico",
+      "caixa": [
+        15.2,
+        20.3,
+        12
+      ],
+      "massa": {
+        "valor": 2,
+        "origem": "estimativa"
+      },
+      "serve": {
+        "peca": "base"
+      },
+      "motivo": {
+        "linhaDaMatriz": "fis-torque-gravidade",
+        "texto": "componente escolhido pela pessoa em 2026-11-23",
+        "resultado": {
+          "grandeza": "massa",
+          "valor": 2,
+          "unidade": "g",
+          "origem": "estimativa"
+        }
+      }
+    },
+    {
+      "id": "driver-junta-2",
+      "tipo": "componente",
+      "componente": "driver-drv8825",
+      "nome": "Driver de passo DRV8825 em placa portadora",
+      "familia": "componente-eletronico",
+      "caixa": [
+        15.2,
+        20.3,
+        12
+      ],
+      "massa": {
+        "valor": 2,
+        "origem": "estimativa"
+      },
+      "serve": {
+        "peca": "base"
+      },
+      "motivo": {
+        "linhaDaMatriz": "fis-torque-gravidade",
+        "texto": "componente escolhido pela pessoa em 2026-11-23",
+        "resultado": {
+          "grandeza": "massa",
+          "valor": 2,
+          "unidade": "g",
+          "origem": "estimativa"
+        }
+      }
+    },
+    {
+      "id": "placa-arduino-uno",
+      "tipo": "componente",
+      "componente": "placa-arduino-uno",
+      "nome": "Placa Arduino Uno",
+      "familia": null,
+      "caixa": [
+        68.6,
+        53.4,
+        15
+      ],
+      "massa": {
+        "valor": 25,
+        "origem": "declarado"
+      },
+      "serve": {
+        "peca": "base"
+      },
+      "motivo": {
+        "linhaDaMatriz": "fis-torque-gravidade",
+        "texto": "componente escolhido pela pessoa em 2026-11-23",
+        "resultado": {
+          "grandeza": "massa",
+          "valor": 25,
+          "unidade": "g",
+          "origem": "declarado"
+        }
+      }
+    },
+    {
+      "id": "fonte-12v-5a",
+      "tipo": "componente",
+      "componente": "fonte-12v-5a",
+      "nome": "Fonte chaveada de 12 V e 5 A",
+      "familia": null,
+      "caixa": [
+        111,
+        78,
+        36
+      ],
+      "massa": {
+        "valor": 300,
+        "origem": "estimativa"
+      },
+      "serve": {
+        "peca": "base"
+      },
+      "motivo": {
+        "linhaDaMatriz": "fis-torque-gravidade",
+        "texto": "componente escolhido pela pessoa em 2026-11-23",
+        "resultado": {
+          "grandeza": "massa",
+          "valor": 300,
+          "unidade": "g",
+          "origem": "estimativa"
+        }
+      }
+    }
+  ]
+}
