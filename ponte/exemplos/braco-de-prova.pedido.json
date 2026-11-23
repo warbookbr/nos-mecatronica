@@ -1,6 +1,6 @@
 {
   "tipo": "pedido",
-  "versao": "1.0",
+  "versao": "1.1",
   "objeto": "braco-de-prova",
   "ficha": { "caminho": "braco-de-prova.ficha.json", "revisao": 3 },
   "itens": [
@@ -72,6 +72,27 @@
         "linhaDaMatriz": "ponte-saida-de-ar",
         "texto": "Os dois drivers dissipam dentro da base fechada; a abertura na parede de trás, na altura deles, deixa o ar sair.",
         "resultado": { "grandeza": "potência dissipada pelos dois drivers", "valor": 2.4, "unidade": "W", "origem": "estimativa" }
+      }
+    },
+    {
+      "id": "ligacoes-placa-de-controle",
+      "tipo": "ligacoes",
+      "placa": "placa-de-controle",
+      "redes": [
+        { "id": "12v-motores", "terminais": [{ "peca": "driver-ombro", "porta": "vmot" }, { "peca": "driver-cotovelo", "porta": "vmot" }], "larguraMinima": 1.0, "distanciaMinima": 0.3 },
+        { "id": "gnd", "terminais": [{ "peca": "driver-ombro", "porta": "gnd" }, { "peca": "driver-cotovelo", "porta": "gnd" }, { "peca": "modulo-microcontrolador", "porta": "gnd" }, { "peca": "placa-de-controle", "porta": "d1-catodo" }], "larguraMinima": 1.0 },
+        { "id": "3v3", "terminais": [{ "peca": "modulo-microcontrolador", "porta": "3v3" }, { "peca": "driver-ombro", "porta": "vdd" }, { "peca": "driver-cotovelo", "porta": "vdd" }] },
+        { "id": "step-ombro", "terminais": [{ "peca": "modulo-microcontrolador", "porta": "gpio25" }, { "peca": "driver-ombro", "porta": "step" }] },
+        { "id": "dir-ombro", "terminais": [{ "peca": "modulo-microcontrolador", "porta": "gpio26" }, { "peca": "driver-ombro", "porta": "dir" }] },
+        { "id": "step-cotovelo", "terminais": [{ "peca": "modulo-microcontrolador", "porta": "gpio32" }, { "peca": "driver-cotovelo", "porta": "step" }] },
+        { "id": "dir-cotovelo", "terminais": [{ "peca": "modulo-microcontrolador", "porta": "gpio33" }, { "peca": "driver-cotovelo", "porta": "dir" }] },
+        { "id": "led-estado", "terminais": [{ "peca": "modulo-microcontrolador", "porta": "gpio15" }, { "peca": "placa-de-controle", "porta": "r1-1" }] },
+        { "id": "led-anodo", "terminais": [{ "peca": "placa-de-controle", "porta": "r1-2" }, { "peca": "placa-de-controle", "porta": "d1-anodo" }] }
+      ],
+      "motivo": {
+        "linhaDaMatriz": "lig-cobre-confere",
+        "texto": "A placa de controle liga o microcontrolador aos dois drivers, o trilho de 12 V dos motores e o LED de estado; o Modelar traça o cobre destas redes e confere que cada uma fecha sem tocar outra. A largura e a distância do trilho de 12 V e do terra são de exemplo.",
+        "resultado": { "grandeza": "redes da placa de controle", "valor": 9, "unidade": "redes", "origem": "declarado" }
       }
     }
   ]

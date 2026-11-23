@@ -1,6 +1,6 @@
 {
   "tipo": "ficha",
-  "versao": "1.0",
+  "versao": "1.1",
   "objeto": "braco-de-prova",
   "revisao": 3,
   "unidades": {
@@ -251,6 +251,7 @@
     { "peca": "modulo-microcontrolador", "id": "gpio32", "tipo": "sinal-digital", "posicao": { "valor": [-11.4, 0, -12.7], "origem": "declarado" }, "tensao": { "valor": 3.3, "origem": "declarado" } },
     { "peca": "modulo-microcontrolador", "id": "gpio33", "tipo": "sinal-digital", "posicao": { "valor": [-8.9, 0, -12.7], "origem": "declarado" }, "tensao": { "valor": 3.3, "origem": "declarado" } },
     { "peca": "modulo-microcontrolador", "id": "gpio34", "tipo": "sinal-analogico", "posicao": { "valor": [-16.5, 0, -12.7], "origem": "declarado" }, "tensao": { "valor": 3.3, "origem": "declarado", "nota": "fundo de escala do ADC" } },
+    { "peca": "modulo-microcontrolador", "id": "gpio15", "tipo": "sinal-digital", "posicao": { "valor": [-1.3, 0, -12.7], "origem": "declarado" }, "tensao": { "valor": 3.3, "origem": "declarado" } },
     { "peca": "modulo-microcontrolador", "id": "usb", "tipo": "barramento", "posicao": { "valor": [-25.5, 2.5, 0], "origem": "declarado" }, "tensao": { "valor": 5, "origem": "declarado" } },
 
     { "peca": "fonte", "id": "entrada-rede", "tipo": "alimentacao", "posicao": { "valor": [-38, 12, -22], "origem": "declarado" }, "tensao": { "ausente": true, "motivo": "a receita não declara se a rede é de 127 V ou de 220 V" } },
@@ -258,7 +259,11 @@
     { "peca": "fonte", "id": "saida-negativo", "tipo": "terra", "posicao": { "valor": [38, 12, -12], "origem": "declarado" }, "tensao": { "valor": 0, "origem": "declarado" } },
 
     { "peca": "borne-de-entrada", "id": "positivo", "tipo": "alimentacao", "posicao": { "valor": [-2.5, 6, 0], "origem": "declarado" }, "tensao": { "valor": 12, "origem": "declarado" } },
-    { "peca": "borne-de-entrada", "id": "negativo", "tipo": "terra", "posicao": { "valor": [2.5, 6, 0], "origem": "declarado" }, "tensao": { "valor": 0, "origem": "declarado" } }
+    { "peca": "borne-de-entrada", "id": "negativo", "tipo": "terra", "posicao": { "valor": [2.5, 6, 0], "origem": "declarado" }, "tensao": { "valor": 0, "origem": "declarado" } },
+    { "peca": "placa-de-controle", "id": "r1-1", "tipo": "passivo", "posicao": { "valor": [10, 1.6, 25], "origem": "declarado", "nota": "resistor do LED de estado, soldado na placa e contado na massa dela" }, "tensao": { "ausente": true, "motivo": "terminal passivo; a tensão é a da rede a que ele se liga" } },
+    { "peca": "placa-de-controle", "id": "r1-2", "tipo": "passivo", "posicao": { "valor": [12.5, 1.6, 25], "origem": "declarado" }, "tensao": { "ausente": true, "motivo": "terminal passivo; a tensão é a da rede a que ele se liga" } },
+    { "peca": "placa-de-controle", "id": "d1-anodo", "tipo": "passivo", "posicao": { "valor": [16, 1.6, 25], "origem": "declarado", "nota": "LED de estado, soldado na placa e contado na massa dela" }, "tensao": { "ausente": true, "motivo": "terminal passivo; a tensão é a da rede a que ele se liga" } },
+    { "peca": "placa-de-controle", "id": "d1-catodo", "tipo": "passivo", "posicao": { "valor": [18.5, 1.6, 25], "origem": "declarado" }, "tensao": { "ausente": true, "motivo": "terminal passivo; a tensão é a da rede a que ele se liga" } }
   ],
   "juntas": [
     {
