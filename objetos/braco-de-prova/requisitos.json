@@ -1,0 +1,179 @@
+{
+  "tipo": "requisitos",
+  "versao": "1.0",
+  "objeto": "braco-de-prova",
+  "revisao": 1,
+  "unidades": {
+    "comprimento": "mm",
+    "massa": "g",
+    "angulo": "grau",
+    "tensao": "V",
+    "velocidadeLinear": "mm/s",
+    "velocidadeAngular": "grau/s",
+    "temperatura": "°C"
+  },
+  "objetivo": {
+    "funcao": {
+      "valor": "Braço de mesa de duas juntas para estudo e demonstração.",
+      "origem": "pessoa"
+    },
+    "tarefaTipica": {
+      "valor": "Pegar uma peça pequena num ponto da mesa e soltá-la em outro, cerca de 200 mm adiante, repetindo o ciclo.",
+      "origem": "pessoa"
+    }
+  },
+  "carga": {
+    "massaNaPonta": {
+      "valor": 130,
+      "origem": "pessoa",
+      "nota": "Peça de plástico impresso de cerca de 50 g mais a garra de cerca de 80 g."
+    },
+    "ondeFica": {
+      "valor": "Na garra curta, cerca de 30 mm além do eixo da última junta.",
+      "origem": "sugestao-aceita"
+    },
+    "piorCaso": {
+      "valor": 150,
+      "origem": "pessoa",
+      "nota": "A mesma peça; a pessoa deu 150 g para ter folga."
+    }
+  },
+  "alcance": {
+    "valor": 300,
+    "origem": "pessoa"
+  },
+  "espacoDeTrabalho": {
+    "valor": "Faixa num plano vertical, em linha reta na frente da base, de 100 mm a 300 mm do eixo da base e da mesa até 100 mm de altura; a peça vai e volta nessa linha.",
+    "origem": "pessoa",
+    "nota": "A pessoa confirmou que a garra sobe e desce e que as duas juntas trabalham num plano vertical."
+  },
+  "precisao": {
+    "valor": 2,
+    "origem": "sugestao-aceita",
+    "nota": "Basta soltar a peça numa área marcada na mesa."
+  },
+  "repetibilidade": {
+    "valor": 1,
+    "origem": "pessoa",
+    "nota": "Indo várias vezes ao mesmo ponto, a garra cai dentro de 1 mm; confirmado pela pessoa."
+  },
+  "velocidade": {
+    "ponta": {
+      "valor": 100,
+      "origem": "sugestao-aceita",
+      "nota": "Para demonstração; o percurso de 200 mm leva cerca de 2 s."
+    },
+    "juntas": {
+      "ausente": true,
+      "motivo": "A pessoa não tem número para as juntas; sai da velocidade da ponta no dimensionamento."
+    }
+  },
+  "cicloDeTrabalho": {
+    "valor": "Sessões de cerca de 15 minutos, como numa demonstração, e depois desligado.",
+    "origem": "sugestao-aceita"
+  },
+  "ambiente": {
+    "local": {
+      "valor": "dentro",
+      "origem": "pessoa",
+      "nota": "Em casa, numa mesa."
+    },
+    "temperatura": {
+      "valor": [
+        15,
+        35
+      ],
+      "origem": "sugestao-aceita"
+    },
+    "poeira": {
+      "valor": "Nenhuma.",
+      "origem": "pessoa"
+    },
+    "agua": {
+      "valor": "Nenhuma.",
+      "origem": "pessoa"
+    }
+  },
+  "alimentacao": {
+    "fonte": {
+      "valor": [
+        "rede"
+      ],
+      "origem": "sugestao-aceita",
+      "nota": "Fonte ligada na tomada."
+    },
+    "tensoes": {
+      "valor": [
+        12,
+        5
+      ],
+      "origem": "sugestao-aceita",
+      "nota": "Fonte de 12 V com regulador de 5 V para a placa."
+    }
+  },
+  "comando": {
+    "valor": [
+      "computador",
+      "programa-autonomo",
+      "botao"
+    ],
+    "origem": "pessoa",
+    "nota": "Pelo computador, por cabo USB; um programa repete o ciclo sozinho depois que a pessoa manda começar. Um botão de parada no braço para parar sem o computador. Confirmado pela pessoa."
+  },
+  "orcamento": {
+    "quantia": {
+      "valor": 800,
+      "origem": "pessoa",
+      "nota": "Só as peças que ainda vai comprar; filamento e o que a pessoa já tem ficam fora. Confirmado pela pessoa."
+    },
+    "moeda": {
+      "valor": "BRL",
+      "origem": "pessoa"
+    }
+  },
+  "fabricacao": {
+    "meios": {
+      "valor": [
+        "impressora-3d",
+        "placa-montada-a-mao"
+      ],
+      "origem": "pessoa",
+      "nota": "Placa montada à mão, sem mandar fabricar; sem usinagem nem corte a laser. Confirmado pela pessoa."
+    },
+    "areaDeImpressao": {
+      "valor": [
+        220,
+        220,
+        250
+      ],
+      "origem": "pessoa"
+    }
+  },
+  "jaTem": {
+    "valor": [
+      {
+        "nome": "Arduino Uno",
+        "familia": "modulo-de-placa",
+        "quantidade": 1
+      },
+      {
+        "nome": "Fonte de 12 V e 5 A",
+        "familia": "fonte-chaveada",
+        "quantidade": 1
+      }
+    ],
+    "origem": "pessoa",
+    "nota": "Confirmado pela pessoa."
+  },
+  "seguranca": {
+    "pertoDePessoas": {
+      "valor": true,
+      "origem": "pessoa",
+      "nota": "Fica perto de pessoas na demonstração; há o botão de parada do campo comando. Confirmado pela pessoa."
+    },
+    "faltaDeEnergia": {
+      "valor": "Pode parar onde está; a carga é leve.",
+      "origem": "pessoa"
+    }
+  }
+}
