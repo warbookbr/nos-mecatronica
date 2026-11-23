@@ -5,10 +5,16 @@
   "etapas": [
     {
       "etapa": "requisitos",
-      "estado": "aguarda-pessoa",
+      "estado": "aprovada",
       "arquivos": [
         "requisitos.json"
-      ]
+      ],
+      "aprovacao": {
+        "quem": "Tiago",
+        "data": "2026-11-23",
+        "oQue": "requisitos.json, revisão 1 (respostas dadas pela IA no papel da pessoa, como rodada de prova, e o resumo aprovado pela pessoa)",
+        "frase": "Sim, aprovado"
+      }
     },
     {
       "etapa": "componentes",

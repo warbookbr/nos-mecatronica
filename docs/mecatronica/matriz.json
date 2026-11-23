@@ -640,8 +640,8 @@
     "camada": "projeto",
     "capacidade": "O que a pessoa quer do objeto (objetivo, carga, alcance, precisão, velocidade, ambiente, alimentação, comando, orçamento, meios de fabricação, o que já tem e segurança) levantado por perguntas e salvo num arquivo conferido, com a origem de cada valor.",
     "dono": "mecatronica",
-    "estado": "parcial",
-    "prova": "tools/objetos/requisitos.schema.json na versão 1.0 e npm run objetos:conferir, que aceita os requisitos do exemplo de teste e recusa, por teste e byte a byte, o campo obrigatório ausente, o valor sem origem e o obrigatório escrito como ausente, com o caminho do campo; a skill alinhar-requisitos conduz a rodada. Passa a feito quando a rodada de prova com a pessoa no braço de duas juntas gravar objetos/braco-de-prova/requisitos.json aceito.",
+    "estado": "feito",
+    "prova": "tools/objetos/requisitos.schema.json na versão 1.0 e npm run objetos:conferir, que aceita os requisitos do exemplo de teste e recusa, por teste e byte a byte, o campo obrigatório ausente, o valor sem origem e o obrigatório escrito como ausente, com o caminho do campo; e objetos/braco-de-prova/requisitos.json, gravado numa rodada conduzida só pela skill alinhar-requisitos (o exemplo está ao lado dela) e aceito pelo conferidor.",
     "naoCobre": "Se o que a pessoa disse é o que ela precisa, se os números são alcançáveis juntos, que é do dimensionamento, e a verdade de uma estimativa que a pessoa não contestou."
   },
   {
@@ -649,8 +649,8 @@
     "camada": "projeto",
     "capacidade": "O caderno do objeto diz em que etapa do caminho ele está (requisitos, componentes, forma, simulação, pacote), os arquivos de cada etapa e quem aprovou o quê, com a frase da pessoa.",
     "dono": "mecatronica",
-    "estado": "parcial",
-    "prova": "tools/objetos/caderno.schema.json e npm run objetos:conferir, que recusa, por teste e byte a byte, a etapa aprovada sem a frase da pessoa, a aprovada depois de uma aberta e a reaberta sem motivo, e na pasta do objeto confere o nome, os arquivos citados e o requisitos.json presente salvo com a etapa de requisitos aberta. Passa a feito com a etapa de requisitos do braço de prova aprovada pela pessoa.",
+    "estado": "feito",
+    "prova": "tools/objetos/caderno.schema.json e npm run objetos:conferir, que recusa, por teste e byte a byte, a etapa aprovada sem a frase da pessoa, a aprovada depois de uma aberta e a reaberta sem motivo, e na pasta do objeto confere o nome, os arquivos citados e o requisitos.json presente salvo com a etapa de requisitos aberta; o caderno do braço de prova tem a etapa de requisitos aprovada pela pessoa em 2026-11-23.",
     "naoCobre": "Que a frase registrada foi de fato dita pela pessoa: o conferidor só vê o texto, e a regra de a IA não aprovar sozinha é da skill."
   },
   {

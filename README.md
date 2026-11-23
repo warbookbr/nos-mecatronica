@@ -4,7 +4,7 @@ Simulação de ponta a ponta dos objetos do [Modelar](https://github.com/warbook
 braço robótico, um eletrodoméstico, um robô) ganha aqui as ligações elétricas, o circuito, o programa e a física, e a
 simulação fecha o laço entre eles para achar os erros de projeto antes do teste prático.
 
-Planos ativos: [requisitos e caderno do objeto](docs/mecatronica/planos/2026-11-23-requisitos-e-caderno-do-objeto.md).
+Planos ativos: nenhum.
 
 ## Estrutura
 

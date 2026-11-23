@@ -1,6 +1,6 @@
 # Requisitos e caderno do objeto: o que a pessoa quer, levantado por perguntas e salvo num arquivo conferido
 
-**Estado:** ativo
+**Estado:** concluído
 
 **Território:** `.claude/skills/alinhar-requisitos/`, `tools/objetos/`, `objetos/README.md`, `objetos/braco-de-prova/`, `tools/matriz/`.
 
@@ -8,7 +8,7 @@ Ativado pela pessoa em 2026-11-23, que aprovou com o plano a lista de perguntas 
 
 **Responsável:** a IA da sessão implementa; a pessoa aprova a lista de perguntas e o formato antes da fatia 2, e responde a rodada de prova da fatia 3.
 
-**Repositório e base:** `warbookbr/nos-mecatronica`, main na ativação. Filho 1 do plano-raiz [do pedido da pessoa ao pacote de construção](2026-11-23-do-pedido-ao-pacote.md).
+**Repositório e base:** `warbookbr/nos-mecatronica`, main na ativação. Filho 1 do plano-raiz [do pedido da pessoa ao pacote de construção](../2026-11-23-do-pedido-ao-pacote.md).
 
 ## Problema observado
 
@@ -75,7 +75,7 @@ São obrigatórios com valor `objetivo`, `carga`, `alcance`, `alimentacao`, `com
 3. A skill e a rodada de prova com a pessoa no braço de duas juntas.
 4. A documentação e o fechamento.
 
-Andamento em 2026-11-23. Fatia 1 feita: os esquemas `tools/objetos/requisitos.schema.json` e `tools/objetos/caderno.schema.json` seguem a lista aprovada, com o exemplo fictício `tools/objetos/exemplos/objeto-de-teste/` e seis arquivos errados com a recusa de cada um (os quatro do gate, mais o obrigatório escrito como ausente e a reaberta sem motivo). Fatia 2 feita: `tools/objetos/conferir.mjs` usa o validador da ponte, tem teste, roda em `npm run objetos:conferir` e em `npm run gates`, e a matriz ganhou a camada do projeto com as seis linhas, `proj-requisitos` e `proj-caderno` em parcial. Fatia 3 em parte: a skill `alinhar-requisitos` existe e `objetos/braco-de-prova/` tem o caderno com a etapa de requisitos aberta e sem requisitos; a rodada de prova com a pessoa, conduzida só pela skill numa sessão sem a história deste plano, está pendente, e com ela o exemplo de rodada ao lado da skill.
+Todas feitas em 2026-11-23. Fatia 1: os esquemas `tools/objetos/requisitos.schema.json` e `tools/objetos/caderno.schema.json`, com o exemplo fictício `tools/objetos/exemplos/objeto-de-teste/` e seis arquivos errados com a recusa de cada um. Fatia 2: `tools/objetos/conferir.mjs`, com teste, em `npm run objetos:conferir` e em `npm run gates`, e a camada do projeto na matriz. Fatia 3: a skill `alinhar-requisitos` e a rodada de prova no braço de duas juntas, conduzida só pela skill por um agente sem a história deste plano, com as respostas dadas pela IA da sessão no papel da pessoa, a pedido dela, e o resumo aprovado por ela; o exemplo da rodada está ao lado da skill. Fatia 4: a skill corrigida pelo que a rodada mostrou e este fechamento.
 
 ## Riscos e parada
 
@@ -83,4 +83,8 @@ Se a pessoa achar a rodada longa demais (mais de uns quinze minutos de perguntas
 
 ## Fechamento
 
-A preencher.
+Concluído em 2026-11-23. Uma sessão nova levanta os requisitos de um objeto só pela skill `alinhar-requisitos` e os grava em `objetos/<objeto>/requisitos.json`, que `npm run objetos:conferir` aceita ou recusa com o caminho do campo, e o caderno do objeto diz a etapa e a aprovação com a frase da pessoa. O braço de prova tem os requisitos aprovados (revisão 1), e `proj-requisitos` e `proj-caderno` passaram a feito na matriz. Os gates de saída: (1) o conferidor aceita o braço de prova e recusa cada errado por teste; (2) a rodada foi conduzida só pela skill, por um agente sem a história do plano, e o arquivo saiu aceito; (3) a matriz e o README de `objetos/` dizem o que existe, com `npm run gates` verde.
+
+Um desvio do plano: a pessoa pediu que a IA da sessão respondesse a rodada no papel dela, e aprovou o resumo depois, com a frase "Sim, aprovado"; a nota da aprovação no caderno diz isso. A rodada levou 14 idas e voltas, e mostrou sete pontos que a skill não dizia, corrigidos nela: criar o arquivo com o cabeçalho antes da primeira pergunta, uma pergunta por parte de campo, a origem gravada por parte, quando o valor adiantado dispensa confirmação, que várias confirmações numa resposta valem, como apontar contradição sem resolver, onde estão as famílias do Modelar e a diferença entre `rede` e `fonte-externa`. Nenhum gate pegaria esses pontos, porque são de conduta da conversa; o que a skill não dizia passou a dizer.
+
+Voltam ao backlog: conferir o nome de família do Modelar no campo do que a pessoa já tem, que o conferidor não confere; e a ambiguidade da fonte de 12 V do braço de prova, que pode ser `rede` ou `fonte-externa`, a confirmar na escolha de componentes.
