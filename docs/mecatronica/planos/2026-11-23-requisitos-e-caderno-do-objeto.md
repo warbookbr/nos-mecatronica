@@ -1,8 +1,10 @@
 # Requisitos e caderno do objeto: o que a pessoa quer, levantado por perguntas e salvo num arquivo conferido
 
-**Estado:** rascunho
+**Estado:** ativo
 
-**Território:** a declarar ao ativar: `.claude/skills/alinhar-requisitos/`, `tools/objetos/`, `objetos/README.md`, `objetos/braco-de-prova/`, `tools/matriz/matriz.mjs` e o teste dele.
+**Território:** `.claude/skills/alinhar-requisitos/`, `tools/objetos/`, `objetos/README.md`, `objetos/braco-de-prova/`, `tools/matriz/`.
+
+Ativado pela pessoa em 2026-11-23, que aprovou com o plano a lista de perguntas e o formato descritos abaixo.
 
 **Responsável:** a IA da sessão implementa; a pessoa aprova a lista de perguntas e o formato antes da fatia 2, e responde a rodada de prova da fatia 3.
 
