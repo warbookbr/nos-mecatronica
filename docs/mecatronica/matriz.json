@@ -634,5 +634,59 @@
     "estado": "falta",
     "prova": "Os gates do Modelar passam com a receita alterada, e a aprovação fica registrada lá.",
     "naoCobre": "A montagem física do objeto."
+  },
+  {
+    "id": "proj-requisitos",
+    "camada": "projeto",
+    "capacidade": "O que a pessoa quer do objeto (objetivo, carga, alcance, precisão, velocidade, ambiente, alimentação, comando, orçamento, meios de fabricação, o que já tem e segurança) levantado por perguntas e salvo num arquivo conferido, com a origem de cada valor.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "tools/objetos/requisitos.schema.json na versão 1.0 e npm run objetos:conferir, que aceita os requisitos do exemplo de teste e recusa, por teste e byte a byte, o campo obrigatório ausente, o valor sem origem e o obrigatório escrito como ausente, com o caminho do campo; a skill alinhar-requisitos conduz a rodada. Passa a feito quando a rodada de prova com a pessoa no braço de duas juntas gravar objetos/braco-de-prova/requisitos.json aceito.",
+    "naoCobre": "Se o que a pessoa disse é o que ela precisa, se os números são alcançáveis juntos, que é do dimensionamento, e a verdade de uma estimativa que a pessoa não contestou."
+  },
+  {
+    "id": "proj-caderno",
+    "camada": "projeto",
+    "capacidade": "O caderno do objeto diz em que etapa do caminho ele está (requisitos, componentes, forma, simulação, pacote), os arquivos de cada etapa e quem aprovou o quê, com a frase da pessoa.",
+    "dono": "mecatronica",
+    "estado": "parcial",
+    "prova": "tools/objetos/caderno.schema.json e npm run objetos:conferir, que recusa, por teste e byte a byte, a etapa aprovada sem a frase da pessoa, a aprovada depois de uma aberta e a reaberta sem motivo, e na pasta do objeto confere o nome, os arquivos citados e o requisitos.json presente salvo com a etapa de requisitos aberta. Passa a feito com a etapa de requisitos do braço de prova aprovada pela pessoa.",
+    "naoCobre": "Que a frase registrada foi de fato dita pela pessoa: o conferidor só vê o texto, e a regra de a IA não aprovar sozinha é da skill."
+  },
+  {
+    "id": "proj-dimensionamento",
+    "camada": "projeto",
+    "capacidade": "Dos requisitos sai o torque de cada junta na pior pose, com a massa dos elos estimada antes de haver forma, e a velocidade e a potência que cada junta pede.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Para um braço de teste de duas juntas, o torque calculado confere com a conta à mão, e cada número diz se vem dos requisitos ou de estimativa.",
+    "naoCobre": "A massa real dos elos, que só a ficha do Modelar traz depois da forma, e atrito, folga e rigidez da transmissão."
+  },
+  {
+    "id": "proj-escolha-de-componentes",
+    "camada": "projeto",
+    "capacidade": "Do dimensionamento saem duas ou três combinações de motor, redução, driver, placa e fonte do catálogo, lado a lado com custo, folga e tamanho, para a pessoa escolher, e a escolha vira o espaço que cada componente pede ao Modelar.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Para os requisitos de um objeto de teste, as opções saem do catálogo com a fonte de cada número, nenhuma fica abaixo do torque pedido, e a escolhida gera um pedido de espaço aceito por npm run ponte:conferir.",
+    "naoCobre": "Preço e disponibilidade no dia da compra e componente fora do catálogo."
+  },
+  {
+    "id": "proj-roteiro",
+    "camada": "projeto",
+    "capacidade": "Um comando lê o caderno e diz, a cada passo, em que repositório se está, a skill, o que se espera da pessoa e o passo seguinte, até a simulação aprovada.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "Um braço de duas juntas vai do pedido da pessoa à simulação aprovada só pelo roteiro, numa sessão sem a história do projeto.",
+    "naoCobre": "As etapas que o roteiro chama e que ainda não existem, que ele aponta no caderno como não simuladas."
+  },
+  {
+    "id": "proj-pacote",
+    "camada": "projeto",
+    "capacidade": "O pacote de construção do objeto: lista de compras, arquivos de fabricação, firmware de partida e passo a passo de montagem, gerado e conferido.",
+    "dono": "mecatronica",
+    "estado": "falta",
+    "prova": "O pacote do braço de prova sai inteiro por um comando, igual em duas execuções, e cada item da lista de compras cita o componente escolhido no caderno.",
+    "naoCobre": "A montagem física, a qualidade da impressão e da solda e o ajuste do firmware no objeto real."
   }
 ]

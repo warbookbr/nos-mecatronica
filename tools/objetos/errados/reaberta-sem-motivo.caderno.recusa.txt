@@ -1,0 +1,2 @@
+tools/objetos/errados/reaberta-sem-motivo.caderno.json: recusado (caderno, versão 1.0), 1 problema(s)
+  $.etapas[0].motivo: etapa reaberta exige o motivo; recebido nada

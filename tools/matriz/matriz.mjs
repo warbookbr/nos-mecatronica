@@ -17,6 +17,7 @@ export const CAMADAS = {
   fisico: 'Físico',
   laco: 'Laço fechado',
   ponte: 'Ponte com o Modelar',
+  projeto: 'Projeto do objeto',
 };
 export const DONOS = ['modelar', 'mecatronica', 'ponte'];
 export const ESTADOS = ['falta', 'parcial', 'feito'];

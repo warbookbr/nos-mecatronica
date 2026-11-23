@@ -1,0 +1,161 @@
+{
+  "tipo": "requisitos",
+  "versao": "1.0",
+  "objeto": "objeto-de-teste",
+  "revisao": 1,
+  "unidades": {
+    "comprimento": "mm",
+    "massa": "g",
+    "angulo": "grau",
+    "tensao": "V",
+    "velocidadeLinear": "mm/s",
+    "velocidadeAngular": "grau/s",
+    "temperatura": "°C"
+  },
+  "objetivo": {
+    "funcao": {
+      "valor": "Exemplo fictício para os testes do conferidor: um braço de mesa que move peças pequenas entre duas bandejas.",
+      "origem": "pessoa"
+    },
+    "tarefaTipica": {
+      "valor": "Pegar uma peça de 100 g numa bandeja e soltá-la na outra, a 300 mm de distância.",
+      "origem": "pessoa"
+    }
+  },
+  "carga": {
+    "massaNaPonta": {
+      "valor": 100,
+      "origem": "pessoa"
+    },
+    "ondeFica": {
+      "valor": "Presa na garra, a 20 mm do flange da ponta.",
+      "origem": "estimativa"
+    },
+    "piorCaso": {
+      "valor": 150,
+      "origem": "sugestao-aceita",
+      "nota": "50% acima da carga típica, oferecido e escolhido."
+    }
+  },
+  "alcance": {
+    "ausente": true,
+    "motivo": "A pessoa não soube dizer."
+  },
+  "espacoDeTrabalho": {
+    "valor": "Meio anel em cima da mesa, de 150 mm a 350 mm da base, de 0 a 100 mm de altura.",
+    "origem": "sugestao-aceita"
+  },
+  "precisao": {
+    "valor": 2,
+    "origem": "sugestao-aceita"
+  },
+  "repetibilidade": {
+    "ausente": true,
+    "motivo": "A pessoa disse que a precisão basta para a tarefa e não quis fixar a repetibilidade agora."
+  },
+  "velocidade": {
+    "ponta": {
+      "valor": 100,
+      "origem": "estimativa"
+    },
+    "juntas": {
+      "ausente": true,
+      "motivo": "Sai da velocidade da ponta no dimensionamento."
+    }
+  },
+  "cicloDeTrabalho": {
+    "valor": "Uma hora seguida, depois desligado.",
+    "origem": "pessoa"
+  },
+  "ambiente": {
+    "local": {
+      "valor": "dentro",
+      "origem": "pessoa"
+    },
+    "temperatura": {
+      "valor": [
+        15,
+        35
+      ],
+      "origem": "estimativa"
+    },
+    "poeira": {
+      "valor": "Pouca, de bancada de oficina.",
+      "origem": "pessoa"
+    },
+    "agua": {
+      "valor": "Nenhuma.",
+      "origem": "pessoa"
+    }
+  },
+  "alimentacao": {
+    "fonte": {
+      "valor": [
+        "rede"
+      ],
+      "origem": "pessoa"
+    },
+    "tensoes": {
+      "valor": [
+        12,
+        5
+      ],
+      "origem": "sugestao-aceita",
+      "nota": "Fonte de 12 V com regulador de 5 V para a placa."
+    }
+  },
+  "comando": {
+    "valor": [
+      "computador"
+    ],
+    "origem": "pessoa",
+    "nota": "Pela porta USB."
+  },
+  "orcamento": {
+    "quantia": {
+      "valor": 600,
+      "origem": "pessoa"
+    },
+    "moeda": {
+      "valor": "BRL",
+      "origem": "pessoa"
+    }
+  },
+  "fabricacao": {
+    "meios": {
+      "valor": [
+        "impressora-3d",
+        "placa-montada-a-mao"
+      ],
+      "origem": "pessoa"
+    },
+    "areaDeImpressao": {
+      "valor": [
+        220,
+        220,
+        250
+      ],
+      "origem": "pessoa"
+    }
+  },
+  "jaTem": {
+    "valor": [
+      {
+        "nome": "Motor de passo NEMA 17",
+        "familia": "motor-de-passo",
+        "quantidade": 2
+      }
+    ],
+    "origem": "pessoa"
+  },
+  "seguranca": {
+    "pertoDePessoas": {
+      "valor": false,
+      "origem": "pessoa"
+    },
+    "faltaDeEnergia": {
+      "valor": "Pode cair a peça; não há risco a pessoas.",
+      "origem": "pessoa"
+    }
+  }
+}

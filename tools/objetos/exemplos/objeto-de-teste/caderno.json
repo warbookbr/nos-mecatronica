@@ -1,0 +1,22 @@
+{
+  "tipo": "caderno",
+  "versao": "1.0",
+  "objeto": "objeto-de-teste",
+  "etapas": [
+    {
+      "etapa": "requisitos",
+      "estado": "aprovada",
+      "arquivos": ["requisitos.json"],
+      "aprovacao": {
+        "quem": "pessoa de teste",
+        "data": "2026-11-23",
+        "oQue": "requisitos.json, revisão 1",
+        "frase": "Exemplo fictício de frase: pode seguir com esses requisitos."
+      }
+    },
+    { "etapa": "componentes", "estado": "aberta", "arquivos": [] },
+    { "etapa": "forma", "estado": "aberta", "arquivos": [] },
+    { "etapa": "simulacao", "estado": "aberta", "arquivos": [] },
+    { "etapa": "pacote", "estado": "aberta", "arquivos": [] }
+  ]
+}

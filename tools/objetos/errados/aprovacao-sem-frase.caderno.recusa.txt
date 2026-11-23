@@ -1,0 +1,2 @@
+tools/objetos/errados/aprovacao-sem-frase.caderno.json: recusado (caderno, versão 1.0), 1 problema(s)
+  $.etapas[0].aprovacao.frase: etapa aprovada exige a frase da pessoa, como ela a disse; a IA não aprova sozinha; recebido nada

@@ -1,0 +1,2 @@
+tools/objetos/errados/aprovada-depois-de-aberta.caderno.json: recusado (caderno, versão 1.0), 1 problema(s)
+  $.etapas[2].estado: etapa aprovada depois de $.etapas[1], que está "aberta"; aprove na ordem ou reabra esta; recebido "aprovada"

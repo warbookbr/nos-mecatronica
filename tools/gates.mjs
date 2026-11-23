@@ -12,6 +12,7 @@ export const GATES = [
   ['docs:links:check', ['tools/docs/links.mjs']],
   ['ponte:conferir ficha', ['tools/ponte/conferir.mjs', 'ponte/exemplos/braco-de-prova.ficha.json']],
   ['ponte:conferir pedido', ['tools/ponte/conferir.mjs', 'ponte/exemplos/braco-de-prova.pedido.json']],
+  ['objetos:conferir', ['tools/objetos/conferir.mjs']],
   ['test', ['node_modules/vitest/vitest.mjs', 'run']],
 ];
 

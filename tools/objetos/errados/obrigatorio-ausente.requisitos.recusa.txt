@@ -1,0 +1,2 @@
+tools/objetos/errados/obrigatorio-ausente.requisitos.json: recusado (requisitos, versão 1.0), 1 problema(s)
+  $.alcance: é obrigatório com valor e não pode sair ausente; pergunte de novo à pessoa; recebido {"ausente":true,"motivo":"A pessoa não soube dizer."}

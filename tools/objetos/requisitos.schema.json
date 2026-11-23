@@ -1,0 +1,284 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tools/objetos/requisitos.schema.json",
+  "title": "Requisitos do objeto, versão 1.0",
+  "description": "O que a pessoa quer do objeto, levantado pela skill alinhar-requisitos e salvo em objetos/<objeto>/requisitos.json. Unidades fixas: as da ficha da ponte (mm, g, grau, V) mais mm/s, grau/s e °C. Todo valor vem com a origem, que é pessoa (a pessoa disse), sugestao-aceita (a IA ofereceu e a pessoa escolheu) ou estimativa (a IA supôs e a pessoa não contestou); valor que a pessoa não deu sai como ausente com o motivo. Os campos objetivo, carga, alcance, alimentacao, comando, orcamento e fabricacao são obrigatórios com valor; os outros estão sempre presentes e podem sair ausentes, com o motivo. A ordem dos campos é a ordem das perguntas da rodada.",
+  "$comment": "Regra de versão, a mesma da ponte: campo novo opcional sobe a versão menor e acrescenta a nova à lista de versao; campo novo obrigatório ou campo mudado sobe a maior, e a versão anterior continua conferida pelo esquema dela. O campo obrigatório escrito como ausente, e o nome da pasta igual ao objeto, são conferidos por tools/objetos/conferir.mjs.",
+  "type": "object",
+  "required": ["tipo", "versao", "objeto", "revisao", "unidades", "objetivo", "carga", "alcance", "espacoDeTrabalho", "precisao", "repetibilidade", "velocidade", "cicloDeTrabalho", "ambiente", "alimentacao", "comando", "orcamento", "fabricacao", "jaTem", "seguranca"],
+  "additionalProperties": false,
+  "properties": {
+    "tipo": { "const": "requisitos" },
+    "versao": { "enum": ["1.0"] },
+    "objeto": { "$ref": "#/$defs/id" },
+    "revisao": { "type": "integer", "minimum": 1 },
+    "unidades": {
+      "type": "object",
+      "required": ["comprimento", "massa", "angulo", "tensao", "velocidadeLinear", "velocidadeAngular", "temperatura"],
+      "additionalProperties": false,
+      "properties": {
+        "comprimento": { "const": "mm" },
+        "massa": { "const": "g" },
+        "angulo": { "const": "grau" },
+        "tensao": { "const": "V" },
+        "velocidadeLinear": { "const": "mm/s" },
+        "velocidadeAngular": { "const": "grau/s" },
+        "temperatura": { "const": "°C" }
+      }
+    },
+    "objetivo": {
+      "description": "O que o objeto faz, em uma frase, e a tarefa típica. Obrigatório com valor.",
+      "type": "object",
+      "required": ["funcao", "tarefaTipica"],
+      "additionalProperties": false,
+      "properties": {
+        "funcao": { "$ref": "#/$defs/valorTexto" },
+        "tarefaTipica": { "$ref": "#/$defs/medidaTexto" }
+      }
+    },
+    "carga": {
+      "description": "A massa na ponta (g), onde ela fica e a carga de pior caso (g). Obrigatório com valor na massa na ponta.",
+      "type": "object",
+      "required": ["massaNaPonta", "ondeFica", "piorCaso"],
+      "additionalProperties": false,
+      "properties": {
+        "massaNaPonta": { "$ref": "#/$defs/valorPositivo" },
+        "ondeFica": { "$ref": "#/$defs/medidaTexto" },
+        "piorCaso": { "$ref": "#/$defs/medidaPositiva" }
+      }
+    },
+    "alcance": {
+      "description": "A distância máxima da base à ponta, em mm. Obrigatório com valor.",
+      "$ref": "#/$defs/valorPositivo"
+    },
+    "espacoDeTrabalho": {
+      "description": "A região que a ponta precisa cobrir, descrita em texto com as medidas em mm.",
+      "$ref": "#/$defs/medidaTexto"
+    },
+    "precisao": { "description": "O erro de posição aceito na ponta, em mm.", "$ref": "#/$defs/medidaPositiva" },
+    "repetibilidade": { "description": "A diferença aceita entre duas idas ao mesmo ponto, em mm.", "$ref": "#/$defs/medidaPositiva" },
+    "velocidade": {
+      "description": "A velocidade da ponta (mm/s) ou das juntas (grau/s).",
+      "if": { "required": ["ausente"] },
+      "then": { "$ref": "#/$defs/ausente" },
+      "else": {
+        "type": "object",
+        "required": ["ponta", "juntas"],
+        "additionalProperties": false,
+        "properties": {
+          "ponta": { "$ref": "#/$defs/medidaPositiva" },
+          "juntas": { "$ref": "#/$defs/medidaPositiva" }
+        }
+      }
+    },
+    "cicloDeTrabalho": { "description": "Quanto tempo seguido o objeto trabalha e quanto descansa, em texto.", "$ref": "#/$defs/medidaTexto" },
+    "ambiente": {
+      "description": "Dentro ou fora, a faixa de temperatura [mínima, máxima] em °C, poeira e água.",
+      "if": { "required": ["ausente"] },
+      "then": { "$ref": "#/$defs/ausente" },
+      "else": {
+        "type": "object",
+        "required": ["local", "temperatura", "poeira", "agua"],
+        "additionalProperties": false,
+        "properties": {
+          "local": { "$ref": "#/$defs/medidaLocal" },
+          "temperatura": { "$ref": "#/$defs/medidaFaixa" },
+          "poeira": { "$ref": "#/$defs/medidaTexto" },
+          "agua": { "$ref": "#/$defs/medidaTexto" }
+        }
+      }
+    },
+    "alimentacao": {
+      "description": "De onde vem a energia (rede, bateria ou fonte externa) e as tensões disponíveis, em V. Obrigatório com valor.",
+      "type": "object",
+      "required": ["fonte", "tensoes"],
+      "additionalProperties": false,
+      "properties": {
+        "fonte": { "$ref": "#/$defs/valorFonte" },
+        "tensoes": { "$ref": "#/$defs/valorTensoes" }
+      }
+    },
+    "comando": {
+      "description": "Quem manda no objeto: botão, computador, programa autônomo ou sem fio, um ou mais. Obrigatório com valor.",
+      "$ref": "#/$defs/valorComando"
+    },
+    "orcamento": {
+      "description": "O valor e a moeda, em código de três letras como BRL. Obrigatório com valor.",
+      "type": "object",
+      "required": ["quantia", "moeda"],
+      "additionalProperties": false,
+      "properties": {
+        "quantia": { "$ref": "#/$defs/valorPositivo" },
+        "moeda": { "$ref": "#/$defs/valorTexto" }
+      }
+    },
+    "fabricacao": {
+      "description": "Os meios que a pessoa tem, e a área de impressão [x, y, z] em mm quando há impressora 3D. Obrigatório com valor nos meios.",
+      "type": "object",
+      "required": ["meios", "areaDeImpressao"],
+      "additionalProperties": false,
+      "properties": {
+        "meios": { "$ref": "#/$defs/valorMeios" },
+        "areaDeImpressao": { "$ref": "#/$defs/medidaVetor" }
+      }
+    },
+    "jaTem": {
+      "description": "Os componentes e as peças que a pessoa já tem, com o nome da família de componentes do Modelar quando houver, ou null. A lista vazia diz que ela não tem nada.",
+      "$ref": "#/$defs/medidaComponentes"
+    },
+    "seguranca": {
+      "description": "Se trabalha perto de pessoas e o que tem de acontecer quando falta energia.",
+      "if": { "required": ["ausente"] },
+      "then": { "$ref": "#/$defs/ausente" },
+      "else": {
+        "type": "object",
+        "required": ["pertoDePessoas", "faltaDeEnergia"],
+        "additionalProperties": false,
+        "properties": {
+          "pertoDePessoas": { "$ref": "#/$defs/medidaBooleano" },
+          "faltaDeEnergia": { "$ref": "#/$defs/medidaTexto" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "idOuNulo": { "type": ["string", "null"], "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "texto": { "type": "string", "minLength": 1 },
+    "origem": { "enum": ["pessoa", "sugestao-aceita", "estimativa"] },
+    "ausente": {
+      "type": "object",
+      "required": ["ausente", "motivo"],
+      "additionalProperties": false,
+      "properties": { "ausente": { "const": true }, "motivo": { "$ref": "#/$defs/texto" } }
+    },
+    "valorTexto": {
+      "type": "object",
+      "required": ["valor", "origem"],
+      "additionalProperties": false,
+      "properties": { "valor": { "$ref": "#/$defs/texto" }, "origem": { "$ref": "#/$defs/origem" }, "nota": { "$ref": "#/$defs/texto" } }
+    },
+    "valorPositivo": {
+      "type": "object",
+      "required": ["valor", "origem"],
+      "additionalProperties": false,
+      "properties": { "valor": { "type": "number", "exclusiveMinimum": 0 }, "origem": { "$ref": "#/$defs/origem" }, "nota": { "$ref": "#/$defs/texto" } }
+    },
+    "valorFonte": {
+      "type": "object",
+      "required": ["valor", "origem"],
+      "additionalProperties": false,
+      "properties": {
+        "valor": { "type": "array", "minItems": 1, "items": { "enum": ["rede", "bateria", "fonte-externa"] } },
+        "origem": { "$ref": "#/$defs/origem" },
+        "nota": { "$ref": "#/$defs/texto" }
+      }
+    },
+    "valorTensoes": {
+      "type": "object",
+      "required": ["valor", "origem"],
+      "additionalProperties": false,
+      "properties": {
+        "valor": { "type": "array", "minItems": 1, "items": { "type": "number", "exclusiveMinimum": 0 } },
+        "origem": { "$ref": "#/$defs/origem" },
+        "nota": { "$ref": "#/$defs/texto" }
+      }
+    },
+    "valorComando": {
+      "type": "object",
+      "required": ["valor", "origem"],
+      "additionalProperties": false,
+      "properties": {
+        "valor": { "type": "array", "minItems": 1, "items": { "enum": ["botao", "computador", "programa-autonomo", "sem-fio"] } },
+        "origem": { "$ref": "#/$defs/origem" },
+        "nota": { "$ref": "#/$defs/texto" }
+      }
+    },
+    "valorMeios": {
+      "type": "object",
+      "required": ["valor", "origem"],
+      "additionalProperties": false,
+      "properties": {
+        "valor": { "type": "array", "minItems": 1, "items": { "enum": ["impressora-3d", "usinagem", "corte-a-laser", "ferramentas-manuais", "placa-fabricada", "placa-montada-a-mao"] } },
+        "origem": { "$ref": "#/$defs/origem" },
+        "nota": { "$ref": "#/$defs/texto" }
+      }
+    },
+    "medidaTexto": { "if": { "required": ["ausente"] }, "then": { "$ref": "#/$defs/ausente" }, "else": { "$ref": "#/$defs/valorTexto" } },
+    "medidaPositiva": { "if": { "required": ["ausente"] }, "then": { "$ref": "#/$defs/ausente" }, "else": { "$ref": "#/$defs/valorPositivo" } },
+    "medidaBooleano": {
+      "if": { "required": ["ausente"] },
+      "then": { "$ref": "#/$defs/ausente" },
+      "else": {
+        "type": "object",
+        "required": ["valor", "origem"],
+        "additionalProperties": false,
+        "properties": { "valor": { "type": "boolean" }, "origem": { "$ref": "#/$defs/origem" }, "nota": { "$ref": "#/$defs/texto" } }
+      }
+    },
+    "medidaLocal": {
+      "if": { "required": ["ausente"] },
+      "then": { "$ref": "#/$defs/ausente" },
+      "else": {
+        "type": "object",
+        "required": ["valor", "origem"],
+        "additionalProperties": false,
+        "properties": { "valor": { "enum": ["dentro", "fora", "dentro-e-fora"] }, "origem": { "$ref": "#/$defs/origem" }, "nota": { "$ref": "#/$defs/texto" } }
+      }
+    },
+    "medidaFaixa": {
+      "if": { "required": ["ausente"] },
+      "then": { "$ref": "#/$defs/ausente" },
+      "else": {
+        "type": "object",
+        "required": ["valor", "origem"],
+        "additionalProperties": false,
+        "properties": {
+          "valor": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number" } },
+          "origem": { "$ref": "#/$defs/origem" },
+          "nota": { "$ref": "#/$defs/texto" }
+        }
+      }
+    },
+    "medidaVetor": {
+      "if": { "required": ["ausente"] },
+      "then": { "$ref": "#/$defs/ausente" },
+      "else": {
+        "type": "object",
+        "required": ["valor", "origem"],
+        "additionalProperties": false,
+        "properties": {
+          "valor": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "type": "number", "exclusiveMinimum": 0 } },
+          "origem": { "$ref": "#/$defs/origem" },
+          "nota": { "$ref": "#/$defs/texto" }
+        }
+      }
+    },
+    "medidaComponentes": {
+      "if": { "required": ["ausente"] },
+      "then": { "$ref": "#/$defs/ausente" },
+      "else": {
+        "type": "object",
+        "required": ["valor", "origem"],
+        "additionalProperties": false,
+        "properties": {
+          "valor": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["nome", "familia", "quantidade"],
+              "additionalProperties": false,
+              "properties": {
+                "nome": { "$ref": "#/$defs/texto" },
+                "familia": { "$ref": "#/$defs/idOuNulo" },
+                "quantidade": { "type": "integer", "minimum": 1 }
+              }
+            }
+          },
+          "origem": { "$ref": "#/$defs/origem" },
+          "nota": { "$ref": "#/$defs/texto" }
+        }
+      }
+    }
+  }
+}

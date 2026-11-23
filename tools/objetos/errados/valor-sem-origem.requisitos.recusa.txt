@@ -1,0 +1,2 @@
+tools/objetos/errados/valor-sem-origem.requisitos.json: recusado (requisitos, versão 1.0), 1 problema(s)
+  $.carga.massaNaPonta.origem: campo obrigatório ausente; recebido nada

@@ -1,0 +1,12 @@
+{
+  "tipo": "caderno",
+  "versao": "1.0",
+  "objeto": "braco-de-prova",
+  "etapas": [
+    { "etapa": "requisitos", "estado": "aberta", "arquivos": [] },
+    { "etapa": "componentes", "estado": "aberta", "arquivos": [] },
+    { "etapa": "forma", "estado": "aberta", "arquivos": [] },
+    { "etapa": "simulacao", "estado": "aberta", "arquivos": [] },
+    { "etapa": "pacote", "estado": "aberta", "arquivos": [] }
+  ]
+}

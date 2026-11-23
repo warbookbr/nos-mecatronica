@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tools/objetos/caderno.schema.json",
+  "title": "Caderno do objeto, versão 1.0",
+  "description": "O caderno de objetos/<objeto>/caderno.json diz em que etapa do caminho o objeto está e quem aprovou o quê. Tem as cinco etapas na ordem requisitos, componentes, forma, simulacao e pacote, cada uma com o estado (aberta, aguarda-pessoa, aprovada, reaberta), os arquivos que ela produziu, relativos à pasta do objeto, e a aprovação: quem aprovou, a data (AAAA-MM-DD), o que foi aprovado e a frase da pessoa como ela a disse. A IA nunca grava aprovação por conta própria. A etapa reaberta traz o motivo e pode guardar a aprovação anterior.",
+  "$comment": "Regra de versão, a mesma da ponte. Ficam fora do JSON Schema e são conferidos por tools/objetos/conferir.mjs: a ordem das etapas; a etapa aprovada com a frase, quem e a data; nenhuma etapa aprovada depois de uma que não está aprovada; o motivo da reaberta; e, na pasta do objeto, o nome da pasta igual ao objeto, os arquivos citados existindo e o requisitos.json presente salvo com a etapa de requisitos aberta.",
+  "type": "object",
+  "required": ["tipo", "versao", "objeto", "etapas"],
+  "additionalProperties": false,
+  "properties": {
+    "tipo": { "const": "caderno" },
+    "versao": { "enum": ["1.0"] },
+    "objeto": { "$ref": "#/$defs/id" },
+    "etapas": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["etapa", "estado", "arquivos"],
+        "additionalProperties": false,
+        "properties": {
+          "etapa": { "enum": ["requisitos", "componentes", "forma", "simulacao", "pacote"] },
+          "estado": { "enum": ["aberta", "aguarda-pessoa", "aprovada", "reaberta"] },
+          "arquivos": { "type": "array", "items": { "$ref": "#/$defs/texto" } },
+          "aprovacao": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "quem": { "$ref": "#/$defs/texto" },
+              "data": { "$ref": "#/$defs/texto" },
+              "oQue": { "$ref": "#/$defs/texto" },
+              "frase": { "$ref": "#/$defs/texto" }
+            }
+          },
+          "motivo": { "$ref": "#/$defs/texto" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "texto": { "type": "string", "minLength": 1 }
+  }
+}

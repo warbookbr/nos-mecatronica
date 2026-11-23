@@ -75,6 +75,8 @@ São obrigatórios com valor `objetivo`, `carga`, `alcance`, `alimentacao`, `com
 3. A skill e a rodada de prova com a pessoa no braço de duas juntas.
 4. A documentação e o fechamento.
 
+Andamento em 2026-11-23. Fatia 1 feita: os esquemas `tools/objetos/requisitos.schema.json` e `tools/objetos/caderno.schema.json` seguem a lista aprovada, com o exemplo fictício `tools/objetos/exemplos/objeto-de-teste/` e seis arquivos errados com a recusa de cada um (os quatro do gate, mais o obrigatório escrito como ausente e a reaberta sem motivo). Fatia 2 feita: `tools/objetos/conferir.mjs` usa o validador da ponte, tem teste, roda em `npm run objetos:conferir` e em `npm run gates`, e a matriz ganhou a camada do projeto com as seis linhas, `proj-requisitos` e `proj-caderno` em parcial. Fatia 3 em parte: a skill `alinhar-requisitos` existe e `objetos/braco-de-prova/` tem o caderno com a etapa de requisitos aberta e sem requisitos; a rodada de prova com a pessoa, conduzida só pela skill numa sessão sem a história deste plano, está pendente, e com ela o exemplo de rodada ao lado da skill.
+
 ## Riscos e parada
 
 Se a pessoa achar a rodada longa demais (mais de uns quinze minutos de perguntas), o plano para e a lista é cortada aos obrigatórios, com os outros perguntados só quando o dimensionamento precisar deles.
