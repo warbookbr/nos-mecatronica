@@ -47,7 +47,7 @@
       "torqueDisponivel": {
         "valor": 3.6643,
         "origem": "estimativa",
-        "nota": "motor-23hs30-2804s com reducao-planetaria-nema23-5 e driver-drv8825, na velocidade da junta; limitado por o motor"
+        "nota": "motor-23hs30-2804s com reducao-planetaria-nema23-5-precisao e driver-drv8825, na velocidade da junta; limitado por o motor"
       },
       "folga": {
         "valor": 2.37,
@@ -107,15 +107,20 @@
   ],
   "precisao": {
     "erroNaPonta": {
-      "valor": 6.07,
+      "valor": 1.75,
       "origem": "estimativa",
-      "nota": "a folga angular de cada redução do catálogo vezes a distância do eixo da junta até a carga: junta-1 1 grau a 330 mm, 5.76 mm; junta-2 0.1 grau a 180 mm, 0.31 mm; somadas no pior sentido, sem a gravidade que encosta a folga num lado"
+      "nota": "a folga angular de cada redução do catálogo vezes a distância do eixo da junta até a carga: junta-1 0.25 grau a 330 mm, 1.44 mm; junta-2 0.1 grau a 180 mm, 0.31 mm; somadas no pior sentido, sem a gravidade que encosta a folga num lado"
     },
     "precisaoPedida": 2,
     "repetibilidadePedida": 1,
-    "passa": false
+    "passa": true,
+    "repetibilidade": {
+      "valor": 1,
+      "origem": "requisitos",
+      "nota": "não conferida pela folga: vale se o programa chegar a cada ponto sempre pelo mesmo sentido, com a folga encostada; o resto dela, perda de passo, flexão e correia, está no que a simulação não cobre"
+    }
   },
-  "passa": false,
+  "passa": true,
   "naoCobre": [
     "a dinâmica no tempo, com o perfil de movimento e a perda de passo do motor (linha fis-modelo-dinamico)",
     "o atrito do rolamento, das polias e da planetária, que só entra pela eficiência da redução",

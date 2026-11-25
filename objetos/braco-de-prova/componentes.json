@@ -2,14 +2,14 @@
   "tipo": "componentes",
   "versao": "1.0",
   "objeto": "braco-de-prova",
-  "revisao": 1,
+  "revisao": 2,
   "opcoes": "opcoes.json",
   "escolhida": "opcao-2",
   "juntas": [
     {
       "junta": "junta-1",
       "motor": "motor-23hs30-2804s",
-      "reducao": "reducao-planetaria-nema23-5",
+      "reducao": "reducao-planetaria-nema23-5-precisao",
       "driver": "driver-drv8825",
       "folga": 2.86
     },
@@ -24,8 +24,8 @@
   "placa": "placa-arduino-uno",
   "fonte": "fonte-12v-5a",
   "custo": [
-    555,
-    980
+    755,
+    1330
   ],
-  "nota": "A opção de maior folga (2,86 no ombro, 3,2 no cotovelo). Custo estimado de R$ 555 a 980, que pode passar até R$ 180 do orçamento no topo da faixa; a pessoa aceitou. Um driver de uns 3 A daria mais margem ao ombro, porque o DRV8825 sustenta cerca de 1,5 A sem ventilação contra os 2,8 A do NEMA 23."
+  "nota": "A opção de maior folga (2,86 no ombro, 3,2 no cotovelo). Custo estimado de R$ 555 a 980, que pode passar até R$ 180 do orçamento no topo da faixa; a pessoa aceitou. Um driver de uns 3 A daria mais margem ao ombro, porque o DRV8825 sustenta cerca de 1,5 A sem ventilação contra os 2,8 A do NEMA 23. Revisão 2, de 2026-11-25: a planetária do ombro passou à de folga baixa (0,25 grau), porque a simulação com a ficha mostrou que a folga de 1 grau da comum leva a ponta a uns 6 mm de erro, contra a precisão de 2 mm pedida; a caixa tem as mesmas medidas, e o custo sobe uns R$ 200 a 350."
 }

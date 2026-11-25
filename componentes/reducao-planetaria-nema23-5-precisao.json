@@ -1,0 +1,87 @@
+{
+  "tipo": "componente",
+  "versao": "1.0",
+  "id": "reducao-planetaria-nema23-5-precisao",
+  "nome": "Redução planetária de folga baixa para NEMA 23, 5:1",
+  "categoria": "reducao",
+  "familia": "peca-mecanica",
+  "fabricante": "genérico (caixa planetária de 57 mm da classe de precisão, como a série PL de folga baixa da StepperOnline)",
+  "jaTem": false,
+  "unidades": {
+    "comprimento": "mm",
+    "massa": "g",
+    "torque": "N·m",
+    "velocidade": "rpm",
+    "corrente": "A",
+    "tensao": "V",
+    "resistencia": "Ω",
+    "indutancia": "mH",
+    "angulo": "grau",
+    "potencia": "W",
+    "moeda": "BRL"
+  },
+  "fontes": [
+    {
+      "nome": "folha-planetaria-57",
+      "documento": "Folha de dados de caixa planetária de 57 mm para NEMA 23, razão 5:1 (StepperOnline e revendedores genéricos)",
+      "nota": "Mesma caixa de 57 mm da classe comum, na classe de precisão: a folga é a menor da faixa das folhas, de 0,25 grau (15 minutos de arco); a razão, a massa, as medidas e o torque de trabalho são lembrança, sem conferência no documento."
+    }
+  ],
+  "preco": {
+    "faixa": [
+      450,
+      800
+    ],
+    "data": "2026-11-25",
+    "origem": "estimativa",
+    "nota": "Só a caixa, na classe de precisão, que custa perto do dobro da comum."
+  },
+  "especificacao": {
+    "tipo": "planetaria",
+    "paraMotores": [
+      "nema-23"
+    ],
+    "razao": {
+      "valor": 5,
+      "origem": "estimativa",
+      "nota": "Razão nominal; há caixas de 57 mm com 5:1 exato e outras com 5,18:1. Confirme na caixa comprada."
+    },
+    "eficiencia": {
+      "valor": 0.9,
+      "origem": "declarado",
+      "nota": "As folhas dão 90% para um estágio."
+    },
+    "folga": {
+      "valor": 0.25,
+      "origem": "estimativa",
+      "nota": "A classe de precisão das folhas, 15 minutos de arco sem carga; confira na folha do modelo comprado e meça na bancada."
+    },
+    "torqueMaximo": {
+      "valor": 10,
+      "origem": "estimativa",
+      "nota": "Torque nominal de saída de caixa planetária de 57 mm de um estágio, entre 8 e 20 N·m nas folhas; ficou 10 N·m."
+    },
+    "massa": {
+      "valor": 550,
+      "origem": "estimativa",
+      "nota": "Caixa planetária de 57 mm de um estágio, sem o motor."
+    },
+    "medidas": {
+      "valor": [
+        57,
+        57,
+        55
+      ],
+      "origem": "estimativa",
+      "nota": "Face de 57 mm e comprimento da caixa sem o eixo de saída."
+    },
+    "eixoDeSaida": {
+      "valor": [
+        14,
+        25
+      ],
+      "origem": "estimativa",
+      "nota": "eixo de saída típico de 14 mm por 25 mm das planetárias de 57 mm; conferir na folha do modelo comprado; [diâmetro, comprimento] em mm"
+    }
+  }
+}

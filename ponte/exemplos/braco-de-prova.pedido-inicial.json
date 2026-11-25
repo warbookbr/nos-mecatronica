@@ -31,7 +31,7 @@
       },
       "motivo": {
         "linhaDaMatriz": "fis-torque-gravidade",
-        "texto": "componente escolhido pela pessoa em 2026-11-23",
+        "texto": "componente escolhido pela pessoa em 2026-11-25",
         "resultado": {
           "grandeza": "massa",
           "valor": 1000,
@@ -41,10 +41,10 @@
       }
     },
     {
-      "id": "reducao-planetaria-nema23-5",
+      "id": "reducao-planetaria-nema23-5-precisao",
       "tipo": "componente",
-      "componente": "reducao-planetaria-nema23-5",
-      "nome": "Redução planetária para NEMA 23, 5:1",
+      "componente": "reducao-planetaria-nema23-5-precisao",
+      "nome": "Redução planetária de folga baixa para NEMA 23, 5:1",
       "familia": "peca-mecanica",
       "caixa": [
         57,
@@ -65,7 +65,7 @@
       "acopla": "motor-23hs30-2804s",
       "motivo": {
         "linhaDaMatriz": "fis-torque-gravidade",
-        "texto": "componente escolhido pela pessoa em 2026-11-23",
+        "texto": "componente escolhido pela pessoa em 2026-11-25",
         "resultado": {
           "grandeza": "massa",
           "valor": 550,
@@ -98,7 +98,7 @@
       },
       "motivo": {
         "linhaDaMatriz": "fis-torque-gravidade",
-        "texto": "componente escolhido pela pessoa em 2026-11-23",
+        "texto": "componente escolhido pela pessoa em 2026-11-25",
         "resultado": {
           "grandeza": "massa",
           "valor": 280,
@@ -128,7 +128,7 @@
       "acopla": "motor-17hs4401",
       "motivo": {
         "linhaDaMatriz": "fis-torque-gravidade",
-        "texto": "componente escolhido pela pessoa em 2026-11-23",
+        "texto": "componente escolhido pela pessoa em 2026-11-25",
         "resultado": {
           "grandeza": "massa",
           "valor": 80,
@@ -157,7 +157,7 @@
       },
       "motivo": {
         "linhaDaMatriz": "fis-torque-gravidade",
-        "texto": "componente escolhido pela pessoa em 2026-11-23",
+        "texto": "componente escolhido pela pessoa em 2026-11-25",
         "resultado": {
           "grandeza": "massa",
           "valor": 2,
@@ -186,7 +186,7 @@
       },
       "motivo": {
         "linhaDaMatriz": "fis-torque-gravidade",
-        "texto": "componente escolhido pela pessoa em 2026-11-23",
+        "texto": "componente escolhido pela pessoa em 2026-11-25",
         "resultado": {
           "grandeza": "massa",
           "valor": 2,
@@ -215,7 +215,7 @@
       },
       "motivo": {
         "linhaDaMatriz": "fis-torque-gravidade",
-        "texto": "componente escolhido pela pessoa em 2026-11-23",
+        "texto": "componente escolhido pela pessoa em 2026-11-25",
         "resultado": {
           "grandeza": "massa",
           "valor": 25,
@@ -244,7 +244,7 @@
       },
       "motivo": {
         "linhaDaMatriz": "fis-torque-gravidade",
-        "texto": "componente escolhido pela pessoa em 2026-11-23",
+        "texto": "componente escolhido pela pessoa em 2026-11-25",
         "resultado": {
           "grandeza": "massa",
           "valor": 300,

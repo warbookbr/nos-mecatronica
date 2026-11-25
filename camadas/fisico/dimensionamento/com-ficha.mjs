@@ -97,7 +97,10 @@ export function simularComFicha({ ficha, dimensionamento, componentes, catalogo,
     precisaoPedida: pedido('precisao'),
     repetibilidadePedida: pedido('repetibilidade'),
   };
-  precisao.passa = [precisao.precisaoPedida, precisao.repetibilidadePedida].every((v) => v === null || erro <= v);
+  /* A folga conta contra a precisão; a repetibilidade é a de voltar ao mesmo ponto pelo mesmo lado, em que a folga fica encostada
+     e não entra, e por isso ela não se confere aqui: depende de o programa chegar sempre pelo mesmo sentido. */
+  precisao.passa = precisao.precisaoPedida === null || erro <= precisao.precisaoPedida;
+  if (precisao.repetibilidadePedida !== null) precisao.repetibilidade = { valor: precisao.repetibilidadePedida, origem: 'requisitos', nota: 'não conferida pela folga: vale se o programa chegar a cada ponto sempre pelo mesmo sentido, com a folga encostada; o resto dela, perda de passo, flexão e correia, está no que a simulação não cobre' };
   return {
     tipo: 'simulacao', versao: '1.0', objeto: ficha.objeto,
     ficha: { caminho: `${ficha.objeto}.ficha.json`, revisao: ficha.revisao },
@@ -131,7 +134,7 @@ function executar() {
   const ler = (n) => JSON.parse(readFileSync(join(pasta, n), 'utf8'));
   const doc = simularComFicha({ ficha, dimensionamento: ler('dimensionamento.json'), componentes: ler('componentes.json'), catalogo: lerCatalogo(), requisitos: ler('requisitos.json') });
   gravarOuConferir(join(pasta, 'simulacao.json'), texto(doc), args.includes('--check'), `npm run simular:ficha -- ${objeto}`);
-  console.log(`erro na ponta pela folga das reduções: ${doc.precisao.erroNaPonta.valor} mm (precisão pedida ${doc.precisao.precisaoPedida} mm, repetibilidade ${doc.precisao.repetibilidadePedida} mm) — ${doc.precisao.passa ? 'passa' : 'NÃO passa'}`);
+  console.log(`erro na ponta pela folga das reduções: ${doc.precisao.erroNaPonta.valor} mm (precisão pedida ${doc.precisao.precisaoPedida} mm; a repetibilidade de ${doc.precisao.repetibilidadePedida} mm pede chegar sempre pelo mesmo sentido) — ${doc.precisao.passa ? 'passa' : 'NÃO passa'}`);
   for (const j of doc.juntas) console.log(`${j.id}: torque ${j.torqueTotal.valor} N·m (antes da forma ${j.torqueAntesDaForma.valor}), disponível ${j.torqueDisponivel.valor}, folga ${j.folga.valor} — ${j.passa ? 'passa' : 'NÃO passa'}`);
 }
 

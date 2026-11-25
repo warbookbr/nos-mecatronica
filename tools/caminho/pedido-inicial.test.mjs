@@ -17,7 +17,7 @@ describe('npm run pedido-inicial', () => {
   it('dá um item por componente, com um driver por junta mesmo quando o modelo se repete, e o conferidor aceita', () => {
     const p = gerar('braco-de-prova');
     expect(p.itens.map((i) => i.id)).toEqual([
-      'motor-23hs30-2804s', 'reducao-planetaria-nema23-5', 'motor-17hs4401', 'reducao-gt2-20-80',
+      'motor-23hs30-2804s', 'reducao-planetaria-nema23-5-precisao', 'motor-17hs4401', 'reducao-gt2-20-80',
       'driver-junta-1', 'driver-junta-2', 'placa-arduino-uno', 'fonte-12v-5a',
     ]);
     expect(p.itens.slice(4, 6).map((i) => i.componente)).toEqual(['driver-drv8825', 'driver-drv8825']);

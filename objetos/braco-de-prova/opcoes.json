@@ -25,12 +25,12 @@
     "escolha": "A mais barata pelo topo da faixa e a que usa mais do que a pessoa já tem saem das combinações cujo topo da faixa cabe no orçamento (ou de todas, se nenhuma couber); a de maior folga sai de todas e diz quanto passa do orçamento. Quando dois critérios dão a mesma combinação, ela aparece uma vez com os dois."
   },
   "contagem": {
-    "conjuntosPorJunta": 45,
-    "junta2ComFolga": 43,
-    "junta1ComFolga": 54,
+    "conjuntosPorJunta": 51,
+    "junta2ComFolga": 49,
+    "junta1ComFolga": 104,
     "semFonte": 0,
     "semPlaca": 0,
-    "combinacoes": 54
+    "combinacoes": 104
   },
   "opcoes": [
     {

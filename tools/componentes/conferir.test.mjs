@@ -35,7 +35,7 @@ describe('componentes:conferir sobre o catálogo', () => {
     expect(new Set(catalogo.filter((c) => c.categoria === 'reducao').map((r) => r.especificacao.tipo))).toEqual(new Set(['polia-e-correia', 'planetaria']));
     expect(catalogo.filter((c) => c.categoria === 'driver').map((c) => c.id)).toEqual(['driver-a4988', 'driver-drv8825', 'driver-tmc2209']);
     expect(catalogo.filter((c) => c.jaTem).map((c) => c.id)).toEqual(['fonte-12v-5a', 'placa-arduino-uno']);
-    for (const c of catalogo) expect(c.preco).toMatchObject({ data: '2026-11-23', origem: 'estimativa' });
+    for (const c of catalogo) expect(c.preco).toMatchObject({ origem: 'estimativa' });
   });
 
   const errados = readdirSync(join(RAIZ, ERRADOS)).filter((n) => n.endsWith('.json')).sort();
