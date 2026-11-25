@@ -104,6 +104,7 @@ export function simularComFicha({ ficha, dimensionamento, componentes, catalogo,
   return {
     tipo: 'simulacao', versao: '1.0', objeto: ficha.objeto,
     ficha: { caminho: `${ficha.objeto}.ficha.json`, revisao: ficha.revisao },
+    componentes: { revisao: componentes.revisao ?? null },
     modelo: 'Torque estático e de aceleração de cada junta do braço plano, na pose esticada na horizontal, com as massas, os centros e as inércias dos conjuntos da ficha do Modelar e a carga do pior caso além da ponta.',
     juntas,
     precisao,

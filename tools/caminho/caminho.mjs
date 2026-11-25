@@ -1,7 +1,7 @@
 /* caminho.mjs — lê objetos/<objeto>/caderno.json e diz em que passo do caminho o objeto está: a etapa, o repositório, a skill,
    o comando, o que se espera da pessoa e o passo seguinte. Não muda nada; quem avança é a sessão, e quem aprova é a pessoa.
    uso: npm run caminho -- <objeto> */
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { conferirPasta } from '../objetos/conferir.mjs';
@@ -35,7 +35,7 @@ export const ETAPAS = {
     pessoa: 'aprovar a simulação ou escolher a troca que o resultado pede',
   },
   pacote: {
-    repositorio: 'os dois', skill: 'nenhuma ainda',
+    repositorio: 'nos-mecatronica, com o plano em docs/mecatronica/planos/ (o Modelar entra com os arquivos de fabricação, por plano irmão de lá)', skill: 'nenhuma ainda',
     comando: 'nenhum ainda',
     fazer: 'escrever o plano do pacote de construção (lista de compras, arquivos de fabricação, firmware de partida e passo a passo) e pedir a aprovação dele',
     pessoa: 'aprovar o plano do pacote, que ainda não existe',
@@ -77,7 +77,13 @@ export function textoDoPasso(p) {
 
 function executar() {
   const objeto = process.argv.slice(2).find((a) => !a.startsWith('--'));
-  if (!objeto || process.argv.includes('--ajuda')) { console.error('uso: npm run caminho -- <objeto>\n  lê objetos/<objeto>/caderno.json e diz o passo de agora'); process.exitCode = 2; return; }
+  if (!objeto && !process.argv.includes('--ajuda')) {
+    const pasta = join(RAIZ, 'objetos');
+    const objetos = readdirSync(pasta, { withFileTypes: true }).filter((d) => d.isDirectory() && existsSync(join(pasta, d.name, 'caderno.json'))).map((d) => d.name);
+    console.log(objetos.length ? `objetos com caderno: ${objetos.join(', ')}\nuso: npm run caminho -- <objeto>` : 'nenhum objeto com caderno ainda; o caminho começa pela skill alinhar-requisitos');
+    return;
+  }
+  if (process.argv.includes('--ajuda')) { console.error('uso: npm run caminho -- <objeto>\n  lê objetos/<objeto>/caderno.json e diz o passo de agora'); process.exitCode = 2; return; }
   const pasta = join(RAIZ, 'objetos', objeto);
   if (!existsSync(join(pasta, 'caderno.json'))) { console.error(`objetos/${objeto}/caderno.json não existe: o caminho começa pela skill alinhar-requisitos, que cria a pasta e o caderno`); process.exitCode = 1; return; }
   const r = conferirPasta(pasta, { raiz: RAIZ });

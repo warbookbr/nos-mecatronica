@@ -6,6 +6,9 @@
     "caminho": "braco-de-prova.ficha.json",
     "revisao": 1
   },
+  "componentes": {
+    "revisao": 2
+  },
   "modelo": "Torque estático e de aceleração de cada junta do braço plano, na pose esticada na horizontal, com as massas, os centros e as inércias dos conjuntos da ficha do Modelar e a carga do pior caso além da ponta.",
   "juntas": [
     {

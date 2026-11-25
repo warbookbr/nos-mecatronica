@@ -5,13 +5,13 @@ description: Conduz um objeto pelo caminho de ponta a ponta (requisitos, compone
 
 # Conduzir o caminho
 
-O estado do objeto mora em `objetos/<objeto>/caderno.json`, e não na conversa. Comece sempre por `npm run caminho -- <objeto>`: ele confere o caderno e os arquivos da pasta e diz a etapa de agora, o repositório, a skill, o comando, o que fazer, o que se espera da pessoa e a etapa seguinte. Se o objeto ainda não tem pasta, o caminho começa pela skill `alinhar-requisitos`, que a cria.
+O estado do objeto mora em `objetos/<objeto>/caderno.json`, e não na conversa. Comece sempre por `npm run caminho -- <objeto>` (sem o objeto, o comando lista os que têm caderno): ele confere o caderno e os arquivos da pasta e diz a etapa de agora, o repositório, a skill, o comando, o que fazer, o que se espera da pessoa e a etapa seguinte. Se o objeto ainda não tem pasta, o caminho começa pela skill `alinhar-requisitos`, que a cria.
 
 ## A cada passo
 
 Faça o que o comando diz, com a skill que ele cita, e rode o comando de novo ao terminar, para ver o passo seguinte. A etapa da forma acontece no Modelar (`warbookbr/nos-modelar`), pelas skills de lá e pelo plano ativo de lá; este repositório nunca edita geometria. A ficha que o Modelar exporta é copiada para `objetos/<objeto>/<objeto>.ficha.json`, e o pedido inicial que o Modelar responde volta como `ponte/exemplos/<objeto>.pedido-inicial.json`.
 
-Na simulação, rode `npm run simular:ficha -- <objeto>` e despache o agente `critico-da-simulacao` só com a pasta do objeto, sem a história. Leve à pessoa o resultado e o que o crítico achou, em linguagem simples, com uma recomendação. O que o crítico achar e o processo não pegou vira conta na simulação, gate ou campo antes de a etapa seguir. Se a folga cair abaixo do mínimo aprovado ou o erro na ponta passar da precisão pedida, ofereça à pessoa as trocas (outro componente, menos carga, requisito mais folgado), e a escolhida volta à etapa de componentes com a revisão nova.
+Na simulação, rode `npm run simular:ficha -- <objeto>` e confira que `simulacao.json` cita a revisão de agora da ficha e de `componentes.json`, e despache o agente `critico-da-simulacao` só com a pasta do objeto, sem a história. Leve à pessoa o resultado e o que o crítico achou, em linguagem simples, com uma recomendação. O que o crítico achar e o processo não pegou vira conta na simulação, gate ou campo antes de a etapa seguir. Se a folga cair abaixo do mínimo aprovado ou o erro na ponta passar da precisão pedida, ofereça à pessoa as trocas (outro componente, menos carga, requisito mais folgado), e a escolhida volta à etapa de componentes com a revisão nova.
 
 ## Aprovar
 

@@ -1,6 +1,6 @@
 # Roteiro de ponta a ponta: o braço de duas juntas do pedido da pessoa à simulação aprovada, pelos dois repositórios
 
-**Estado:** ativo
+**Estado:** concluído
 
 **Território:** `tools/caminho/`, `.claude/agents/critico-da-simulacao.md`, `.claude/skills/conduzir-caminho/`, `ponte/`, `tools/ponte/`, `camadas/fisico/`, `objetos/braco-de-prova/`.
 
@@ -8,7 +8,7 @@ Ativado pela pessoa em 2026-11-23, junto com o plano irmão do Modelar.
 
 **Responsável:** a IA da sessão implementa nos dois repositórios; a pessoa aprova a mudança do contrato da ponte, a forma do braço de prova no Modelar e o resultado da simulação.
 
-**Repositório e base:** `warbookbr/nos-mecatronica`, main na ativação, e um plano irmão no `warbookbr/nos-modelar` para a forma do braço de prova, escrito e ativado junto com este. Filho 3 do plano-raiz [do pedido da pessoa ao pacote de construção](2026-11-23-do-pedido-ao-pacote.md), depois dos filhos 1 e 2, concluídos em 2026-11-23, e do plano da ponte do Modelar, concluído no mesmo dia.
+**Repositório e base:** `warbookbr/nos-mecatronica`, main na ativação, e um plano irmão no `warbookbr/nos-modelar` para a forma do braço de prova, escrito e ativado junto com este. Filho 3 do plano-raiz [do pedido da pessoa ao pacote de construção](../2026-11-23-do-pedido-ao-pacote.md), depois dos filhos 1 e 2, concluídos em 2026-11-23, e do plano da ponte do Modelar, concluído no mesmo dia.
 
 ## Problema observado
 
@@ -67,7 +67,7 @@ A versão 1.2 do pedido, só com acréscimos opcionais: o pedido inicial, com `f
 5. O dimensionamento com a ficha, o crítico da simulação e a aprovação da pessoa.
 6. A prova com uma sessão nova, a documentação e o fechamento.
 
-Andamento em 2026-11-23: a fatia 1 está escrita em [`ponte/propostas/1.2.md`](../../../ponte/propostas/1.2.md), com o pedido inicial do braço de prova em `ponte/exemplos/braco-de-prova.pedido-inicial.json`, e a pessoa a aprovou em 2026-11-23; a fatia 2 está feita, com o esquema 1.2 do pedido, as regras novas no conferidor, um errado por regra e `npm run pedido-inicial`, que gera o exemplo; o exemplo agora traz o nome, a família e a massa do catálogo e não traz o eixo de saída, que o catálogo não dá.
+Andamento em 2026-11-23: a fatia 1 está escrita em [`ponte/propostas/1.2.md`](../../../../ponte/propostas/1.2.md), com o pedido inicial do braço de prova em `ponte/exemplos/braco-de-prova.pedido-inicial.json`, e a pessoa a aprovou em 2026-11-23; a fatia 2 está feita, com o esquema 1.2 do pedido, as regras novas no conferidor, um errado por regra e `npm run pedido-inicial`, que gera o exemplo; o exemplo agora traz o nome, a família e a massa do catálogo e não traz o eixo de saída, que o catálogo não dá.
 
 Andamento em 2026-11-25: a fatia 4 está feita no Modelar, com a forma aprovada pela pessoa em 2026-11-24, a ficha e os oito componentes cumpridos. A fatia 5 está em curso: `npm run simular:ficha -- braco-de-prova` refaz o torque com a ficha e grava `objetos/braco-de-prova/simulacao.json`, com a folga de 2,37 no ombro e 2,04 no cotovelo; o crítico da simulação, em `.claude/agents/critico-da-simulacao.md`, refez as contas à mão e achou que a folga de 1 grau da planetária leva a ponta a uns 6 mm de erro, contra a precisão de 2 mm e a repetibilidade de 1 mm. A conta do erro na ponta entrou na simulação, e a pessoa trocou, em 2026-11-25, a planetária do ombro pela de folga baixa (0,25 grau), com o que o erro cai a 1,75 mm e passa; a pessoa aprovou a simulação em 2026-11-25, com as ressalvas de medir na bancada a folga da planetária e o torque do cotovelo e de pôr dissipador no driver do cotovelo. A fatia 5 está feita. 
 
@@ -79,4 +79,4 @@ Se a forma do braço de prova não comportar um componente escolhido (o NEMA 23 
 
 ## Fechamento
 
-A preencher.
+Concluído em 2026-11-25. O contrato 1.2 da ponte, com o pedido inicial e o item `componente`, está em vigor nos dois repositórios. `npm run caminho -- <objeto>` diz o passo de cada estado do caderno e, sem objeto, lista os objetos; a skill `conduzir-caminho` o segue. O braço de prova passou pelo caminho inteiro até a simulação: a forma, aprovada pela pessoa no Modelar em 2026-11-24, recebeu os oito componentes, e `npm run simular:ficha` refez o torque e o erro na ponta com a ficha. O crítico da simulação achou que a folga de 1 grau da planetária comum dava uns 6 mm de erro na ponta, contra 2 mm pedidos, o que o processo não pegava; a conta entrou na simulação, a pessoa trocou a planetária pela de folga baixa, e a simulação aprovada dá folga de 2,37 e 2,04 e 1,75 mm de erro, com as ressalvas de medir na bancada a folga e o torque do cotovelo e de pôr dissipador no driver dele. Uma sessão nova, só com a skill, chegou ao estado de agora pelo caderno; as três dúvidas dela (listar os objetos, onde fica o plano do pacote e a revisão dos componentes que a simulação usou) foram resolvidas no comando, na skill e em `simulacao.json`. A quarta, o peso da aprovação dos requisitos respondidos pela IA como rodada de prova, fica com a pessoa. Volta ao backlog a dinâmica no tempo com perda de passo, o aquecimento dos drivers e a estabilidade da base.
