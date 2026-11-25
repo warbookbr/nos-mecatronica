@@ -46,10 +46,16 @@
     },
     {
       "etapa": "simulacao",
-      "estado": "aguarda-pessoa",
+      "estado": "aprovada",
       "arquivos": [
         "simulacao.json"
-      ]
+      ],
+      "aprovacao": {
+        "quem": "Tiago",
+        "data": "2026-11-25",
+        "oQue": "simulacao.json com a ficha revisão 1 e os componentes revisão 2, com as ressalvas de medir na bancada a folga da planetária e o torque do cotovelo e de pôr dissipador no driver do cotovelo",
+        "frase": "aprovo a simulação"
+      }
     },
     {
       "etapa": "pacote",
