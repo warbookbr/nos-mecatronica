@@ -33,13 +33,23 @@
     },
     {
       "etapa": "forma",
-      "estado": "aberta",
-      "arquivos": []
+      "estado": "aprovada",
+      "arquivos": [
+        "braco-de-prova.ficha.json"
+      ],
+      "aprovacao": {
+        "quem": "Tiago",
+        "data": "2026-11-24",
+        "oQue": "a forma do braço de prova no Modelar, as nove etapas da montagem fixadas, e a ficha revisão 1 exportada dela",
+        "frase": "aceito as nove etapas com os defeitos de acabamento em aberto que deverão ser corrigidos e detalhados em uma etapa posterior!"
+      }
     },
     {
       "etapa": "simulacao",
-      "estado": "aberta",
-      "arquivos": []
+      "estado": "aguarda-pessoa",
+      "arquivos": [
+        "simulacao.json"
+      ]
     },
     {
       "etapa": "pacote",

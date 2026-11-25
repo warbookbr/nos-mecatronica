@@ -1,0 +1,126 @@
+{
+  "tipo": "simulacao",
+  "versao": "1.0",
+  "objeto": "braco-de-prova",
+  "ficha": {
+    "caminho": "braco-de-prova.ficha.json",
+    "revisao": 1
+  },
+  "modelo": "Torque estático e de aceleração de cada junta do braço plano, na pose esticada na horizontal, com as massas, os centros e as inércias dos conjuntos da ficha do Modelar e a carga do pior caso além da ponta.",
+  "juntas": [
+    {
+      "id": "junta-1",
+      "massaMovida": {
+        "valor": 673.1,
+        "origem": "ficha",
+        "nota": "soma dos conjuntos elo-1, elo-2, sem a carga"
+      },
+      "torqueGravidade": {
+        "valor": 1.3613,
+        "origem": "estimativa",
+        "nota": "braço esticado na horizontal, pose da ficha: cada conjunto pelo centro de massa da ficha, mais a carga do pior caso"
+      },
+      "inercia": {
+        "valor": 0.034248,
+        "origem": "estimativa",
+        "nota": "izz de cada conjunto da ficha levada ao eixo da junta, mais a carga como ponto"
+      },
+      "torqueAceleracao": {
+        "valor": 0.1817,
+        "origem": "estimativa",
+        "nota": "a inércia da ficha vezes a maior aceleração angular do dimensionamento"
+      },
+      "torqueTotal": {
+        "valor": 1.543,
+        "origem": "estimativa"
+      },
+      "torqueAntesDaForma": {
+        "valor": 1.2492,
+        "origem": "estimativa",
+        "nota": "dimensionamento.json, com os elos estimados antes da forma"
+      },
+      "razaoContraAntes": {
+        "valor": 1.24,
+        "origem": "estimativa",
+        "nota": "acima de 2 o plano manda parar e perguntar a massa dos elos à pessoa"
+      },
+      "torqueDisponivel": {
+        "valor": 3.6643,
+        "origem": "estimativa",
+        "nota": "motor-23hs30-2804s com reducao-planetaria-nema23-5 e driver-drv8825, na velocidade da junta; limitado por o motor"
+      },
+      "folga": {
+        "valor": 2.37,
+        "origem": "estimativa",
+        "nota": "torque disponível sobre o total; o mínimo aprovado é 2"
+      },
+      "passa": true
+    },
+    {
+      "id": "junta-2",
+      "massaMovida": {
+        "valor": 164.2,
+        "origem": "ficha",
+        "nota": "soma dos conjuntos elo-2, sem a carga"
+      },
+      "torqueGravidade": {
+        "valor": 0.4631,
+        "origem": "estimativa",
+        "nota": "braço esticado na horizontal, pose da ficha: cada conjunto pelo centro de massa da ficha, mais a carga do pior caso"
+      },
+      "inercia": {
+        "valor": 0.008078,
+        "origem": "estimativa",
+        "nota": "izz de cada conjunto da ficha levada ao eixo da junta, mais a carga como ponto"
+      },
+      "torqueAceleracao": {
+        "valor": 0.0618,
+        "origem": "estimativa",
+        "nota": "a inércia da ficha vezes a maior aceleração angular do dimensionamento"
+      },
+      "torqueTotal": {
+        "valor": 0.5249,
+        "origem": "estimativa"
+      },
+      "torqueAntesDaForma": {
+        "valor": 0.3351,
+        "origem": "estimativa",
+        "nota": "dimensionamento.json, com os elos estimados antes da forma"
+      },
+      "razaoContraAntes": {
+        "valor": 1.57,
+        "origem": "estimativa",
+        "nota": "acima de 2 o plano manda parar e perguntar a massa dos elos à pessoa"
+      },
+      "torqueDisponivel": {
+        "valor": 1.0729,
+        "origem": "estimativa",
+        "nota": "motor-17hs4401 com reducao-gt2-20-80 e driver-drv8825, na velocidade da junta; limitado por o motor"
+      },
+      "folga": {
+        "valor": 2.04,
+        "origem": "estimativa",
+        "nota": "torque disponível sobre o total; o mínimo aprovado é 2"
+      },
+      "passa": true
+    }
+  ],
+  "precisao": {
+    "erroNaPonta": {
+      "valor": 6.07,
+      "origem": "estimativa",
+      "nota": "a folga angular de cada redução do catálogo vezes a distância do eixo da junta até a carga: junta-1 1 grau a 330 mm, 5.76 mm; junta-2 0.1 grau a 180 mm, 0.31 mm; somadas no pior sentido, sem a gravidade que encosta a folga num lado"
+    },
+    "precisaoPedida": 2,
+    "repetibilidadePedida": 1,
+    "passa": false
+  },
+  "passa": false,
+  "naoCobre": [
+    "a dinâmica no tempo, com o perfil de movimento e a perda de passo do motor (linha fis-modelo-dinamico)",
+    "o atrito do rolamento, das polias e da planetária, que só entra pela eficiência da redução",
+    "a flexão dos elos impressos e a folga da correia",
+    "a perda de passo sem encoder, o aquecimento dos drivers a 1,5 A sem dissipador e a flexão dos elos e da correia, que também pesam contra a repetibilidade",
+    "a estabilidade da base: o centro de massa do braço esticado com a carga sai da base de 90 mm de raio, e a base precisa ser presa à mesa"
+  ]
+}
