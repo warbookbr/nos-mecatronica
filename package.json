@@ -17,6 +17,7 @@
     "dimensionar": "node camadas/fisico/dimensionamento/dimensionar.mjs",
     "opcoes": "node camadas/fisico/dimensionamento/opcoes.mjs",
     "simular:ficha": "node camadas/fisico/dimensionamento/com-ficha.mjs",
+    "caminho": "node tools/caminho/caminho.mjs",
     "pedido-inicial": "node tools/caminho/pedido-inicial.mjs"
   },
   "devDependencies": {
